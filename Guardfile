@@ -16,12 +16,12 @@
 # and, you'll have to watch "config/Guardfile" instead of "Guardfile"
 
 guard :bundler do
-  require 'guard/bundler'
-  require 'guard/bundler/verify'
+  require "guard/bundler"
+  require "guard/bundler/verify"
   helper = Guard::Bundler::Verify.new
 
-  files = ['Gemfile']
-  files += Dir['*.gemspec'] if files.any? { |f| helper.uses_gemspec?(f) }
+  files = ["Gemfile"]
+  files += Dir["*.gemspec"] if files.any? { |f| helper.uses_gemspec?(f) }
 
   # Assume files are symlinked from somewhere
   files.each { |file| watch(helper.real_path(file)) }
@@ -31,7 +31,8 @@ end
 # daemon: false                        # runs the server as a daemon.
 # debugger: false                      # enable ruby-debug gem.
 # environment: 'development'           # changes server environment.
-# force_run: false                     # kills any process that's holding the listen port before attempting to (re)start Rails.
+# force_run: false
+# kills any process that's holding the listen port before attempting to (re)start Rails.
 # pid_file: 'tmp/pids/[RAILS_ENV].pid' # specify your pid_file.
 # host: 'localhost'                    # server hostname.
 # port: 3000                           # server port number.
@@ -43,8 +44,8 @@ end
 # zeus: false                          # enables zeus gem.
 # CLI: 'rails server'                  # customizes runner command. Omits all options except `pid_file`!
 
-guard 'rails' do
-  watch('Gemfile.lock')
+guard "rails" do
+  watch("Gemfile.lock")
   watch(%r{^(config|lib)/.*})
 end
 
@@ -80,9 +81,9 @@ guard :rspec, cmd: "bundle exec rspec" do
 
   watch(rails.controllers) do |m|
     [
-      rspec.spec.("routing/#{m[1]}_routing"),
-      rspec.spec.("controllers/#{m[1]}_controller"),
-      rspec.spec.("acceptance/#{m[1]}")
+      rspec.spec.call("routing/#{m[1]}_routing"),
+      rspec.spec.call("controllers/#{m[1]}_controller"),
+      rspec.spec.call("acceptance/#{m[1]}")
     ]
   end
 
@@ -92,8 +93,8 @@ guard :rspec, cmd: "bundle exec rspec" do
   watch(rails.app_controller)  { "#{rspec.spec_dir}/controllers" }
 
   # Capybara features specs
-  watch(rails.view_dirs)     { |m| rspec.spec.("features/#{m[1]}") }
-  watch(rails.layouts)       { |m| rspec.spec.("features/#{m[1]}") }
+  watch(rails.view_dirs)     { |m| rspec.spec.call("features/#{m[1]}") }
+  watch(rails.layouts)       { |m| rspec.spec.call("features/#{m[1]}") }
 
   # Turnip features and steps
   watch(%r{^spec/acceptance/(.+)\.feature$})
