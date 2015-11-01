@@ -2,26 +2,21 @@ source "https://rubygems.org"
 
 gem "rails", "~> 4.2"
 gem "sqlite3"
-gem "sass-rails", "~> 5.0"
-gem "uglifier", ">= 1.3.0"
-gem "coffee-rails", "~> 4.1.0"
-gem "jquery-rails"
-gem "turbolinks"
-gem "jbuilder", "~> 2.0"
 
-group :development, :test do
-  gem "byebug"
-end
-
-group :development do
-  gem "web-console", "~> 2.0"
-  gem "spring"
-end
+gem "active_model_serializers"
 gem "bootstrap-sass"
+gem "coffee-rails", "~> 4.1.0"
 gem "devise"
 gem "haml-rails"
+gem "jbuilder", "~> 2.0"
+gem "jquery-rails"
+gem "money-rails"
 gem "pundit"
+gem "sass-rails", "~> 5.0"
 gem "simple_form"
+gem "slim"
+gem "turbolinks"
+gem "uglifier", ">= 1.3.0"
 
 group :development do
   gem "better_errors"
@@ -36,16 +31,20 @@ group :development do
   gem "rb-fchange", require: false
   gem "rb-fsevent", require: false
   gem "rb-inotify", require: false
+  gem "spring"
   gem "spring-commands-rspec"
 end
 
 group :development, :test do
+  gem "awesome_print"
+  gem "byebug"
   gem "factory_girl_rails"
   gem "faker"
   gem "pry-rails"
   gem "pry-rescue"
   gem "rspec-rails"
   gem "rubocop"
+  gem "web-console", "~> 2.0"
 end
 
 group :test do
