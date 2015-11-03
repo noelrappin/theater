@@ -1,23 +1,22 @@
 source "https://rubygems.org"
 ruby "2.2.3"
 
-gem "rails", "~> 4.2"
+gem "rails"
 gem "sqlite3"
 
 gem "active_model_serializers"
 gem "bootstrap-sass"
-gem "coffee-rails", "~> 4.1.0"
+gem "coffee-rails"
 gem "devise"
 gem "haml-rails"
-gem "jbuilder", "~> 2.0"
+gem "jbuilder"
 gem "jquery-rails"
 gem "money-rails"
 gem "pundit"
-gem "sass-rails", "~> 5.0"
+gem "sass-rails"
 gem "simple_form"
-gem "slim"
 gem "turbolinks"
-gem "uglifier", ">= 1.3.0"
+gem "uglifier"
 
 group :development do
   gem "better_errors"
@@ -34,7 +33,6 @@ group :development do
   gem "rb-inotify", require: false
   gem "spring"
   gem "spring-commands-rspec"
-  gem "web-console"
 end
 
 group :development, :test do
@@ -46,7 +44,7 @@ group :development, :test do
   gem "pry-rescue"
   gem "rspec-rails"
   gem "rubocop"
-  gem "web-console", "~> 2.0"
+  gem "web-console"
 end
 
 group :test do
