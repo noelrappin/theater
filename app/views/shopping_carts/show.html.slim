@@ -1,9 +1,0 @@
-h1 Shopping Cart
-
-- @cart.events.each do |event|
-  div(id=dom_id(event))
-    - @cart.performances_for(event).each do |performance|
-      div(id=dom_id(performance))
-        = performance.start_time.to_date.to_s(:long)
-        .ticket_count= @cart.performance_count[performance.id]
-        .subtotal= humanized_money_with_symbol(@cart.subtotal_for(performance))
