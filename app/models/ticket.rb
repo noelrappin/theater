@@ -9,7 +9,7 @@ class Ticket < ActiveRecord::Base
 
   monetize :price_cents
 
-  def waiting_for(user)
+  def place_in_cart_for(user)
     update(status: :waiting, user: user)
   end
 
