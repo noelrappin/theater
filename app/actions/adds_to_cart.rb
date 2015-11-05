@@ -12,7 +12,7 @@ class AddsToCart
   def run
     tickets = performance.unsold_tickets(count)
     return if tickets.size != count
-    tickets.each { |ticket| ticket.waiting_for(user) }
+    tickets.each { |ticket| ticket.place_in_cart_for(user) }
     self.result = tickets.all?(&:valid?)
     result
   end
