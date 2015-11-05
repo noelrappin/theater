@@ -13,9 +13,7 @@ describe AddsToCart do
       action = AddsToCart.new(user: user, performance: performance, count: 1)
       action.run
       expect(ticket_1).to have_received(:waiting_for).with(user)
-      expect(ticket_1).to have_received(:save)
       expect(ticket_2).not_to have_received(:waiting_for)
-      expect(ticket_2).not_to have_received(:save)
     end
   end
 
