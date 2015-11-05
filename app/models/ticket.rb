@@ -10,8 +10,7 @@ class Ticket < ActiveRecord::Base
   monetize :price_cents
 
   def waiting_for(user)
-    self.status = :waiting
-    self.user = user
+    update(status: :waiting, user: user)
   end
 
 end
