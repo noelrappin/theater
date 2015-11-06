@@ -14,8 +14,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  ## START: code.user_tickets_in_cart
   def tickets_in_cart
     tickets.waiting.all.to_a
   end
+  ## END: code.user_tickets_in_cart
 
 end
