@@ -1,10 +1,12 @@
 class ShoppingCartsController < ApplicationController
 
+  ## START: code.shopping_cart_show
   def show
     @cart = ShoppingCart.new(current_user)
   end
+  ## END: code.shopping_cart_show
 
-  # #START: code.shopping_cart_update
+  ## START: code.shopping_cart_update
   def update
     performance = Performance.find(params[:performance_id])
     action = AddsToCart.new(
@@ -16,6 +18,6 @@ class ShoppingCartsController < ApplicationController
       redirect_to performance.event
     end
   end
-  # #END:  code.shopping_cart_update
+  ## END:  code.shopping_cart_update
 
 end
