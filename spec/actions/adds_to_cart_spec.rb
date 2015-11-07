@@ -4,8 +4,8 @@ describe AddsToCart do
 
   let(:user) { instance_double(User) }
   let(:performance) { instance_double(Performance) }
-  let!(:ticket_1) { instance_spy(Ticket, status: "unsold") }
-  let!(:ticket_2) { instance_spy(Ticket, status: "unsold") }
+  let(:ticket_1) { instance_spy(Ticket, status: "unsold") }
+  let(:ticket_2) { instance_spy(Ticket, status: "unsold") }
 
   describe "happy path adding tickets" do
     it "adds a ticket to a cart" do
