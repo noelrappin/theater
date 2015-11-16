@@ -3,26 +3,18 @@ ruby "2.2.3"
 
 gem "rails", "~> 4.2"
 gem "sqlite3"
-gem "sass-rails", "~> 5.0"
-gem "uglifier", ">= 1.3.0"
-gem "coffee-rails", "~> 4.1.0"
-gem "jquery-rails"
-gem "turbolinks"
-gem "jbuilder", "~> 2.0"
 
-group :development, :test do
-  gem "byebug"
-end
-
-group :development do
-  gem "web-console", "~> 2.0"
-  gem "spring"
-end
 gem "bootstrap-sass"
+gem "coffee-rails"
 gem "devise"
 gem "haml-rails"
+gem "jbuilder"
+gem "jquery-rails"
 gem "pundit"
+gem "sass-rails"
 gem "simple_form"
+gem "turbolinks"
+gem "uglifier"
 
 group :development do
   gem "better_errors"
@@ -37,10 +29,13 @@ group :development do
   gem "rb-fchange", require: false
   gem "rb-fsevent", require: false
   gem "rb-inotify", require: false
+  gem "spring"
   gem "spring-commands-rspec"
+  gem "web-console"
 end
 
 group :development, :test do
+  gem "byebug"
   gem "factory_girl_rails"
   gem "faker"
   gem "pry-rails"
