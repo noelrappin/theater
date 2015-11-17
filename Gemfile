@@ -15,6 +15,7 @@ gem "money-rails"
 gem "pundit"
 gem "sass-rails"
 gem "simple_form"
+gem "stripe"
 gem "turbolinks"
 gem "uglifier"
 
@@ -38,6 +39,7 @@ end
 group :development, :test do
   gem "awesome_print"
   gem "byebug"
+  gem "dotenv-rails", :groups => [:development, :test]
   gem "factory_girl_rails"
   gem "faker"
   gem "pry-rails"
@@ -45,6 +47,7 @@ group :development, :test do
   gem "rspec-rails"
   gem "rubocop"
   gem "web-console"
+  gem "vcr"
 end
 
 group :test do
