@@ -9,11 +9,11 @@ describe ShoppingCart do
   let(:romeo_performance) { instance_spy("Performance", id: 1, event: romeo) }
   let(:hamlet_performance) { instance_spy("Performance", id: 2, event: hamlet) }
   let(:t1) { instance_double(
-    "Ticket", event: romeo, performance: romeo_performance) }
+    "Ticket", event: romeo, performance: romeo_performance, price: Money.new(1500)) }
   let(:t2) { instance_double(
-    "Ticket", event: romeo, performance: romeo_performance) }
+    "Ticket", event: romeo, performance: romeo_performance, price: Money.new(1500)) }
   let(:t3) { instance_double(
-    "Ticket", event: hamlet, performance: hamlet_performance) }
+    "Ticket", event: hamlet, performance: hamlet_performance, price: Money.new(1500)) }
 
   before(:example) do
     allow(user).to receive(:tickets_in_cart).and_return([t1, t2, t3])
@@ -29,6 +29,10 @@ describe ShoppingCart do
 
   it "gets performances for event" do
     expect(cart.performances_for(romeo)).to eq([romeo_performance])
+  end
+
+  it "calculates entire total" do
+    expect(cart.total_cost).to eq(Money.new(4500))
   end
 
 end

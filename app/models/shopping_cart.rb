@@ -34,4 +34,8 @@ class ShoppingCart
     tickets_by_performance[performance.id].sum(&:price)
   end
 
+  def total_cost
+    tickets.map(&:price).sum
+  end
+
 end
