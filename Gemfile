@@ -39,7 +39,7 @@ end
 group :development, :test do
   gem "awesome_print"
   gem "byebug"
-  gem "dotenv-rails", :groups => [:development, :test]
+  gem "dotenv-rails"
   gem "factory_girl_rails"
   gem "faker"
   gem "pry-rails"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151025161547) do
+ActiveRecord::Schema.define(version: 20151120003542) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
@@ -20,6 +20,29 @@ ActiveRecord::Schema.define(version: 20151025161547) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "order_line_items", force: :cascade do |t|
+    t.integer  "order_id"
+    t.integer  "ticket_id"
+    t.integer  "price_cents"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "order_line_items", ["order_id"], name: "index_order_line_items_on_order_id"
+  add_index "order_line_items", ["ticket_id"], name: "index_order_line_items_on_ticket_id"
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "price_cents"
+    t.integer  "status"
+    t.string   "reference"
+    t.string   "payment_method"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id"
 
   create_table "performances", force: :cascade do |t|
     t.integer  "event_id"

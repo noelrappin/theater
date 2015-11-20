@@ -9,4 +9,12 @@ RSpec.describe Ticket, type: :model do
     expect(ticket.user).to eq(user)
     expect(ticket.status).to eq("waiting")
   end
+
+  it "can move to purchased" do
+    user = build_stubbed(:user)
+    ticket = create(:ticket, status: "waiting", user: user)
+    ticket.purchase
+    expect(ticket.user).to eq(user)
+    expect(ticket.status).to eq("purchased")
+  end
 end
