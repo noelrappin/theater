@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20151120003542) do
     t.integer  "status"
     t.integer  "access"
     t.integer  "price_cents"
+    t.string   "reference"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end

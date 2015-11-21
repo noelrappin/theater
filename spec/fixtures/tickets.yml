@@ -3,9 +3,11 @@
     performance: midsummer
     status: unsold
     price_cents: 1500
+    reference: <%= Ticket.generate_reference %>
 
   next_day_bums_<%=i %>:
     performance: next_day
     status: unsold
     price_cents: 1500
+    reference: <%= Ticket.generate_reference %>
 <% end %>

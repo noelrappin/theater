@@ -48,10 +48,6 @@ GEM
       json
     awesome_print (1.6.1)
     bcrypt (3.1.10)
-    better_errors (2.1.1)
-      coderay (>= 1.0.0)
-      erubis (>= 2.6.6)
-      rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.3.5.1)
@@ -65,6 +61,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-screenshot (1.0.11)
+      capybara (>= 1.0, < 3)
+      launchy
     cliver (0.3.2)
     coderay (1.1.0)
     coffee-rails (4.1.0)
@@ -345,10 +344,10 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   awesome_print
-  better_errors
   bootstrap-sass
   byebug
   capybara
+  capybara-screenshot
   coffee-rails
   database_cleaner
   devise

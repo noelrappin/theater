@@ -20,7 +20,7 @@ gem "turbolinks"
 gem "uglifier"
 
 group :development do
-  gem "better_errors"
+  # gem "better_errors"
   gem "foreman"
   gem "guard-bundler"
   gem "guard-rails"
@@ -48,12 +48,13 @@ group :development, :test do
   gem "rubocop"
   gem "web-console"
   gem "vcr"
-  gem "webmock"
 end
 
 group :test do
   gem "capybara"
+  gem "capybara-screenshot"
   gem "database_cleaner"
   gem "launchy"
   gem "poltergeist"
+  gem "webmock"
 end

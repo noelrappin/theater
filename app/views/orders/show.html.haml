@@ -1,0 +1,21 @@
+%h1 Order Number: #{@order.reference}
+
+%table.table
+  %thead
+    %tr
+      %th Ticket #
+      %th Event
+      %th Date
+      %th Price
+    %tbody
+      - @order.order_line_items.each do |order_line_item|
+        - ticket = order_line_item.ticket
+        %tr.purchased_ticket{id: dom_id(ticket, :purchased)}
+          %td= ticket.reference
+          %td= ticket.event.name
+          %td= ticket.performance.start_time.to_date.to_s(:long)
+          %td.subtotal= humanized_money_with_symbol(order_line_item.price)
+
+%h3 Total #{humanized_money_with_symbol(@order.total_cost)}
+
+

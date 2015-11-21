@@ -7,7 +7,7 @@ class CreateTickets < ActiveRecord::Migration
       t.integer :status
       t.integer :access
       t.integer :price_cents
-
+      t.string :reference
       t.timestamps null: false
     end
   end

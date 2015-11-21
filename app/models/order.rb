@@ -2,7 +2,7 @@ class Order < ActiveRecord::Base
 
   belongs_to :user
   has_many :order_line_items
-  has_many :tickets, through: :transaction_line_items
+  has_many :tickets, through: :order_line_items
 
   monetize :price_cents
 
@@ -13,6 +13,10 @@ class Order < ActiveRecord::Base
       result = SecureRandom.hex(10)
       return result unless Order.exists?(reference: result)
     end
+  end
+
+  def total_cost
+    tickets.map(&:price).sum
   end
 
 end
