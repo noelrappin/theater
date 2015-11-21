@@ -48,6 +48,7 @@ group :development, :test do
   gem "rubocop"
   gem "web-console"
   gem "vcr"
+  gem "webmock"
 end
 
 group :test do

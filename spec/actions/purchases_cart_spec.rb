@@ -3,20 +3,21 @@ require "rails_helper"
 describe PurchasesCart do
 
   describe "successful credit card purchase" do
-    let(:user) { instance_double(User) }
-    let(:action) { PurchasesCart.new(
-      user: user, purchase_amount_cents: 3000, stripe_token: "tk_fake_token") }
     let(:ticket_1) { instance_spy(
-      Ticket, status: "waiting", user: user, price: Money.new(1500), id: 1) }
+      Ticket, status: "waiting", price: Money.new(1500), id: 1) }
     let(:ticket_2) { instance_spy(
-      Ticket, status: "waiting", user: user, price: Money.new(1500), id: 2) }
+      Ticket, status: "waiting", price: Money.new(1500), id: 2) }
     let(:ticket_3) { instance_spy(Ticket, status: "unsold", id: 3) }
+    let(:user) { instance_double(User, id: 5, tickets_in_cart: [ticket_1, ticket_2]) }
+    let(:action) { PurchasesCart.new(
+      user: user, purchase_amount_cents: 3000,
+      stripe_token: instance_spy(StripeToken, token: "tk_not_a_real_token")) }
+    let(:charge) { double(id: "ch_not_an_id") }
 
     before(:example) do
-      allow(user).to receive(:tickets_in_cart).and_return([ticket_1, ticket_2])
-      allow(user).to receive(:id).and_return(5)
       allow(Order).to receive(:generate_reference).and_return("fred")
       allow(action).to receive(:save).and_return(true)
+      allow(StripeCharge).to receive(:charge).and_return(charge)
       action.run
     end
 
@@ -33,8 +34,8 @@ describe PurchasesCart do
       expect(action.order.order_line_items.size).to eq(2)
     end
 
-    it "calls the gateway" do
-
+    it "takes the response from the gateway" do
+      # expect(action.order).to have_attributes()
     end
 
     it "returns success" do

@@ -4,6 +4,8 @@ class Order < ActiveRecord::Base
   has_many :order_line_items
   has_many :tickets, through: :transaction_line_items
 
+  monetize :price_cents
+
   enum status: [:successful]
 
   def self.generate_reference

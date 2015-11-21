@@ -23,8 +23,9 @@ class PurchasesCart
         ticket_id: ticket.id, price_cents: ticket.price.cents)
     end
     @success = save
+    charge = StripeCharge.new(token: stripe_token, order: order)
   end
 
-  delegate :save, to: :transaction
+  delegate :save, to: :order
 
 end
