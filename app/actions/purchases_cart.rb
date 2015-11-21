@@ -14,19 +14,35 @@ class PurchasesCart
   end
 
   def run
+    purchase_tickets
+    create_order
+    create_line_items
+    save
+    charge
+    @success = save && order.succeeded?
+  end
+
+  def purchase_tickets
     tickets.each(&:purchase)
+  end
+
+  def create_order
     self.order = Order.new(
       user_id: user.id, price_cents: purchase_amount.cents,
       reference: Order.generate_reference, payment_method: "stripe")
+  end
+
+  def create_line_items
     tickets.each do |ticket|
       order.order_line_items.build(
         ticket_id: ticket.id, price_cents: ticket.price.cents)
     end
-    save
+  end
+
+  def charge
     charge = StripeCharge.charge(token: stripe_token, order: order)
     order.attributes = {status: charge.status, response_id: charge.id,
                         full_response: charge.to_json}
-    @success = save && order.succeeded?
   end
 
   delegate :save, to: :order
