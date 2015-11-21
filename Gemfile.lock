@@ -146,7 +146,7 @@ GEM
     json (1.8.3)
     launchy (2.4.3)
       addressable (~> 2.3)
-    listen (3.0.4)
+    listen (3.0.5)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
     loofah (2.0.3)
@@ -157,7 +157,7 @@ GEM
     method_source (0.8.2)
     mime-types (2.6.2)
     mini_portile (0.6.2)
-    minitest (5.8.2)
+    minitest (5.8.3)
     monetize (1.1.0)
       money (~> 6.5.0)
     money (6.5.1)
@@ -169,7 +169,7 @@ GEM
       railties (>= 3.0)
     multi_json (1.11.2)
     nenv (0.2.0)
-    nokogiri (1.6.6.2)
+    nokogiri (1.6.6.4)
       mini_portile (~> 0.6.0)
     notiffany (0.0.8)
       nenv (~> 0.1)
@@ -177,6 +177,7 @@ GEM
     orm_adapter (0.5.0)
     parser (2.2.3.0)
       ast (>= 1.1, < 3.0)
+    pg (0.18.4)
     poltergeist (1.8.0)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
@@ -237,7 +238,7 @@ GEM
       rspec-core (~> 3.4.0)
       rspec-expectations (~> 3.4.0)
       rspec-mocks (~> 3.4.0)
-    rspec-core (3.4.0)
+    rspec-core (3.4.1)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -253,7 +254,7 @@ GEM
       rspec-expectations (~> 3.4.0)
       rspec-mocks (~> 3.4.0)
       rspec-support (~> 3.4.0)
-    rspec-support (3.4.0)
+    rspec-support (3.4.1)
     rubocop (0.35.1)
       astrolabe (~> 1.3)
       parser (>= 2.2.3.0, < 3.0)
@@ -277,7 +278,7 @@ GEM
       actionpack (~> 4.0)
       activemodel (~> 4.0)
     slop (3.6.0)
-    spring (1.4.1)
+    spring (1.4.4)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
     sprockets (3.4.0)
@@ -286,7 +287,6 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
-    sqlite3 (1.3.11)
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.1)
@@ -337,6 +337,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   money-rails
+  pg
   poltergeist
   pry-rails
   pry-rescue
@@ -353,7 +354,6 @@ DEPENDENCIES
   simple_form
   spring
   spring-commands-rspec
-  sqlite3
   turbolinks
   uglifier
   web-console

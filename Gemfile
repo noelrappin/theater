@@ -2,7 +2,7 @@ source "https://rubygems.org"
 ruby "2.2.3"
 
 gem "rails"
-gem "sqlite3"
+gem "pg"
 
 gem "active_model_serializers"
 gem "bootstrap-sass"
