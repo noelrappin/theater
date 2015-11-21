@@ -78,4 +78,4 @@ pickle-email-*.html
 .env
 .powenv
 spec/examples.txt
-
+.tags
