@@ -12,7 +12,7 @@ describe PurchasesCart do
     let(:action) { PurchasesCart.new(
       user: user, purchase_amount_cents: 3000,
       stripe_token: instance_spy(StripeToken, token: "tk_not_a_real_token")) }
-    let(:charge) { double(id: "ch_not_an_id") }
+    let(:charge) { double(id: "ch_not_an_id", status: "succeeded") }
 
     before(:example) do
       allow(Order).to receive(:generate_reference).and_return("fred")
@@ -29,13 +29,15 @@ describe PurchasesCart do
 
     it "creates a transaction object" do
       expect(action.order).to have_attributes(
-        user_id: user.id, price_cents: 3000, status: "successful",
+        user_id: user.id, price_cents: 3000,
         reference: "fred", payment_method: "stripe")
       expect(action.order.order_line_items.size).to eq(2)
     end
 
     it "takes the response from the gateway" do
-      # expect(action.order).to have_attributes()
+      expect(action.order).to have_attributes(
+        status: "succeeded", response_id: "ch_not_an_id",
+        full_response: JSON.parse(charge.to_json))
     end
 
     it "returns success" do

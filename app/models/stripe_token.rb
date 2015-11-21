@@ -16,8 +16,6 @@ class StripeToken
         exp_year: expiration_year, cvc: cvc})
   end
 
-  def id
-    token.id
-  end
+  delegate :id, to: :token
 
 end

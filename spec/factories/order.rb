@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :order do
     user nil
     price_cents 1
-    status :successful
+    status :created
     reference "MyString"
     payment_method "MyString"
   end

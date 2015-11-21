@@ -9,9 +9,8 @@ describe StripeCharge, :vcr do
     Order, price: Money.new(3000), reference: "reference") }
 
   it "calls stripe to get a charge" do
-    charge = StripeCharge.new(token: token, order: order)
-    ap charge.charge
-    expect(charge.response.id).to start_with("ch")
-    expect(charge.response.amount).to eq(3000)
+    charge = StripeCharge.charge(token: token, order: order)
+    expect(charge.id).to start_with("ch")
+    expect(charge.amount).to eq(3000)
   end
 end

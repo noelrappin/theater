@@ -31,7 +31,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 20 Nov 2015 12:43:59 GMT
+      - Sat, 21 Nov 2015 14:13:41 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_7O0FSTatqkoX9z
+      - req_7OOv16pphPKiVY
       Stripe-Version:
       - '2015-10-16'
       Strict-Transport-Security:
@@ -58,10 +58,10 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_179EF9DTh2DhiR4RrGyVwFfO",
+          "id": "tok_179c7VDTh2DhiR4RQjl7roBb",
           "object": "token",
           "card": {
-            "id": "card_179EF9DTh2DhiR4R4fgIrnbw",
+            "id": "card_179c7VDTh2DhiR4RsQ1cA778",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -85,19 +85,19 @@ http_interactions:
             "tokenization_method": null
           },
           "client_ip": "73.9.29.65",
-          "created": 1448023439,
+          "created": 1448115221,
           "livemode": false,
           "type": "card",
           "used": false
         }
     http_version: 
-  recorded_at: Fri, 20 Nov 2015 12:43:59 GMT
+  recorded_at: Sat, 21 Nov 2015 14:13:41 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/charges
     body:
       encoding: US-ASCII
-      string: amount=3000&currency=usd&description=&metadata=&source=tok_179EF9DTh2DhiR4RrGyVwFfO
+      string: amount=3000&currency=usd&description=&metadata[reference]=reference&source=tok_179c7VDTh2DhiR4RQjl7roBb
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
@@ -116,7 +116,7 @@ http_interactions:
       Idempotency-Key:
       - reference
       Content-Length:
-      - '83'
+      - '103'
   response:
     status:
       code: 200
@@ -125,11 +125,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 20 Nov 2015 12:44:00 GMT
+      - Sat, 21 Nov 2015 14:13:42 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '1423'
+      - '1455'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -145,9 +145,9 @@ http_interactions:
       Idempotency-Key:
       - reference
       Original-Request:
-      - req_7O0F2TDieMxj87
+      - req_7OOvLOFWPMI94j
       Request-Id:
-      - req_7O0F2TDieMxj87
+      - req_7OOvLOFWPMI94j
       Stripe-Version:
       - '2015-10-16'
       Strict-Transport-Security:
@@ -156,14 +156,14 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "ch_179EFADTh2DhiR4Rh4HcuJ2x",
+          "id": "ch_179c7WDTh2DhiR4RN4FSbsF9",
           "object": "charge",
           "amount": 3000,
           "amount_refunded": 0,
           "application_fee": null,
-          "balance_transaction": "txn_179EFADTh2DhiR4RfmVhdsGk",
+          "balance_transaction": "txn_179c7WDTh2DhiR4RAVLivDOL",
           "captured": true,
-          "created": 1448023440,
+          "created": 1448115222,
           "currency": "usd",
           "customer": null,
           "description": "",
@@ -174,7 +174,9 @@ http_interactions:
           "fraud_details": {},
           "invoice": null,
           "livemode": false,
-          "metadata": {},
+          "metadata": {
+            "reference": "reference"
+          },
           "paid": true,
           "receipt_email": null,
           "receipt_number": null,
@@ -184,11 +186,11 @@ http_interactions:
             "data": [],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/charges/ch_179EFADTh2DhiR4Rh4HcuJ2x/refunds"
+            "url": "/v1/charges/ch_179c7WDTh2DhiR4RN4FSbsF9/refunds"
           },
           "shipping": null,
           "source": {
-            "id": "card_179EF9DTh2DhiR4R4fgIrnbw",
+            "id": "card_179c7VDTh2DhiR4RsQ1cA778",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -216,5 +218,5 @@ http_interactions:
           "status": "succeeded"
         }
     http_version: 
-  recorded_at: Fri, 20 Nov 2015 12:44:00 GMT
+  recorded_at: Sat, 21 Nov 2015 14:13:42 GMT
 recorded_with: VCR 3.0.0

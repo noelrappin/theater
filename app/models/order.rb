@@ -6,7 +6,7 @@ class Order < ActiveRecord::Base
 
   monetize :price_cents
 
-  enum status: [:successful]
+  enum status: [:created, :succeeded]
 
   def self.generate_reference
     loop do
