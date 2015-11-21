@@ -16,7 +16,6 @@ class PurchasesCart
   def run
     purchase_tickets
     create_order
-    create_line_items
     save
     charge
     @success = save && order.succeeded?
@@ -30,9 +29,6 @@ class PurchasesCart
     self.order = Order.new(
       user_id: user.id, price_cents: purchase_amount.cents,
       reference: Order.generate_reference, payment_method: "stripe")
-  end
-
-  def create_line_items
     tickets.each do |ticket|
       order.order_line_items.build(
         ticket_id: ticket.id, price_cents: ticket.price.cents)
