@@ -14,6 +14,7 @@
           %tr{id: dom_id(performance)}
             %td= performance.start_time.to_date.to_s(:long)
             %td.ticket_count= @cart.performance_count[performance.id]
-            %td.subtotal= humanized_money_with_symbol(@cart.subtotal_for(performance))
+            %td.subtotal
+              = humanized_money_with_symbol(@cart.subtotal_for(performance))
 
 %h3 Total #{humanized_money_with_symbol(@cart.total_cost)}
