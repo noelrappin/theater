@@ -21,6 +21,7 @@
 
 %h2 Checkout
 
+//##START: code.credit_card_form
 %h3 Credit Card Info
 
 = form_tag orders_path, class: "form-inline" do
@@ -38,3 +39,4 @@
     = text_field_tag(:cvc, "", class: "form-control", placeholder: "CVC #")
   .form_group
     = submit_tag("Purchase Cart", class: "btn btn-default", id: "purchase")
+//##START: code.credit_card_form
