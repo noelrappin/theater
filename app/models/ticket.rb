@@ -20,8 +20,15 @@ class Ticket < ActiveRecord::Base
     update(status: :waiting, user: user)
   end
 
+  ## START: code.purchase
   def purchase
-    update(status: :purchased)
+    self.status = :purchased
   end
+
+  def purchase!
+    purchase
+    save
+  end
+  ## END: code.purchase
 
 end
