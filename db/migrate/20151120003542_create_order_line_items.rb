@@ -5,7 +5,6 @@ class CreateOrderLineItems < ActiveRecord::Migration
       t.references :order, index: true, foreign_key: true
       t.references :ticket, index: true, foreign_key: true
       t.integer :price_cents
-
       t.timestamps null: false
     end
   end
