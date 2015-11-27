@@ -27,7 +27,7 @@ class PurchasesCart
 
   def create_order
     self.order = Order.new(
-      user_id: user.id, price_cents: purchase_amount.cents,
+      user_id: user.id, price_cents: purchase_amount.cents, status: "created",
       reference: Order.generate_reference, payment_method: "stripe")
     tickets.each do |ticket|
       order.order_line_items.build(
