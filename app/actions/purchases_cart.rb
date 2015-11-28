@@ -35,11 +35,13 @@ class PurchasesCart
     end
   end
 
+  ## START: code.purchase_charge
   def charge
     charge = StripeCharge.charge(token: stripe_token, order: order)
     order.attributes = {status: charge.status, response_id: charge.id,
                         full_response: charge.to_json}
   end
+  ## END: code.purchase_charge
 
   delegate :save, to: :order
 
