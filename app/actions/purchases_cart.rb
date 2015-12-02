@@ -1,6 +1,7 @@
 class PurchasesCart
 
-  attr_accessor :user, :stripe_token, :purchase_amount, :success, :order
+  attr_accessor :user, :stripe_token, :purchase_amount, :success, :order,
+                :stripe_charge
 
   def initialize(user:, stripe_token:, purchase_amount_cents:)
     @user = user
@@ -37,9 +38,11 @@ class PurchasesCart
 
   ## START: code.purchase_charge
   def charge
-    charge = StripeCharge.charge(token: stripe_token, order: order)
-    order.attributes = {status: charge.status, response_id: charge.id,
-                        full_response: charge.to_json}
+    @stripe_charge = StripeCharge.charge(token: stripe_token, order: order)
+    order.attributes = {
+      status: @stripe_charge.status,
+      response_id: @stripe_charge.id,
+      full_response: @stripe_charge.to_json}
   end
   ## END: code.purchase_charge
 
