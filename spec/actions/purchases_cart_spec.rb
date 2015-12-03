@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe PurchasesCart, :vcr do
+describe PurchasesCart, :vcr, :aggregate_failures do
 
   describe "successful credit card purchase" do
     let(:ticket_1) { instance_spy(
