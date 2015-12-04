@@ -5,8 +5,16 @@
     %title= content_for?(:title) ? yield(:title) : 'Theater'
     %meta{name: "description", content: "#{content_for?(:description) ? yield(:description) : 'Theater'}"}
     = stylesheet_link_tag('application', media: 'all', 'data-turbolinks-track' => true)
+    - if Rails.env.production?
+      %script{type: "text/javascript", src: "https://js.stripe.com/v2/"}
+    - else
+      %script{type: "text/javascript", src: "https://js.stripe.com/v2/stripe-debug.js"}
     = javascript_include_tag('application', 'data-turbolinks-track' => true)
+
+    :javascript
+      Stripe.setPublishableKey('#{Rails.application.secrets.stripe_publishable_key}');
     = csrf_meta_tags
+
   %body
     %header
       = render('layouts/navigation')
