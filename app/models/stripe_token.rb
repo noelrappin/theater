@@ -26,8 +26,8 @@ class StripeToken
 
   private def create_token
     Stripe::Token.create(
-          card: {number: credit_card_number, exp_month: expiration_month,
-                 exp_year: expiration_year, cvc: cvc})
+      card: {number: credit_card_number, exp_month: expiration_month,
+             exp_year: expiration_year, cvc: cvc})
   end
 
 end
