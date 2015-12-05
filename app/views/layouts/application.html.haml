@@ -1,9 +1,10 @@
 !!!
 %html
   %head
-    %meta{name: "viewport", content: "width=device-width", "initial-scale" => "1.0"}
-    %title= content_for?(:title) ? yield(:title) : 'Theater'
-    %meta{name: "description", content: "#{content_for?(:description) ? yield(:description) : 'Theater'}"}
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
+    %title= content_for?(:title) ? yield(:title) : "Theater"
+    %meta{name: "description",
+      content: "#{content_for?(:description) ? yield(:description) : 'Desc'}"}
     / START: code.add_stripe
     = stylesheet_link_tag('application', media: 'all', 'data-turbolinks-track' => true)
     - if Rails.env.production?
@@ -15,11 +16,12 @@
     :javascript
       Stripe.setPublishableKey('#{Rails.application.secrets.stripe_publishable_key}');
     / END: code.add_stripe
+
     = csrf_meta_tags
 
   %body
     %header
-      = render('layouts/navigation')
-    %main(role="main")
-      = render('layouts/messages')
+      = render "layouts/navigation"
+    %main{role: "main"}
+      = render "layouts/messages"
       = yield
