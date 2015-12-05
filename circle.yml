@@ -4,6 +4,7 @@ machine:
 
 test:
   override:
+    - eslint app/assets/javascripts/**.es6
     - bundle exec rubocop
       --config .rubocop.yml
     - bundle exec rspec spec

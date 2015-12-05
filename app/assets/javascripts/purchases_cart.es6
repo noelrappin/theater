@@ -15,6 +15,23 @@ class CheckoutForm {
   }
 }
 
+class TokenHandler {
+  static handle(status, response) {
+    new TokenHandler(status, response).handle();
+  }
+
+  constructor(status, response) {
+    this.checkoutForm = new CheckoutForm();
+    this.status = status;
+    this.response = response;
+  }
+
+  handle() {
+    this.checkoutForm.appendHidden("stripe_token", this.response.id);
+    this.checkoutForm.submit();
+  }
+}
+
 class StripeForm {
 
   constructor() {
@@ -34,21 +51,4 @@ class StripeForm {
   }
 }
 
-class TokenHandler {
-  static handle(status, response) {
-    new TokenHandler(status, response).handle();
-  }
-
-  constructor(status, response) {
-    this.checkoutForm = new CheckoutForm();
-    this.status = status;
-    this.response = response;
-  }
-
-  handle() {
-    this.checkoutForm.appendHidden("stripe_token", this.response.id)
-    this.checkoutForm.submit();
-  }
-}
-
-$(() => { new StripeForm(); });
+$(() => { return new StripeForm(); });
