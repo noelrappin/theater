@@ -2,6 +2,11 @@ machine:
   ruby:
     version: 2.2.3
 
+dependencies:
+  override:
+    - npm install eslint
+    - npm install babel-eslint
+
 test:
   override:
     - eslint app/assets/javascripts/**.es6
