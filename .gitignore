@@ -81,3 +81,4 @@ pickle-email-*.html
 .powenv
 spec/examples.txt
 .tags
+npm-debug.log
