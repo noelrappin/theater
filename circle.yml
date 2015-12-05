@@ -6,5 +6,6 @@ test:
   override:
     - bundle exec rubocop
       --config .rubocop.yml
+    - haml-lint app/views
     - bundle exec rspec spec
       --format documentation
