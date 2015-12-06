@@ -14,6 +14,7 @@ puts "CREATED ADMIN USER: " << user.email # rubocop:disable Rails/Output
 # Environment variables (ENV['...']) can be set in the file .env file.
 
 ActiveRecord::Fixtures.create_fixtures("#{Rails.root}/spec/fixtures", "events")
-ActiveRecord::Fixtures.create_fixtures("#{Rails.root}/spec/fixtures", "performances")
+ActiveRecord::Fixtures.create_fixtures(
+  "#{Rails.root}/spec/fixtures", "performances")
 ActiveRecord::Fixtures.create_fixtures("#{Rails.root}/spec/fixtures", "tickets")
 ActiveRecord::Fixtures.create_fixtures("#{Rails.root}/spec/fixtures", "users")

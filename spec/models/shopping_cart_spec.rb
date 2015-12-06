@@ -8,12 +8,15 @@ describe ShoppingCart do
   let(:hamlet) { instance_double("Event", name: "Hamlet") }
   let(:romeo_performance) { instance_spy("Performance", id: 1, event: romeo) }
   let(:hamlet_performance) { instance_spy("Performance", id: 2, event: hamlet) }
-  let(:t1) { instance_double(
-    "Ticket", event: romeo, performance: romeo_performance, price: Money.new(1500)) }
-  let(:t2) { instance_double(
-    "Ticket", event: romeo, performance: romeo_performance, price: Money.new(1500)) }
-  let(:t3) { instance_double(
-    "Ticket", event: hamlet, performance: hamlet_performance, price: Money.new(1500)) }
+  let(:t1) { instance_double("Ticket",
+                             event: romeo, performance: romeo_performance,
+                             price: Money.new(1500)) }
+  let(:t2) { instance_double("Ticket",
+                             event: romeo, performance: romeo_performance,
+                             price: Money.new(1500)) }
+  let(:t3) { instance_double("Ticket",
+                             event: hamlet, performance: hamlet_performance,
+                             price: Money.new(1500)) }
 
   before(:example) do
     allow(user).to receive(:tickets_in_cart).and_return([t1, t2, t3])
