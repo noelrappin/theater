@@ -9,7 +9,8 @@ describe AddsToCart do
 
   describe "happy path adding tickets" do
     it "adds a ticket to a cart" do
-      expect(performance).to receive(:unsold_tickets).with(1).and_return([ticket_1])
+      expect(performance).to receive(:unsold_tickets)
+        .with(1).and_return([ticket_1])
       action = AddsToCart.new(user: user, performance: performance, count: 1)
       action.run
       expect(action.result).to be_truthy

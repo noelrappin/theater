@@ -8,7 +8,8 @@ describe PurchasesCart, :vcr, :aggregate_failures do
     let(:ticket_2) { instance_spy(
       Ticket, status: "waiting", price: Money.new(1500), id: 2) }
     let(:ticket_3) { instance_spy(Ticket, status: "unsold", id: 3) }
-    let(:user) { instance_double(User, id: 5, tickets_in_cart: [ticket_1, ticket_2]) }
+    let(:user) { instance_double(User,
+                                 id: 5, tickets_in_cart: [ticket_1, ticket_2]) }
     let(:token) { StripeToken.new(
       credit_card_number: "4242424242424242", expiration_month: "12",
       expiration_year: Time.zone.now.year + 1, cvc: "123") }
