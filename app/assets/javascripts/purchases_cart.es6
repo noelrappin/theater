@@ -1,3 +1,4 @@
+//# START: checkout_form
 class CheckoutForm {
 
   form() { return $("#order-form"); }
@@ -14,7 +15,9 @@ class CheckoutForm {
     this.form().append(field);
   }
 }
+//# END: checkout_form
 
+//# START: token_handler
 class TokenHandler {
   static handle(status, response) {
     new TokenHandler(status, response).handle();
@@ -31,7 +34,9 @@ class TokenHandler {
     this.checkoutForm.submit();
   }
 }
+//# END: token_handler
 
+//# START: stripe_form
 class StripeForm {
 
   constructor() {
@@ -50,5 +55,9 @@ class StripeForm {
     return false;
   }
 }
+//# END: stripe_form
 
+
+//# START: jQuery
 $(() => { return new StripeForm(); });
+//# END: jQuery
