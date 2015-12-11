@@ -17,9 +17,11 @@ class OrdersController < ApplicationController
     end
   end
 
+  # START: card_params
   private def card_params
     params.slice(:credit_card_number, :expiration_month,
                  :expiration_year, :cvc, :stripe_token).symbolize_keys
   end
+  # END: card_params
 
 end

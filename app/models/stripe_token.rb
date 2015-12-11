@@ -1,7 +1,7 @@
 class StripeToken
 
-  attr_accessor :credit_card_number, :expiration_month, :expiration_year, :cvc,
-                :stripe_token
+  attr_accessor :credit_card_number, :expiration_month,
+                :expiration_year, :cvc, :stripe_token
 
   def initialize(credit_card_number: nil, expiration_month: nil,
                  expiration_year: nil, cvc: nil, stripe_token: nil)
@@ -13,7 +13,7 @@ class StripeToken
   end
 
   def token
-    @token ||= (@stripe_token ? retrieve_token : create_token)
+    @token ||= (stripe_token ? retrieve_token : create_token)
   end
 
   def id
