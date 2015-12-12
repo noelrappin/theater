@@ -4,6 +4,6 @@ VCR.configure do |config|
   config.configure_rspec_metadata!
   config.ignore_localhost = true
   config.ignore_request do |request|
-    request.headers.include?('Referer')
+    request.headers.include?("Referer")
   end
 end
