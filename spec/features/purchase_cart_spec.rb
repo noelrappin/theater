@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "purchasing a cart", :vcr do
+describe "purchasing a cart", :js, :vcr do
   fixtures :all
 
   it "can add a purchase to a cart" do
