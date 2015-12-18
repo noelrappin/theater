@@ -2,15 +2,15 @@
 class CheckoutForm {
 
   format() {
-    this.numberField().payment('formatCardNumber');
-    this.expiryField().payment('formatCardExpiry');
-    this.cvcField().payment('formatCardCVC');
+    this.numberField().payment("formatCardNumber");
+    this.expiryField().payment("formatCardExpiry");
+    this.cvcField().payment("formatCardCVC");
     this.disableButton();
   }
 
   form() { return $("#order-form"); }
 
-  validFields() { return this.form().find(".valid-field")}
+  validFields() { return this.form().find(".valid-field");}
 
   numberField() { return this.form().find("#credit_card_number"); }
 
@@ -23,17 +23,17 @@ class CheckoutForm {
   }
 
   isExpiryValid() {
-    const date = $.payment.cardExpiryVal(this.expiryField().val())
+    const date = $.payment.cardExpiryVal(this.expiryField().val());
     return $.payment.validateCardExpiry(date.month, date.year);
   }
 
   isCvcValid() { return $.payment.validateCardCVC(this.cvcField().val());}
 
   displayFieldStatus(field, valid) {
-    if (field.val() == "") {
+    if (field.val() === "") {
       return;
     }
-    parent = field.parents(".form-group");
+    const parent = field.parents(".form-group");
     parent.toggleClass("has-error", !valid);
     parent.toggleClass("has-success", valid);
   }
@@ -44,7 +44,7 @@ class CheckoutForm {
 
   cardType() {return $.payment.cardType(this.numberField().val()) || "credit"; }
 
-  imageUrl() {return `/assets/creditcards/${this.cardType()}.png` }
+  imageUrl() {return `/assets/creditcards/${this.cardType()}.png`; }
 
   cardImage() { return $("#card-image"); }
 
@@ -53,7 +53,7 @@ class CheckoutForm {
     this.displayFieldStatus(this.expiryField(), this.isExpiryValid());
     this.displayFieldStatus(this.cvcField(), this.isCvcValid());
     this.cardImage().attr("src", this.imageUrl());
-    this.buttonStatus()
+    this.buttonStatus();
   }
 
   button() { return this.form().find(".btn"); }
@@ -78,7 +78,7 @@ class CheckoutForm {
 
   errorText() { return this.form.find("#error-text"); }
 
-  appendError(text) { this.errorText().text(text) }
+  appendError(text) { this.errorText().text(text); }
 
 }
 // # END: checkout_form
@@ -95,7 +95,7 @@ class TokenHandler {
     this.response = response;
   }
 
-  isError() { return this.response.error }
+  isError() { return this.response.error; }
 
   handle() {
     if (this.isError()) {
@@ -119,9 +119,9 @@ class StripeForm {
   }
 
   initSubmitHandler() {
-    this.checkoutForm.form().submit((event) => { this.handleSubmit(event); });
-    this.checkoutForm.validFields().blur((event) => {
-      this.checkoutForm.displayStatus()
+    this.checkoutForm.form().submit((event) => this.handleSubmit(event));
+    this.checkoutForm.validFields().blur(() => {
+      this.checkoutForm.displayStatus();
     });
   }
 
@@ -140,8 +140,8 @@ class StripeForm {
 
 // # START: jQuery
 $(() => {
-  if($(".credit-card-form").size() > 0) {
+  if ($(".credit-card-form").size() > 0) {
     return new StripeForm();
-  };
+  }
 });
 // # END: jQuery
