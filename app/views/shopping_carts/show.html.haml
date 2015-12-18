@@ -24,26 +24,35 @@
 //##START: code.credit_card_form
 %h3 Credit Card Info
 
-= form_tag orders_path, class: "form-inline", id: "order-form" do
+= form_tag orders_path, class: "credit-card-form form-horizontal", id: "order-form" do
   = hidden_field_tag(:purchase_amount_cents, @cart.total_cost.cents)
 
-  .form_group
-    = label_tag(:credit_card_number, "Credit Card Number", class: "sr-only")
-    %input.form-control{placeholder: "Credit Card #",
-      "data-stripe": :number, id: "credit_card_number"}
+  .bg-danger#error-text
 
-  .form_group
-    = label_tag(:expiration_month, "Month", class: "sr-only")
-    %input.form-control{placeholder: "Month",
-      "data-stripe": "exp-month", id: "expiration_month"}
+  .form-group
+    .col-sm-2
+      = label_tag(:credit_card_number, "Credit Card Number",
+        class: "control-label")
+    .col-sm-2
+      %input.form-control.valid-field{"data-stripe": :number,
+        id: "credit_card_number"}
+    .col-sm-1
+      = image_tag("creditcards/credit.png", id: "card-image")
 
-    = label_tag(:expiration_year, "Year", class: "sr-only")
-    %input.form-control{placeholder: "Year",
-      "data-stripe": "exp-year", id: "expiration_year"}
+  .form-group
+    .col-sm-2
+      = label_tag(:expiration_date, "Expiration Date", class: "control-label")
+    .col-sm-2
+      %input.form-control.valid-field{placeholder: "MM / YY",
+        "data-stripe": :exp, id: "expiration_date"}
 
-    = label_tag(:cvc, "Year", class: "sr-only")
-    %input.form-control{placeholder: "CVC #", "data-stripe": :cvc, id: "cvc"}
+  .form-group
+    .col-sm-1
+      = label_tag(:cvc, "CVC", class: "control-label")
+    .col-sm-1
+      %input.form-control.valid-field{"data-stripe": :cvc, id: :cvc}
 
-  .form_group
-    = submit_tag("Purchase Cart", class: "btn btn-default", id: "purchase")
+  .form-group
+    .col-sm-3
+      = submit_tag("Purchase Cart", class: "btn btn-primary", id: "purchase")
 //##START: code.credit_card_form

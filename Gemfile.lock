@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/thoughtbot/jquery-payment-rails.git
+  revision: 181dc79e77599c854ecf5f037249c037ff22702d
+  specs:
+    jquery-payment-rails (0.0.3)
+      railties (~> 4.2.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -400,6 +407,7 @@ DEPENDENCIES
   html2haml
   hub
   jbuilder
+  jquery-payment-rails!
   jquery-rails
   launchy
   money-rails
