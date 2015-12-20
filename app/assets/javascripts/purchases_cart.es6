@@ -21,9 +21,24 @@ class CheckoutForm {
   cvcField() { return this.form().find("#cvc"); }
   // # END: checkout_form_valid_fields
 
-  valid() {
-    return this.isNumberValid() && this.isExpiryValid() && this.isCvcValid();
+  // # START: checkout_form_display_status
+  displayStatus() {
+    this.displayFieldStatus(this.numberField(), this.isNumberValid());
+    this.displayFieldStatus(this.expiryField(), this.isExpiryValid());
+    this.displayFieldStatus(this.cvcField(), this.isCvcValid());
+    this.cardImage().attr("src", this.imageUrl());
+    this.buttonStatus();
   }
+
+  displayFieldStatus(field, valid) {
+    if (field.val() === "") {
+      return;
+    }
+    const parent = field.parents(".form-group");
+    parent.toggleClass("has-error", !valid);
+    parent.toggleClass("has-success", valid);
+  }
+
 
   isNumberValid() {
     return $.payment.validateCardNumber(this.numberField().val());
@@ -36,27 +51,16 @@ class CheckoutForm {
 
   isCvcValid() { return $.payment.validateCardCVC(this.cvcField().val());}
 
-  displayFieldStatus(field, valid) {
-    if (field.val() === "") {
-      return;
-    }
-    const parent = field.parents(".form-group");
-    parent.toggleClass("has-error", !valid);
-    parent.toggleClass("has-success", valid);
-  }
-
-  cardType() {return $.payment.cardType(this.numberField().val()) || "credit"; }
+  cardImage() { return $("#card-image"); }
 
   imageUrl() {return `/assets/creditcards/${this.cardType()}.png`; }
 
-  cardImage() { return $("#card-image"); }
+  cardType() {return $.payment.cardType(this.numberField().val()) || "credit"; }
 
-  displayStatus() {
-    this.displayFieldStatus(this.numberField(), this.isNumberValid());
-    this.displayFieldStatus(this.expiryField(), this.isExpiryValid());
-    this.displayFieldStatus(this.cvcField(), this.isCvcValid());
-    this.cardImage().attr("src", this.imageUrl());
-    this.buttonStatus();
+  buttonStatus() { this.valid() ? this.enableButton() : this.disableButton(); }
+
+  valid() {
+    return this.isNumberValid() && this.isExpiryValid() && this.isCvcValid();
   }
 
   button() { return this.form().find(".btn"); }
@@ -65,9 +69,8 @@ class CheckoutForm {
 
   enableButton() { this.button().toggleClass("disabled", false); }
 
-  buttonStatus() { this.valid() ? this.enableButton() : this.disableButton(); }
-
   isEnabled() { return !this.button().hasClass("disabled"); }
+  // # END: checkout_form_display_status
 
   submit() { this.form().get(0).submit(); }
 
