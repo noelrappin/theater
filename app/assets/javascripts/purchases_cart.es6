@@ -31,10 +31,11 @@ class CheckoutForm {
   }
 
   displayFieldStatus(field, valid) {
-    if (field.val() === "") {
-      return;
-    }
     const parent = field.parents(".form-group");
+    if (field.val() === "") {
+      parent.hideClass("has-error");
+      parent.hideClass("has-success");
+    }
     parent.toggleClass("has-error", !valid);
     parent.toggleClass("has-success", valid);
   }
