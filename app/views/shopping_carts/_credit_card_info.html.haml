@@ -1,0 +1,34 @@
+%h3 Credit Card Info
+
+= form_tag orders_path, class: "credit-card-form form-horizontal",
+  id: "order-form" do
+  = hidden_field_tag(:purchase_amount_cents, @cart.total_cost.cents)
+
+  .bg-danger#error-text
+
+  .form-group
+    .col-sm-2
+      = label_tag(:credit_card_number, "Credit Card Number",
+        class: "control-label")
+    .col-sm-2
+      %input.form-control.valid-field{"data-stripe": :number,
+        id: "credit_card_number"}
+    .col-sm-1
+      = image_tag("creditcards/credit.png", id: "card-image")
+
+  .form-group
+    .col-sm-2
+      = label_tag(:expiration_date, "Expiration Date", class: "control-label")
+    .col-sm-2
+      %input.form-control.valid-field{placeholder: "MM / YY",
+        "data-stripe": :exp, id: "expiration_date"}
+
+  .form-group
+    .col-sm-1
+      = label_tag(:cvc, "CVC", class: "control-label")
+    .col-sm-1
+      %input.form-control.valid-field{"data-stripe": :cvc, id: :cvc}
+
+  .form-group
+    .col-sm-3
+      = submit_tag("Purchase Cart", class: "btn btn-primary", id: "purchase")

@@ -1,13 +1,15 @@
-// # START: checkout_form
 class CheckoutForm {
 
+  // # START: checkout_form_format
   format() {
     this.numberField().payment("formatCardNumber");
     this.expiryField().payment("formatCardExpiry");
     this.cvcField().payment("formatCardCVC");
     this.disableButton();
   }
+  // # END: checkout_form_format
 
+  // # START: checkout_form_valid_fields
   form() { return $("#order-form"); }
 
   validFields() { return this.form().find(".valid-field");}
@@ -17,6 +19,11 @@ class CheckoutForm {
   expiryField() { return this.form().find("#expiration_date"); }
 
   cvcField() { return this.form().find("#cvc"); }
+  // # END: checkout_form_valid_fields
+
+  valid() {
+    return this.isNumberValid() && this.isExpiryValid() && this.isCvcValid();
+  }
 
   isNumberValid() {
     return $.payment.validateCardNumber(this.numberField().val());
@@ -36,10 +43,6 @@ class CheckoutForm {
     const parent = field.parents(".form-group");
     parent.toggleClass("has-error", !valid);
     parent.toggleClass("has-success", valid);
-  }
-
-  valid() {
-    return this.isNumberValid() && this.isExpiryValid() && this.isCvcValid();
   }
 
   cardType() {return $.payment.cardType(this.numberField().val()) || "credit"; }
@@ -109,21 +112,24 @@ class TokenHandler {
 }
 // # END: token_handler
 
-// # START: stripe_form
 class StripeForm {
 
+  // # START: stripe_form_constructor
   constructor() {
     this.checkoutForm = new CheckoutForm();
     this.checkoutForm.format();
-    this.initSubmitHandler();
+    this.initEventHandlers();
   }
+  // # END: stripe_form_constructor
 
-  initSubmitHandler() {
+  // # START: stripe_form_event_handlers
+  initEventHandlers() {
     this.checkoutForm.form().submit((event) => this.handleSubmit(event));
     this.checkoutForm.validFields().blur(() => {
       this.checkoutForm.displayStatus();
     });
   }
+  // # END: stripe_form_event_handlers
 
   handleSubmit(event) {
     event.preventDefault();
@@ -135,7 +141,6 @@ class StripeForm {
     return false;
   }
 }
-// # END: stripe_form
 
 
 // # START: jQuery

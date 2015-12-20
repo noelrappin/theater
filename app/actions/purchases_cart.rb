@@ -26,6 +26,10 @@ class PurchasesCart
     tickets.each(&:purchase)
   end
 
+  def unpurchase_tickets
+    tickets.each(&:return_to_cart)
+  end
+
   def create_order
     self.order = Order.new(
       user_id: user.id, price_cents: purchase_amount.cents, status: "created",
@@ -38,11 +42,10 @@ class PurchasesCart
 
   ## START: code.purchase_charge
   def charge
-    @stripe_charge = StripeCharge.charge(token: stripe_token, order: order)
-    order.attributes = {
-      status: @stripe_charge.status,
-      response_id: @stripe_charge.id,
-      full_response: @stripe_charge.to_json}
+    @stripe_charge = StripeCharge.new(token: stripe_token, order: order)
+    @stripe_charge.charge
+    order.attributes = @stripe_charge.order_attributes
+    unpurchase_tickets if order.failed?
   end
   ## END: code.purchase_charge
 

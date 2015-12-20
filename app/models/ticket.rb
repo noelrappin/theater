@@ -26,4 +26,13 @@ class Ticket < ActiveRecord::Base
   end
   ## END: code.purchase
 
+  def return_to_cart
+    self.status = :waiting
+  end
+
+  def return_to_cart!
+    return_to_cart
+    save
+  end
+
 end

@@ -8,7 +8,7 @@ class Order < ActiveRecord::Base
 
   monetize :price_cents
 
-  enum status: [:created, :succeeded]
+  enum status: [:created, :succeeded, :failed]
 
   def total_cost
     tickets.map(&:price).sum

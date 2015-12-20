@@ -17,4 +17,12 @@ RSpec.describe Ticket, type: :model do
     expect(ticket.user).to eq(user)
     expect(ticket.status).to eq("purchased")
   end
+
+  it "can move back to cart" do
+    user = create(:user)
+    ticket = create(:ticket, status: "purchased", user: user)
+    ticket.return_to_cart
+    expect(ticket.user).to eq(user)
+    expect(ticket.status).to eq("waiting")
+  end
 end
