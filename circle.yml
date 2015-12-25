@@ -10,8 +10,10 @@ dependencies:
 test:
   override:
     - eslint app/assets/javascripts/**.es6
+    - eslint spec/javascripts/**.es6
     - bundle exec rubocop
       --config .rubocop.yml
     - bundle exec haml-lint app/views
     - bundle exec rspec spec
       --format documentation
+    - bundle exec teaspoon

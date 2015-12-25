@@ -350,6 +350,10 @@ GEM
       json (~> 1.8.1)
       rest-client (~> 1.4)
     sysexits (1.2.0)
+    teaspoon (1.1.1)
+      railties (>= 3.2.5, < 5)
+    teaspoon-jasmine (2.3.4)
+      teaspoon (>= 1.0.0)
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.1)
@@ -431,6 +435,7 @@ DEPENDENCIES
   spring-commands-rspec
   sprockets-es6
   stripe
+  teaspoon-jasmine
   turbolinks
   uglifier
   vcr
@@ -438,4 +443,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.10.6
+   1.11.2

@@ -50,6 +50,7 @@ group :development, :test do
   gem "puffing-billy"
   gem "rspec-rails"
   gem "rubocop"
+  gem "teaspoon-jasmine"
   gem "web-console"
   gem "vcr"
 end
