@@ -37,6 +37,7 @@ group :development do
   gem "rb-inotify", require: false
   gem "spring"
   gem "spring-commands-rspec"
+  gem "spring-commands-teaspoon"
   gem "web-console"
 end
 
