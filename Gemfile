@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-ruby "2.2.3"
+ruby "2.3.0"
 
 gem "rails"
 gem "pg"
@@ -35,6 +35,7 @@ group :development do
   gem "rb-inotify", require: false
   gem "spring"
   gem "spring-commands-rspec"
+  gem "web-console"
 end
 
 group :development, :test do
@@ -47,7 +48,6 @@ group :development, :test do
   gem "pry-rescue"
   gem "rspec-rails"
   gem "rubocop"
-  gem "web-console"
   gem "vcr"
 end
 
