@@ -33,8 +33,8 @@ class CheckoutForm {
   displayFieldStatus(field, valid) {
     const parent = field.parents(".form-group");
     if (field.val() === "") {
-      parent.hideClass("has-error");
-      parent.hideClass("has-success");
+      parent.removeClass("has-error");
+      parent.removeClass("has-success");
     }
     parent.toggleClass("has-error", !valid);
     parent.toggleClass("has-success", valid);
