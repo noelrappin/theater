@@ -8,7 +8,8 @@ class OrdersController < ApplicationController
     token = StripeToken.new(**card_params)
     action = PurchasesCart.new(
       user: current_user, stripe_token: token,
-      purchase_amount_cents: params[:purchase_amount_cents])
+      purchase_amount_cents: params[:purchase_amount_cents],
+      expected_ticket_ids: params[:ticket_ids])
     action.run
     if action.success
       redirect_to order_path(id: action.order.reference)

@@ -9,7 +9,8 @@ describe PurchasesCart, :vcr, :aggregate_failures do
   let(:user) { instance_double(
     User, id: 5, tickets_in_cart: [ticket_1, ticket_2]) }
   let(:action) { PurchasesCart.new(
-    user: user, purchase_amount_cents: 3000, stripe_token: token) }
+    user: user, purchase_amount_cents: 3000, stripe_token: token,
+    expected_ticket_ids: "1 2") }
 
   describe "successful credit card purchase" do
     let(:token) { StripeToken.new(
@@ -19,6 +20,10 @@ describe PurchasesCart, :vcr, :aggregate_failures do
     before(:example) do
       allow(action).to receive(:save).and_return(true)
       action.run
+    end
+
+    it "is pre-call valid" do
+      expect(action).to be_pre_charge_valid
     end
 
     it "updates the ticket status" do
@@ -81,6 +86,45 @@ describe PurchasesCart, :vcr, :aggregate_failures do
     it "returns failure" do
       expect(action.success).to be_falsy
     end
+  end
+
+  describe "pre-flight fails" do
+    let(:token) { instance_spy(StripeToken) }
+
+    describe "expected price" do
+      let(:action) { PurchasesCart.new(
+        user: user, purchase_amount_cents: 2500, stripe_token: token,
+        expected_ticket_ids: "1 2") }
+
+      it "does not order if the expected price is incorrect" do
+        allow(action).to receive(:save).and_return(true)
+        action.run
+        expect(action).not_to be_pre_charge_valid
+        expect(ticket_1).not_to have_received(:purchase)
+        expect(ticket_2).not_to have_received(:purchase)
+        expect(ticket_3).not_to have_received(:purchase)
+        expect(action.success).to be_falsy
+        expect(action.order).to be_nil
+      end
+    end
+
+    describe "expected tickets" do
+      let(:action) { PurchasesCart.new(
+        user: user, purchase_amount_cents: 3000, stripe_token: token,
+        expected_ticket_ids: "1 3") }
+
+      it "does not order if the expected tickets are incorrect" do
+        allow(action).to receive(:save).and_return(true)
+        action.run
+        expect(action).not_to be_pre_charge_valid
+        expect(ticket_1).not_to have_received(:purchase)
+        expect(ticket_2).not_to have_received(:purchase)
+        expect(ticket_3).not_to have_received(:purchase)
+        expect(action.success).to be_falsy
+        expect(action.order).to be_nil
+      end
+    end
+
   end
 
 end

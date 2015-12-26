@@ -1,0 +1,73 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/charges
+    body:
+      encoding: UTF-8
+      string: amount=2500&currency=usd&description=&metadata[reference]=5a98e6d9fb59f13074e1&source=%23[InstanceDouble%28StripeToken%29+%28anonymous%29]
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.31.0
+      Authorization:
+      - Bearer sk_test_bk4FEql3Fvd9j98YEhaAOXXN
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.31.0","lang":"ruby","lang_version":"2.3.0 p0 (2015-12-25)","platform":"x86_64-darwin15","engine":"ruby","publisher":"stripe","uname":"Darwin
+        Noels-Computer.local 15.2.0 Darwin Kernel Version 15.2.0: Fri Nov 13 19:56:56
+        PST 2015; root:xnu-3248.20.55~2/RELEASE_X86_64 x86_64","hostname":"Noels-Computer.local"}'
+      Idempotency-Key:
+      - 5a98e6d9fb59f13074e1
+      Content-Length:
+      - '138'
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 25 Dec 2015 23:30:29 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '156'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Idempotency-Key:
+      - 5a98e6d9fb59f13074e1
+      Original-Request:
+      - req_7bHai1O6XoGu0X
+      Request-Id:
+      - req_7bHai1O6XoGu0X
+      Stripe-Version:
+      - '2015-10-16'
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "error": {
+            "type": "invalid_request_error",
+            "message": "No such token: #[InstanceDouble(StripeToken) (anonymous)]",
+            "param": "source"
+          }
+        }
+    http_version: 
+  recorded_at: Fri, 25 Dec 2015 23:30:29 GMT
+recorded_with: VCR 3.0.1
