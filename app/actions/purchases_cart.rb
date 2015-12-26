@@ -20,7 +20,7 @@ class PurchasesCart
     post_charge
     @success = @continue
   end
-  ## START: purchases_cart_init
+  ## END: purchases_cart_init
 
   ## START: purchases_pre_charge
   def pre_charge_valid?
