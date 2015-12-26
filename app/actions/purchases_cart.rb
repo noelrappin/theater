@@ -20,9 +20,9 @@ class PurchasesCart
     post_charge
     @success = @continue
   end
-## START: purchases_cart_init
+  ## START: purchases_cart_init
 
-## START: purchases_pre_charge
+  ## START: purchases_pre_charge
   def pre_charge_valid?
     purchase_amount == tickets.map(&:price).sum &&
       expected_ticket_ids == tickets.map(&:id).sort
@@ -61,9 +61,9 @@ class PurchasesCart
       order.save
     end
   end
-## END: purchases_pre_charge
+  ## END: purchases_pre_charge
 
-## START: purchases_charge
+  ## START: purchases_charge
   def charge
     return unless @continue
     @stripe_charge = StripeCharge.new(token: stripe_token, order: order)
@@ -81,13 +81,13 @@ class PurchasesCart
     save
     @continue = false
   end
-## END: purchases_charge
+  ## END: purchases_charge
 
-## START: purchases_post_charge
+  ## START: purchases_post_charge
   def post_charge
     return unless @continue
     @continue = save && order.succeeded?
   end
-## END: purchases_post_charge
+  ## END: purchases_post_charge
 
 end
