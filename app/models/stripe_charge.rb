@@ -15,6 +15,7 @@ class StripeCharge
     response || !error
   end
 
+  # START: order_attributes
   def charge
     return if response.present?
     @response = Stripe::Charge.create(
@@ -26,7 +27,6 @@ class StripeCharge
     @error = e
   end
 
-  # START: order_attributes
   def order_attributes
     success? ? success_attributes : failure_attributes
   end
