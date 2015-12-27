@@ -4,7 +4,7 @@
 Rails.application.config.assets.version = "1.0"
 Rails.application.config.assets.precompile +=
   %w(support/phantomjs-shims.self.js jquery.self.js jquery_ujs.self.js
-     jquery.payment.self.js turbolinks.self.js bootstrap/affix.self.js
+     turbolinks.self.js bootstrap/affix.self.js
      bootstrap/alert.self.js bootstrap/button.self.js
      bootstrap/carousel.self.js bootstrap/collapse.self.js
      bootstrap/dropdown.self.js bootstrap/modal.self.js

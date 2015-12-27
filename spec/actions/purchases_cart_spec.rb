@@ -51,6 +51,7 @@ describe PurchasesCart, :vcr, :aggregate_failures do
 
   end
 
+  # START: failed_credit_card
   describe "an unsuccessful credit card purchase" do
     let(:token) { StripeToken.new(
       credit_card_number: "4000000000000002", expiration_month: "12",
@@ -87,6 +88,7 @@ describe PurchasesCart, :vcr, :aggregate_failures do
       expect(action.success).to be_falsy
     end
   end
+  # END: failed_credit_card
 
   describe "pre-flight fails" do
     let(:token) { instance_spy(StripeToken) }
@@ -124,6 +126,17 @@ describe PurchasesCart, :vcr, :aggregate_failures do
         expect(action.order).to be_nil
       end
     end
+
+    # START: database_failure
+    describe "database failure" do
+      it "does not order if the database fails" do
+        expect(StripeCharge).to receive(:new).never
+        allow(action).to receive(:save).and_return(false)
+        action.run
+        expect(action.success).to be_falsy
+      end
+    end
+    # END: database_failure
 
   end
 
