@@ -26,6 +26,7 @@ class StripeCharge
     @error = e
   end
 
+  # START: order_attributes
   def order_attributes
     success? ? success_attributes : failure_attributes
   end
@@ -38,5 +39,6 @@ class StripeCharge
   def failure_attributes
     {status: :failed, full_response: error.to_json}
   end
+  # END: order_attributes
 
 end
