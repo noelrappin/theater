@@ -29,8 +29,13 @@ class PurchasesCart
   def tickets
     @tickets ||= @user.tickets_in_cart
   end
-
+  
+  def existing_order
+    Order.find_by(reference: order_reference)
+  end
+  
   def pre_charge
+    return true if existing_order
     unless pre_charge_valid?
       @continue = false
       return
@@ -45,12 +50,14 @@ class PurchasesCart
   end
 
   def create_order
-    self.order = Order.new(
+    self.order = existing_order || order.new
+    order.attributes(
       user_id: user.id, price_cents: purchase_amount.cents, status: "created",
       reference: order_reference, payment_method: "stripe")
     tickets.each do |ticket|
-      order.order_line_items.build(
-        ticket_id: ticket.id, price_cents: ticket.price.cents)
+      line_item = order.order_line_items.find_or_initialize(
+        ticket_id: ticket.id)
+      line_item.price_cents = ticket.price.cents
     end
   end
 
@@ -62,6 +69,7 @@ class PurchasesCart
 
   def charge
     return unless @continue
+    return if order.response_id.present?
     @stripe_charge = StripeCharge.new(token: stripe_token, order: order)
     @stripe_charge.charge
     order.attributes = @stripe_charge.order_attributes
