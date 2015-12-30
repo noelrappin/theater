@@ -29,11 +29,11 @@ class PurchasesCart
   def tickets
     @tickets ||= @user.tickets_in_cart
   end
-  
+
   def existing_order
     Order.find_by(reference: order_reference)
   end
-  
+
   def pre_charge
     return true if existing_order
     unless pre_charge_valid?
@@ -50,12 +50,12 @@ class PurchasesCart
   end
 
   def create_order
-    self.order = existing_order || order.new
-    order.attributes(
+    self.order = existing_order || Order.new
+    order.assign_attributes(
       user_id: user.id, price_cents: purchase_amount.cents, status: "created",
       reference: order_reference, payment_method: "stripe")
     tickets.each do |ticket|
-      line_item = order.order_line_items.find_or_initialize(
+      line_item = order.order_line_items.find_or_initialize_by(
         ticket_id: ticket.id)
       line_item.price_cents = ticket.price.cents
     end

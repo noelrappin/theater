@@ -1,7 +1,8 @@
 class OrdersController < ApplicationController
 
   def show
-    @order = Order.find_by(reference: params[:id])
+    @reference = params[:id]
+    @order = Order.find_by(reference: @reference)
   end
 
   def create
