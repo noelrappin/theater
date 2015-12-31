@@ -3,6 +3,7 @@ class PurchasesCart
   attr_accessor :user, :stripe_token, :purchase_amount, :success, :order,
                 :stripe_charge, :expected_ticket_ids, :order_reference
 
+  # START: purchase_cart_initialize
   def initialize(user:, stripe_token:, purchase_amount_cents:,
                  expected_ticket_ids:, order_reference: nil)
     @user = user
@@ -13,6 +14,7 @@ class PurchasesCart
     @expected_ticket_ids = expected_ticket_ids.split(" ").map(&:to_i).sort
     @order_reference = order_reference || Order.generate_reference
   end
+  # END: purchase_cart_initialize
 
   def run
     pre_charge
@@ -34,6 +36,7 @@ class PurchasesCart
     Order.find_by(reference: order_reference)
   end
 
+  # START: pre_charge
   def pre_charge
     return true if existing_order
     unless pre_charge_valid?
@@ -44,11 +47,13 @@ class PurchasesCart
     create_order
     @continue = save
   end
+  # END: pre_charge
 
   def purchase_tickets
     tickets.each(&:purchase)
   end
 
+  # START: create_order
   def create_order
     self.order = existing_order || Order.new
     order.assign_attributes(
@@ -60,13 +65,18 @@ class PurchasesCart
       line_item.price_cents = ticket.price.cents
     end
   end
+  # END: create_order
 
+  # START: save
   def save
     Order.transaction do
-      order.save
+      order.save!
+      true
     end
   end
+  # END: save
 
+  # START: charge
   def charge
     return unless @continue
     return if order.response_id.present?
@@ -75,6 +85,7 @@ class PurchasesCart
     order.attributes = @stripe_charge.order_attributes
     reverse_charge if order.failed?
   end
+  # END: charge
 
   def unpurchase_tickets
     tickets.each(&:return_to_cart)
