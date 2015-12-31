@@ -32,11 +32,11 @@ class PurchasesCart
     @tickets ||= @user.tickets_in_cart
   end
 
+  # START: pre_charge
   def existing_order
     Order.find_by(reference: order_reference)
   end
 
-  # START: pre_charge
   def pre_charge
     return true if existing_order
     unless pre_charge_valid?
