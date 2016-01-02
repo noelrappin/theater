@@ -36,9 +36,7 @@ class PurchasesCartCharge
   end
 
   def save
-    Order.transaction do
-      order.save!
-    end
+    order.save!
   end
 
 end
