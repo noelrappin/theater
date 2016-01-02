@@ -1,10 +1,10 @@
 class PurchasesCartCharge
 
-  attr_accessor :user, :stripe_token, :purchase_amount, :success, :order,
-                :stripe_charge, :expected_ticket_ids, :order_reference
+  attr_accessor :order, :stripe_token, :stripe_charge
 
-  def initialize(order)
+  def initialize(order, stripe_token)
     @order = order
+    @stripe_token = StripeToken.new(stripe_token: stripe_token)
   end
 
   def run
@@ -21,18 +21,18 @@ class PurchasesCartCharge
   end
 
   def unpurchase_tickets
-    tickets.each(&:return_to_cart)
+    order.tickets.each(&:return_to_cart)
   end
 
   def on_success
     save
-    OrderMailer.notifiy_success(order).deliver_later
+    # OrderMailer.notifiy_success(order).deliver_later
   end
 
   def on_failure
     unpurchase_tickets
     save
-    OrderMailer.notifiy_failure(order).deliver_later
+    # OrderMailer.notifiy_failure(order).deliver_later
   end
 
   def save
