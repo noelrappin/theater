@@ -53,7 +53,7 @@ describe PurchasesCartSetup, :vcr, :aggregate_failures do
       it "does not order if the expected price is incorrect" do
         allow(action).to receive(:save).and_return(true)
         expect(action).to receive(:on_success).never
-        action.run
+        expect { action.run }.to raise_error(ChargeSetupValidityException)
         expect(action).not_to be_pre_charge_valid
         expect(ticket_1).not_to have_received(:purchase)
         expect(ticket_2).not_to have_received(:purchase)
@@ -70,7 +70,7 @@ describe PurchasesCartSetup, :vcr, :aggregate_failures do
       it "does not order if the expected tickets are incorrect" do
         allow(action).to receive(:save).and_return(true)
         expect(action).to receive(:on_success).never
-        action.run
+        expect { action.run }.to raise_error(ChargeSetupValidityException)
         expect(action).not_to be_pre_charge_valid
         expect(ticket_1).not_to have_received(:purchase)
         expect(ticket_2).not_to have_received(:purchase)

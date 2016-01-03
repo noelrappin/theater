@@ -71,3 +71,6 @@ Style/Semicolon:
   AllowAsExpressionSeparator: true
   Exclude:
     - "spec/**/*" # because sometimes we use this in expect or then blocks
+
+Style/RaiseArgs:
+  Enabled: false

@@ -2,13 +2,12 @@ Rollbar.configure do |config|
   # Without configuration, Rollbar is enabled in all environments.
   # To disable in specific environments, set config.enabled=false.
 
-  config.access_token = Rails.application.secrets.rollbar_server_side_access_token
+  config.access_token =
+    Rails.application.secrets.rollbar_server_side_access_token
 
   # Here we'll disable in 'test':
   # START: environment
-  if Rails.env.test? || Rails.env.development?
-    config.enabled = false
-  end
+  config.enabled = false if Rails.env.test? || Rails.env.development?
   # END: environment
 
   # By default, Rollbar will try to call the `current_user` controller method
@@ -31,8 +30,10 @@ Rollbar.configure do |config|
   # 'ignore' will cause the exception to not be reported at all.
   # config.exception_level_filters.merge!('MyCriticalException' => 'critical')
   #
-  # You can also specify a callable, which will be called with the exception instance.
-  # config.exception_level_filters.merge!('MyCriticalException' => lambda { |e| 'critical' })
+  # You can also specify a callable, which will be called with the exception
+  # instance.
+  # config.exception_level_filters.merge!(
+  # 'MyCriticalException' => lambda { |e| 'critical' })
 
   # Enable asynchronous reporting (uses girl_friday or Threading if girl_friday
   # is not installed)
@@ -55,5 +56,5 @@ Rollbar.configure do |config|
   # environment variable like this: `ROLLBAR_ENV=staging`. This is a recommended
   # setup for Heroku. See:
   # https://devcenter.heroku.com/articles/deploying-to-a-custom-rails-environment
-  config.environment = ENV['ROLLBAR_ENV'] || Rails.env
+  config.environment = ENV["ROLLBAR_ENV"] || Rails.env
 end
