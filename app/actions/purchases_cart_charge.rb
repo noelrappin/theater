@@ -22,13 +22,13 @@ class PurchasesCartCharge
 
   def on_success
     save
-    OrderMailer.notifiy_success(order).deliver_later
+    OrderMailer.notify_success(order).deliver_later
   end
 
   def on_failure
     unpurchase_tickets
     save
-    OrderMailer.notifiy_failure(order).deliver_later
+    OrderMailer.notify_failure(order).deliver_later
   end
 
   def unpurchase_tickets
