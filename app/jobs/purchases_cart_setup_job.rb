@@ -1,6 +1,16 @@
 class PurchasesCartSetupJob < ActiveJob::Base
+  include Rollbar::ActiveJob
 
   queue_as :default
+
+  rescue_from(ChargeSetupValidityException) do |exception|
+    OrderMailer.invalid_order_setup(exception).deliver_later
+    Rollbar.error(exception)
+  end
+
+  rescue_from(PreExistingOrderException) do |exception|
+    Rollbar.error(exception)
+  end
 
   def perform(user:, params:, order_reference:)
     token = StripeToken.new(**card_params(params))
