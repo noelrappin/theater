@@ -34,7 +34,7 @@ class PurchasesCart
 
   # START: pre_charge
   def existing_payment
-    payment.find_by(reference: payment_reference)
+    Payment.find_by(reference: payment_reference)
   end
 
   def pre_charge
@@ -55,7 +55,7 @@ class PurchasesCart
 
   # START: create_payment
   def create_payment
-    self.payment = existing_payment || payment.new
+    self.payment = existing_payment || Payment.new
     payment.assign_attributes(
       user_id: user.id, price_cents: purchase_amount.cents, status: "created",
       reference: payment_reference, payment_method: "stripe")
