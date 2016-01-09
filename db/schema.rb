@@ -40,18 +40,18 @@ ActiveRecord::Schema.define(version: 20151227223458) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "order_line_items", force: :cascade do |t|
-    t.integer  "order_id"
+  create_table "payment_line_items", force: :cascade do |t|
+    t.integer  "payment_id"
     t.integer  "ticket_id"
     t.integer  "price_cents"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  add_index "order_line_items", ["order_id"], name: "index_order_line_items_on_order_id", using: :btree
-  add_index "order_line_items", ["ticket_id"], name: "index_order_line_items_on_ticket_id", using: :btree
+  add_index "payment_line_items", ["payment_id"], name: "index_payment_line_items_on_payment_id", using: :btree
+  add_index "payment_line_items", ["ticket_id"], name: "index_payment_line_items_on_ticket_id", using: :btree
 
-  create_table "orders", force: :cascade do |t|
+  create_table "payments", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "price_cents"
     t.integer  "status"
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20151227223458) do
     t.datetime "updated_at",     null: false
   end
 
-  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
+  add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
 
   create_table "performances", force: :cascade do |t|
     t.integer  "event_id"
@@ -109,9 +109,9 @@ ActiveRecord::Schema.define(version: 20151227223458) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "order_line_items", "orders"
-  add_foreign_key "order_line_items", "tickets"
-  add_foreign_key "orders", "users"
+  add_foreign_key "payment_line_items", "payments"
+  add_foreign_key "payment_line_items", "tickets"
+  add_foreign_key "payments", "users"
   add_foreign_key "performances", "events"
   add_foreign_key "tickets", "performances"
   add_foreign_key "tickets", "users"

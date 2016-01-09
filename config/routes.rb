@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   resources :events
   resource :shopping_cart
   resources :users
-  resources :orders
+  resources :payments
 end
