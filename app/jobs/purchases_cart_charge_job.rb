@@ -8,7 +8,7 @@ class PurchasesCartChargeJob < ActiveJob::Base
     Rollbar.error(exception)
   end
 
-  def perform(order, stripe_token)
+  def perform(_order, stripe_token)
     charge_action = PurchasesCartCharge.new(purchase, stripe_token)
     charge_action.run
   end

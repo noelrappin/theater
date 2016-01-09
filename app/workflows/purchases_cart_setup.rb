@@ -13,13 +13,9 @@ class PurchasesCartSetup
     @payment = existing_payment || Payment.new
   end
 
-  def existing_payment
-    Payment.find_by(reference: payment_reference)
-  end
-
   # START: run_with_exception
   def run
-    raise PreExistingPurchaseException.new(purchase) if existing_order
+    raise PreExistingPurchaseException.new(purchase) if existing_payment
     raise ChargeSetupValidityException.new(
       user: user,
       expected_purchase_cents: purchase_amount.to_i,

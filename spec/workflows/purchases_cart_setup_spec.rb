@@ -34,10 +34,10 @@ describe PurchasesCartSetup, :vcr, :aggregate_failures do
     end
 
     it "creates a transaction object" do
-      expect(action.order).to have_attributes(
+      expect(action.payment).to have_attributes(
         user_id: user.id, price_cents: 3000,
         reference: a_truthy_value, payment_method: "stripe")
-      expect(action.order.order_line_items.size).to eq(2)
+      expect(action.payment.payment_line_items.size).to eq(2)
     end
 
   end
@@ -50,7 +50,7 @@ describe PurchasesCartSetup, :vcr, :aggregate_failures do
         user: user, purchase_amount_cents: 2500, stripe_token: token,
         expected_ticket_ids: "1 2") }
 
-      it "does not order if the expected price is incorrect" do
+      it "does not payment if the expected price is incorrect" do
         allow(action).to receive(:save).and_return(true)
         expect(action).to receive(:on_success).never
         expect { action.run }.to raise_error(ChargeSetupValidityException)
@@ -58,7 +58,7 @@ describe PurchasesCartSetup, :vcr, :aggregate_failures do
         expect(ticket_1).not_to have_received(:purchase)
         expect(ticket_2).not_to have_received(:purchase)
         expect(ticket_3).not_to have_received(:purchase)
-        expect(action.order).to be_new_record
+        expect(action.payment).to be_new_record
       end
     end
 
@@ -67,7 +67,7 @@ describe PurchasesCartSetup, :vcr, :aggregate_failures do
         user: user, purchase_amount_cents: 3000, stripe_token: token,
         expected_ticket_ids: "1 3") }
 
-      it "does not order if the expected tickets are incorrect" do
+      it "does not payment if the expected tickets are incorrect" do
         allow(action).to receive(:save).and_return(true)
         expect(action).to receive(:on_success).never
         expect { action.run }.to raise_error(ChargeSetupValidityException)
@@ -75,14 +75,14 @@ describe PurchasesCartSetup, :vcr, :aggregate_failures do
         expect(ticket_1).not_to have_received(:purchase)
         expect(ticket_2).not_to have_received(:purchase)
         expect(ticket_3).not_to have_received(:purchase)
-        expect(action.order).to be_new_record
+        expect(action.payment).to be_new_record
       end
     end
 
     describe "database failure" do
-      it "does not order if the database fails" do
+      it "does not payment if the database fails" do
         allow(action).to receive(:save).and_raise(
-          ActiveRecord::RecordNotSaved.new("oops", action.order))
+          ActiveRecord::RecordNotSaved.new("oops", action.payment))
         expect { action.run }.to raise_error(ActiveRecord::RecordNotSaved)
       end
     end

@@ -2,11 +2,11 @@ require "rails_helper"
 
 describe PurchasesCartCharge, :vcr, :aggregate_failures do
   let(:user) { instance_double(User, id: 5) }
-  let(:order) { Order.new(user_id: user.id,
-                          price_cents: 2500, status: "created",
-                          reference: Order.generate_reference,
-                          payment_method: "stripe") }
-  let(:action) { PurchasesCartCharge.new(order, token.id) }
+  let(:payment) { Payment.new(user_id: user.id,
+                              price_cents: 2500, status: "created",
+                              reference: Payment.generate_reference,
+                              payment_method: "stripe") }
+  let(:action) { PurchasesCartCharge.new(payment, token.id) }
 
   describe "successful credit card purchase" do
     let(:token) { StripeToken.new(
@@ -15,14 +15,14 @@ describe PurchasesCartCharge, :vcr, :aggregate_failures do
 
     before(:example) do
       allow(action).to receive(:save).and_return(true)
-      expect(OrderMailer).to receive_message_chain(
+      expect(PaymentMailer).to receive_message_chain(
         :notify_success, :deliver_later)
-      expect(OrderMailer).to receive(:notify_failure).never
+      expect(PaymentMailer).to receive(:notify_failure).never
       action.run
     end
 
     it "takes the response from the gateway" do
-      expect(action.order).to have_attributes(
+      expect(action.payment).to have_attributes(
         status: "succeeded", response_id: a_string_starting_with("ch_"),
         full_response: JSON.parse(action.stripe_charge.response.to_json))
     end
@@ -37,14 +37,14 @@ describe PurchasesCartCharge, :vcr, :aggregate_failures do
     before(:example) do
       allow(action).to receive(:save).and_return(true)
       expect(action).to receive(:unpurchase_tickets)
-      expect(OrderMailer).to receive(:notify_success).never
-      expect(OrderMailer).to receive_message_chain(
+      expect(PaymentMailer).to receive(:notify_success).never
+      expect(PaymentMailer).to receive_message_chain(
         :notify_failure, :deliver_later)
       action.run
     end
 
     it "takes the response from the gateway" do
-      expect(action.order).to have_attributes(
+      expect(action.payment).to have_attributes(
         status: "failed", response_id: nil,
         full_response: JSON.parse(action.stripe_charge.error.to_json))
     end

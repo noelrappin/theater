@@ -1,4 +1,4 @@
-class OrderMailer < ApplicationMailer
+class PaymentMailer < ApplicationMailer
 
   def notify_success(order)
   end
