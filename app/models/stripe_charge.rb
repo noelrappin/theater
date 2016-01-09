@@ -1,33 +1,33 @@
 class StripeCharge
 
-  attr_accessor :token, :order, :response, :error
+  attr_accessor :token, :payment, :response, :error
 
-  def self.charge(token:, order:)
-    StripeCharge.new(token: token, order: order).charge
+  def self.charge(token:, payment:)
+    StripeCharge.new(token: token, payment: payment).charge
   end
 
-  def initialize(token:, order:)
+  def initialize(token:, payment:)
     @token = token
-    @order = order
+    @payment = payment
   end
 
   def success?
     response || !error
   end
 
-  # START: order_attributes
+  # START: payment_attributes
   def charge
     return if response.present?
     @response = Stripe::Charge.create(
-      {amount: order.price.cents, currency: "usd", source: token.id,
-       description: "", metadata: {reference: order.reference}},
-      idempotency_key: order.reference)
+      {amount: payment.price.cents, currency: "usd", source: token.id,
+       description: "", metadata: {reference: payment.reference}},
+      idempotency_key: payment.reference)
   rescue Stripe::CardError => e
     @response = nil
     @error = e
   end
 
-  def order_attributes
+  def payment_attributes
     success? ? success_attributes : failure_attributes
   end
 
@@ -39,6 +39,6 @@ class StripeCharge
   def failure_attributes
     {status: :failed, full_response: error.to_json}
   end
-  # END: order_attributes
+  # END: payment_attributes
 
 end

@@ -1,7 +1,7 @@
 ## START: purchases_cart_init
 class PurchasesCart
 
-  attr_accessor :user, :stripe_token, :purchase_amount, :success, :order,
+  attr_accessor :user, :stripe_token, :purchase_amount, :success, :payment,
                 :stripe_charge, :expected_ticket_ids
 
   def initialize(user:, stripe_token:, purchase_amount_cents:,
@@ -38,7 +38,7 @@ class PurchasesCart
       return
     end
     purchase_tickets
-    create_order
+    create_payment
     @continue = save
   end
 
@@ -46,19 +46,19 @@ class PurchasesCart
     tickets.each(&:purchase)
   end
 
-  def create_order
-    self.order = Order.new(
+  def create_payment
+    self.payment = Payment.new(
       user_id: user.id, price_cents: purchase_amount.cents, status: "created",
-      reference: Order.generate_reference, payment_method: "stripe")
+      reference: Payment.generate_reference, payment_method: "stripe")
     tickets.each do |ticket|
-      order.order_line_items.build(
+      payment.payment_line_items.build(
         ticket_id: ticket.id, price_cents: ticket.price.cents)
     end
   end
 
   def save
-    Order.transaction do
-      order.save
+    payment.transaction do
+      payment.save
     end
   end
   ## END: purchases_pre_charge
@@ -66,10 +66,10 @@ class PurchasesCart
   ## START: purchases_charge
   def charge
     return unless @continue
-    @stripe_charge = StripeCharge.new(token: stripe_token, order: order)
+    @stripe_charge = StripeCharge.new(token: stripe_token, payment: payment)
     @stripe_charge.charge
-    order.attributes = @stripe_charge.order_attributes
-    reverse_charge if order.failed?
+    payment.attributes = @stripe_charge.payment_attributes
+    reverse_charge if payment.failed?
   end
 
   def unpurchase_tickets
@@ -86,7 +86,7 @@ class PurchasesCart
   ## START: purchases_post_charge
   def post_charge
     return unless @continue
-    @continue = save && order.succeeded?
+    @continue = save && payment.succeeded?
   end
   ## END: purchases_post_charge
 

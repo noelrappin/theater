@@ -1,7 +1,7 @@
-class CreateOrders < ActiveRecord::Migration
+class CreatePayments < ActiveRecord::Migration
 
   def change
-    create_table :orders do |t|
+    create_table :payments do |t|
       t.references :user, index: true, foreign_key: true
       t.integer :price_cents
       t.integer :status

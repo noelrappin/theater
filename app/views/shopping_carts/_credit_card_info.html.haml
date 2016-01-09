@@ -1,7 +1,7 @@
 %h3 Credit Card Info
 
-= form_tag orders_path, class: "credit-card-form form-horizontal",
-  id: "order-form" do
+= form_tag payments_path, class: "credit-card-form form-horizontal",
+  id: "payment-form" do
   = hidden_field_tag(:purchase_amount_cents, @cart.total_cost.cents)
   = hidden_field_tag(:ticket_ids, @cart.tickets.map(&:id))
 
