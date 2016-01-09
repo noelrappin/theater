@@ -16,7 +16,7 @@ describe PurchasesCart do
     let(:charge) { double(id: "ch_not_an_id", status: "succeeded") }
 
     before(:example) do
-      allow(Order).to receive(:generate_reference).and_return("fred")
+      allow(Payment).to receive(:generate_reference).and_return("fred")
       allow(action).to receive(:save).and_return(true)
       allow(StripeCharge).to receive(:charge).and_return(charge)
       action.run
@@ -29,14 +29,14 @@ describe PurchasesCart do
     end
 
     it "creates a transaction object" do
-      expect(action.order).to have_attributes(
+      expect(action.payment).to have_attributes(
         user_id: user.id, price_cents: 3000,
         reference: "fred", payment_method: "stripe")
-      expect(action.order.order_line_items.size).to eq(2)
+      expect(action.payment.payment_line_items.size).to eq(2)
     end
 
     it "takes the response from the gateway" do
-      expect(action.order).to have_attributes(
+      expect(action.payment).to have_attributes(
         status: "succeeded", response_id: "ch_not_an_id",
         full_response: JSON.parse(charge.to_json))
     end

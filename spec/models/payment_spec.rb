@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Order, type: :model do
+RSpec.describe Payment, type: :model do
 
   describe "generate_reference" do
 
@@ -9,12 +9,12 @@ RSpec.describe Order, type: :model do
     end
 
     it "generates a reference" do
-      expect(Order.generate_reference).to eq("first")
+      expect(Payment.generate_reference).to eq("first")
     end
 
     it "avoids duplicates" do
-      create(:order, reference: "first")
-      expect(Order.generate_reference).to eq("second")
+      create(:payment, reference: "first")
+      expect(Payment.generate_reference).to eq("second")
     end
 
   end
