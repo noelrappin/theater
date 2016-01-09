@@ -1,10 +1,10 @@
-class PreExistingOrderException
+class PreExistingPurchaseException
 
-  attr_accessor :order
+  attr_accessor :purchase
 
-  def initialize(order, message = nil)
+  def initialize(purchase, message = nil)
     super(message)
-    @order = order
+    @purchase = purchase
   end
 
 end
