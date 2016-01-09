@@ -1,7 +1,7 @@
-class OrdersController < ApplicationController
+class PaymentsController < ApplicationController
 
   def show
-    @order = Order.find_by(reference: params[:id])
+    @payment = Payment.find_by(reference: params[:id])
   end
 
   def create
@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
       purchase_amount_cents: params[:purchase_amount_cents])
     action.run
     if action.success
-      redirect_to order_path(id: action.order.reference)
+      redirect_to payment_path(id: action.payment.reference)
     else
       redirect_to shopping_cart_path
     end

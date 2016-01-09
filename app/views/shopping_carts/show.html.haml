@@ -24,7 +24,7 @@
 //##START: code.credit_card_form
 %h3 Credit Card Info
 
-= form_tag orders_path, class: "form-inline" do
+= form_tag payments_path, class: "form-inline" do
   = hidden_field_tag(:purchase_amount_cents, @cart.total_cost.cents)
   .form_group
     = label_tag(:credit_card_number, "Credit Card Number", class: "sr-only")

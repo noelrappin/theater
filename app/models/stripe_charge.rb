@@ -1,22 +1,22 @@
 class StripeCharge
 
-  attr_accessor :token, :order, :response
+  attr_accessor :token, :payment, :response
 
-  def self.charge(token:, order:)
-    StripeCharge.new(token: token, order: order).charge
+  def self.charge(token:, payment:)
+    StripeCharge.new(token: token, payment: payment).charge
   end
 
-  def initialize(token:, order:)
+  def initialize(token:, payment:)
     @token = token
-    @order = order
+    @payment = payment
   end
 
   def charge
     return if response.present?
     @response = Stripe::Charge.create(
-      {amount: order.price.cents, currency: "usd", source: token.id,
-       description: "", metadata: {reference: order.reference}},
-      idempotency_key: order.reference)
+      {amount: payment.price.cents, currency: "usd", source: token.id,
+       description: "", metadata: {reference: payment.reference}},
+      idempotency_key: payment.reference)
   end
 
 end

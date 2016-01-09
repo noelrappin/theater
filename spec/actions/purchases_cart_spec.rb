@@ -28,14 +28,14 @@ describe PurchasesCart, :vcr, :aggregate_failures do
     end
 
     it "creates a transaction object" do
-      expect(action.order).to have_attributes(
+      expect(action.payment).to have_attributes(
         user_id: user.id, price_cents: 3000,
         reference: a_truthy_value, payment_method: "stripe")
-      expect(action.order.order_line_items.size).to eq(2)
+      expect(action.payment.order_line_items.size).to eq(2)
     end
 
     it "takes the response from the gateway" do
-      expect(action.order).to have_attributes(
+      expect(action.payment).to have_attributes(
         status: "succeeded", response_id: a_string_starting_with("ch_"),
         full_response: JSON.parse(action.stripe_charge.to_json))
     end

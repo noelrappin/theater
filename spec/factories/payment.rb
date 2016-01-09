@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :order do
+  factory :payment do
     user nil
     price_cents 1
     status :created
