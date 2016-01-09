@@ -1,7 +1,7 @@
 // # START: checkout_form
 class CheckoutForm {
 
-  form() { return $("#order-form"); }
+  form() { return $("#payment-form"); }
 
   button() { return this.form().find(".btn"); }
 
