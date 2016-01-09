@@ -2,8 +2,8 @@ require "rails_helper"
 
 describe StripeCharge, :vcr do
 
-  let(:order) { build_stubbed(
-    Order, price: Money.new(3000), reference: Order.generate_reference) }
+  let(:payment) { build_stubbed(
+    Payment, price: Money.new(3000), reference: Payment.generate_reference) }
 
   describe "success", :aggregate_failures do
 
@@ -12,7 +12,7 @@ describe StripeCharge, :vcr do
       expiration_year: Time.zone.now.year + 1, cvc: "123") }
 
     it "calls stripe to get a charge" do
-      charge = StripeCharge.new(token: token, order: order)
+      charge = StripeCharge.new(token: token, payment: payment)
       charge.charge
       expect(charge.response.id).to start_with("ch")
       expect(charge.response.amount).to eq(3000)
@@ -28,7 +28,7 @@ describe StripeCharge, :vcr do
       expiration_year: Time.zone.now.year + 1, cvc: "123") }
 
     it "handles failure" do
-      charge = StripeCharge.new(token: token, order: order)
+      charge = StripeCharge.new(token: token, payment: payment)
       charge.charge
       expect(charge.response).to be_nil
       expect(charge).not_to be_a_success

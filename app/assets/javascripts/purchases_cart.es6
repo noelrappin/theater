@@ -10,7 +10,7 @@ class CheckoutForm {
   // # END: checkout_form_format
 
   // # START: checkout_form_valid_fields
-  form() { return $("#order-form"); }
+  form() { return $("#payment-form"); }
 
   validFields() { return this.form().find(".valid-field");}
 
