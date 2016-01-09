@@ -31,7 +31,7 @@ describe PurchasesCart, :vcr, :aggregate_failures do
       expect(action.payment).to have_attributes(
         user_id: user.id, price_cents: 3000,
         reference: a_truthy_value, payment_method: "stripe")
-      expect(action.payment.order_line_items.size).to eq(2)
+      expect(action.payment.payment_line_items.size).to eq(2)
     end
 
     it "takes the response from the gateway" do

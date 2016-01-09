@@ -1,11 +1,7 @@
 class PurchasesCart
 
-<<<<<<< HEAD
-  attr_accessor :user, :stripe_token, :purchase_amount, :success, :order,
+  attr_accessor :user, :stripe_token, :purchase_amount, :success, :payment,
                 :stripe_charge
-=======
-  attr_accessor :user, :stripe_token, :purchase_amount, :success, :payment
->>>>>>> server_charge_01
 
   def initialize(user:, stripe_token:, purchase_amount_cents:)
     @user = user
