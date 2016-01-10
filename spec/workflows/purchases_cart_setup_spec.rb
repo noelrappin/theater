@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe PurchasesCartSetup, :vcr, :aggregate_failures do
+RSpec.describe PurchasesCartSetup, :vcr, :aggregate_failures do
   let(:ticket_1) { instance_spy(
     Ticket, status: "waiting", price: Money.new(1500), id: 1) }
   let(:ticket_2) { instance_spy(

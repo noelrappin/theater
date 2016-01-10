@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe AddsToCart do
+RSpec.describe AddsToCart do
 
   let(:user) { instance_double(User) }
   let(:performance) { instance_double(Performance) }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151227223458) do
+ActiveRecord::Schema.define(version: 20160109215951) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,15 @@ ActiveRecord::Schema.define(version: 20151227223458) do
   end
 
   add_index "performances", ["event_id"], name: "index_performances_on_event_id", using: :btree
+
+  create_table "plans", force: :cascade do |t|
+    t.string  "remote_id",       null: false
+    t.string  "plan_name",       null: false
+    t.integer "amount_cents",    null: false
+    t.string  "interval",        null: false
+    t.integer "tickets_allowed", null: false
+    t.string  "ticket_category", null: false
+  end
 
   create_table "tickets", force: :cascade do |t|
     t.integer  "user_id"

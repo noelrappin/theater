@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe PurchasesCartCharge, :vcr, :aggregate_failures do
+RSpec.describe PurchasesCartCharge, :vcr, :aggregate_failures do
   let(:user) { instance_double(User, id: 5) }
   let(:payment) { Payment.new(user_id: user.id,
                               price_cents: 2500, status: "created",
