@@ -1,9 +1,9 @@
 class PurchasesCartCharge
 
-  attr_accessor :payment, :stripe_token, :stripe_charge
+  attr_accessor :order, :stripe_token, :stripe_charge
 
-  def initialize(payment, stripe_token)
-    @payment = payment
+  def initialize(order, stripe_token)
+    @order = order
     @stripe_token = StripeToken.new(stripe_token: stripe_token)
   end
 
@@ -13,30 +13,30 @@ class PurchasesCartCharge
   end
 
   def charge
-    raise PreExistingPaymentException(payment) if payment.response_id.present?
-    @stripe_charge = StripeCharge.new(token: stripe_token, payment: payment)
+    return if order.response_id.present?
+    @stripe_charge = StripeCharge.new(token: stripe_token, order: order)
     @stripe_charge.charge
-    payment.attributes = @stripe_charge.payment_attributes
-    payment.succeeded?
+    order.attributes = @stripe_charge.order_attributes
+    order.succeeded?
+  end
+
+  def unpurchase_tickets
+    order.tickets.each(&:return_to_cart)
   end
 
   def on_success
     save
-    PaymentMailer.notify_success(payment).deliver_later
+    # OrderMailer.notifiy_success(order).deliver_later
   end
 
   def on_failure
     unpurchase_tickets
     save
-    PaymentMailer.notify_failure(payment).deliver_later
-  end
-
-  def unpurchase_tickets
-    payment.tickets.each(&:return_to_cart)
+    # OrderMailer.notifiy_failure(order).deliver_later
   end
 
   def save
-    payment.save!
+    order.save!
   end
 
 end
