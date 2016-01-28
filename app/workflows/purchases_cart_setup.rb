@@ -40,23 +40,6 @@ class PurchasesCartSetup
     @tickets ||= @user.tickets_in_cart
   end
 
-  # START: pre_charge
-  def existing_payment
-    Payment.find_by(reference: payment_reference)
-  end
-
-  def pre_charge
-    return true if existing_payment
-    unless pre_charge_valid?
-      @continue = false
-      return
-    end
-    purchase_tickets
-    create_payment
-    @continue = save
-  end
-  # END: pre_charge
-
   def purchase_tickets
     tickets.each(&:purchase)
   end

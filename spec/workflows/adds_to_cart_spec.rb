@@ -11,20 +11,20 @@ describe AddsToCart do
     it "adds a ticket to a cart" do
       expect(performance).to receive(:unsold_tickets)
         .with(1).and_return([ticket_1])
-      action = AddsToCart.new(user: user, performance: performance, count: 1)
-      action.run
-      expect(action.result).to be_truthy
+      workflow = AddsToCart.new(user: user, performance: performance, count: 1)
+      workflow.run
+      expect(workflow.result).to be_truthy
       expect(ticket_1).to have_received(:place_in_cart_for).with(user)
       expect(ticket_2).not_to have_received(:place_in_cart_for)
     end
   end
 
-  describe "if there are no tickets, the action fails" do
+  describe "if there are no tickets, the workflow fails" do
     it "does not add a ticket to the cart" do
       expect(performance).to receive(:unsold_tickets).with(1).and_return([])
-      action = AddsToCart.new(user: user, performance: performance, count: 1)
-      action.run
-      expect(action.result).to be_falsy
+      workflow = AddsToCart.new(user: user, performance: performance, count: 1)
+      workflow.run
+      expect(workflow.result).to be_falsy
       expect(ticket_1).not_to have_received(:place_in_cart_for)
       expect(ticket_2).not_to have_received(:place_in_cart_for)
     end

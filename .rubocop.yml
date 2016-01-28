@@ -4,7 +4,10 @@ AllCops:
     - ".bundle/**/*" # Auto-generated
     - "bin/**/*"     # Auto-generated
     - "vendor/**/*"  # We cannot solve the world's problems
-  RunRailsCops: true
+  TargetRubyVersion: 2.3
+
+Rails:
+  Enabled: true
 
 Metrics/AbcSize:
   Enabled: false
@@ -31,6 +34,9 @@ Style/EmptyLinesAroundClassBody:
 Style/EmptyLinesAroundModuleBody:
   EnforcedStyle: empty_lines
 
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
 Style/SignalException:
   EnforcedStyle: only_raise
 
@@ -40,7 +46,10 @@ Style/StringLiterals:
 Style/TrivialAccessors:
   ExactNameMatch: true
 
-Style/TrailingComma:
+Style/TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: no_comma
+
+Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: no_comma
 
 Style/SpaceInsideBlockBraces:

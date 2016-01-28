@@ -26,13 +26,19 @@ class PurchasesCartCharge
 
   def on_success
     save
+<<<<<<< HEAD
     PaymentMailer.notify_success(payment).deliver_later
+=======
+>>>>>>> failure_03
   end
 
   def on_failure
     unpurchase_tickets
     save
+<<<<<<< HEAD
     PaymentMailer.notify_failure(payment).deliver_later
+=======
+>>>>>>> failure_03
   end
 
   def save
