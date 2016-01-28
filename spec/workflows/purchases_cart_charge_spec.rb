@@ -37,12 +37,9 @@ describe PurchasesCartCharge, :vcr, :aggregate_failures do
     before(:example) do
       allow(action).to receive(:save).and_return(true)
       expect(action).to receive(:unpurchase_tickets)
-<<<<<<< HEAD
       expect(PaymentMailer).to receive(:notify_success).never
       expect(PaymentMailer).to receive_message_chain(
         :notify_failure, :deliver_later)
-=======
->>>>>>> failure_03
       action.run
     end
 

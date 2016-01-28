@@ -12,13 +12,13 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - Stripe/v1 RubyBindings/1.32.1
+      - Stripe/v1 RubyBindings/1.34.0
       Authorization:
       - Bearer sk_test_bk4FEql3Fvd9j98YEhaAOXXN
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.32.1","lang":"ruby","lang_version":"2.3.0 p0 (2015-12-25)","platform":"x86_64-darwin15","engine":"ruby","publisher":"stripe","uname":"Darwin
+      - '{"bindings_version":"1.34.0","lang":"ruby","lang_version":"2.3.0 p0 (2015-12-25)","platform":"x86_64-darwin15","engine":"ruby","publisher":"stripe","uname":"Darwin
         Noels-Computer.local 15.3.0 Darwin Kernel Version 15.3.0: Thu Dec 10 18:40:58
         PST 2015; root:xnu-3248.30.4~1/RELEASE_X86_64 x86_64","hostname":"Noels-Computer.local"}'
       Content-Length:
@@ -31,7 +31,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 28 Jan 2016 15:15:54 GMT
+      - Thu, 28 Jan 2016 15:20:18 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_7ntHmz3wn8AKdy
+      - req_7ntLjwhrFRkYwE
       Stripe-Version:
       - '2015-10-16'
       Strict-Transport-Security:
@@ -58,10 +58,10 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_17YHV0DTh2DhiR4RpImFXnAp",
+          "id": "tok_17YHZGDTh2DhiR4RyC4s9lMX",
           "object": "token",
           "card": {
-            "id": "card_17YHV0DTh2DhiR4RD6BjFQFX",
+            "id": "card_17YHZGDTh2DhiR4RJpiMk7vd",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -85,36 +85,36 @@ http_interactions:
             "tokenization_method": null
           },
           "client_ip": "199.182.211.53",
-          "created": 1453994154,
+          "created": 1453994418,
           "livemode": false,
           "type": "card",
           "used": false
         }
     http_version: 
-  recorded_at: Thu, 28 Jan 2016 15:15:54 GMT
+  recorded_at: Thu, 28 Jan 2016 15:20:18 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/charges
     body:
       encoding: UTF-8
-      string: amount=3000&currency=usd&description=&metadata[reference]=c428458374b714d4ee71&source=tok_17YHV0DTh2DhiR4RpImFXnAp
+      string: amount=3000&currency=usd&description=&metadata[reference]=0e90a4f0bd7a45ab47ef&source=tok_17YHZGDTh2DhiR4RyC4s9lMX
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - Stripe/v1 RubyBindings/1.32.1
+      - Stripe/v1 RubyBindings/1.34.0
       Authorization:
       - Bearer sk_test_bk4FEql3Fvd9j98YEhaAOXXN
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.32.1","lang":"ruby","lang_version":"2.3.0 p0 (2015-12-25)","platform":"x86_64-darwin15","engine":"ruby","publisher":"stripe","uname":"Darwin
+      - '{"bindings_version":"1.34.0","lang":"ruby","lang_version":"2.3.0 p0 (2015-12-25)","platform":"x86_64-darwin15","engine":"ruby","publisher":"stripe","uname":"Darwin
         Noels-Computer.local 15.3.0 Darwin Kernel Version 15.3.0: Thu Dec 10 18:40:58
         PST 2015; root:xnu-3248.30.4~1/RELEASE_X86_64 x86_64","hostname":"Noels-Computer.local"}'
       Idempotency-Key:
-      - c428458374b714d4ee71
+      - 0e90a4f0bd7a45ab47ef
       Content-Length:
       - '114'
   response:
@@ -125,7 +125,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 28 Jan 2016 15:15:55 GMT
+      - Thu, 28 Jan 2016 15:20:20 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -143,11 +143,11 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Idempotency-Key:
-      - c428458374b714d4ee71
+      - 0e90a4f0bd7a45ab47ef
       Original-Request:
-      - req_7ntHPYzi7fuAWh
+      - req_7ntLgDIvbp5Q36
       Request-Id:
-      - req_7ntHPYzi7fuAWh
+      - req_7ntLgDIvbp5Q36
       Stripe-Version:
       - '2015-10-16'
     body:
@@ -158,9 +158,9 @@ http_interactions:
             "message": "Your card was declined.",
             "type": "card_error",
             "code": "card_declined",
-            "charge": "ch_17YHV1DTh2DhiR4RX57bIEOn"
+            "charge": "ch_17YHZHDTh2DhiR4R7DlIfpkH"
           }
         }
     http_version: 
-  recorded_at: Thu, 28 Jan 2016 15:15:54 GMT
+  recorded_at: Thu, 28 Jan 2016 15:20:19 GMT
 recorded_with: VCR 3.0.1

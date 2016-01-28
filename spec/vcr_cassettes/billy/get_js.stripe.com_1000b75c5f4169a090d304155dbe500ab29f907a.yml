@@ -16,10 +16,10 @@
   Fastly-Debug-Digest: fab7c732e334802a39a635c63e878ed85f1b68ec2ea2492e47b40bf8e9075173
   Content-Length: '45074'
   Accept-Ranges: bytes
-  Date: Thu, 28 Jan 2016 15:15:51 GMT
-  Age: '241'
+  Date: Thu, 28 Jan 2016 15:20:15 GMT
+  Age: '205'
   Connection: close
-  X-Served-By: cache-sea1925-SEA, cache-dfw1820-DFW
+  X-Served-By: cache-sea1925-SEA, cache-dfw1822-DFW
   X-Cache: HIT, HIT
   X-Cache-Hits: 3, 1
   Vary: Accept-Encoding

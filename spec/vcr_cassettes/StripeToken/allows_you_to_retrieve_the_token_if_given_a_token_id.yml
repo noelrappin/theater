@@ -12,13 +12,13 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - Stripe/v1 RubyBindings/1.32.1
+      - Stripe/v1 RubyBindings/1.34.0
       Authorization:
       - Bearer sk_test_bk4FEql3Fvd9j98YEhaAOXXN
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.32.1","lang":"ruby","lang_version":"2.3.0 p0 (2015-12-25)","platform":"x86_64-darwin15","engine":"ruby","publisher":"stripe","uname":"Darwin
+      - '{"bindings_version":"1.34.0","lang":"ruby","lang_version":"2.3.0 p0 (2015-12-25)","platform":"x86_64-darwin15","engine":"ruby","publisher":"stripe","uname":"Darwin
         Noels-Computer.local 15.3.0 Darwin Kernel Version 15.3.0: Thu Dec 10 18:40:58
         PST 2015; root:xnu-3248.30.4~1/RELEASE_X86_64 x86_64","hostname":"Noels-Computer.local"}'
       Content-Length:
@@ -31,7 +31,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 28 Jan 2016 15:15:56 GMT
+      - Thu, 28 Jan 2016 15:20:21 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_7ntHPLrM1bE07s
+      - req_7ntM1nNFcSkKem
       Stripe-Version:
       - '2015-10-16'
       Strict-Transport-Security:
@@ -58,10 +58,10 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_17YHV2DTh2DhiR4RhYv8ciee",
+          "id": "tok_17YHZIDTh2DhiR4RIa8uErmV",
           "object": "token",
           "card": {
-            "id": "card_17YHV1DTh2DhiR4R26fnXITk",
+            "id": "card_17YHZIDTh2DhiR4RFglO3C4B",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -85,16 +85,16 @@ http_interactions:
             "tokenization_method": null
           },
           "client_ip": "199.182.211.53",
-          "created": 1453994156,
+          "created": 1453994420,
           "livemode": false,
           "type": "card",
           "used": false
         }
     http_version: 
-  recorded_at: Thu, 28 Jan 2016 15:15:55 GMT
+  recorded_at: Thu, 28 Jan 2016 15:20:20 GMT
 - request:
     method: get
-    uri: https://api.stripe.com/v1/tokens/tok_17YHV2DTh2DhiR4RhYv8ciee
+    uri: https://api.stripe.com/v1/tokens/tok_17YHZIDTh2DhiR4RIa8uErmV
     body:
       encoding: US-ASCII
       string: ''
@@ -104,13 +104,13 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - Stripe/v1 RubyBindings/1.32.1
+      - Stripe/v1 RubyBindings/1.34.0
       Authorization:
       - Bearer sk_test_bk4FEql3Fvd9j98YEhaAOXXN
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.32.1","lang":"ruby","lang_version":"2.3.0 p0 (2015-12-25)","platform":"x86_64-darwin15","engine":"ruby","publisher":"stripe","uname":"Darwin
+      - '{"bindings_version":"1.34.0","lang":"ruby","lang_version":"2.3.0 p0 (2015-12-25)","platform":"x86_64-darwin15","engine":"ruby","publisher":"stripe","uname":"Darwin
         Noels-Computer.local 15.3.0 Darwin Kernel Version 15.3.0: Thu Dec 10 18:40:58
         PST 2015; root:xnu-3248.30.4~1/RELEASE_X86_64 x86_64","hostname":"Noels-Computer.local"}'
   response:
@@ -121,7 +121,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 28 Jan 2016 15:15:56 GMT
+      - Thu, 28 Jan 2016 15:20:21 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -139,7 +139,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_7ntHLUWhuHIe7O
+      - req_7ntMTCgXFGjtXW
       Stripe-Version:
       - '2015-10-16'
       Strict-Transport-Security:
@@ -148,10 +148,10 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_17YHV2DTh2DhiR4RhYv8ciee",
+          "id": "tok_17YHZIDTh2DhiR4RIa8uErmV",
           "object": "token",
           "card": {
-            "id": "card_17YHV1DTh2DhiR4R26fnXITk",
+            "id": "card_17YHZIDTh2DhiR4RFglO3C4B",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -175,11 +175,11 @@ http_interactions:
             "tokenization_method": null
           },
           "client_ip": "199.182.211.53",
-          "created": 1453994156,
+          "created": 1453994420,
           "livemode": false,
           "type": "card",
           "used": false
         }
     http_version: 
-  recorded_at: Thu, 28 Jan 2016 15:15:56 GMT
+  recorded_at: Thu, 28 Jan 2016 15:20:21 GMT
 recorded_with: VCR 3.0.1
