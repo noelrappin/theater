@@ -7,23 +7,23 @@
 :headers:
   Server: nginx
   Content-Type: application/x-javascript
-  Last-Modified: Wed, 09 Dec 2015 22:48:42 GMT
-  ETag: '"5668afca-b012"'
+  Last-Modified: Mon, 25 Jan 2016 17:48:36 GMT
+  ETag: '"56a65ff4-b012"'
   Cache-Control: public, max-age=300
   Via:
   - 1.1 varnish
   - 1.1 varnish
-  Fastly-Debug-Digest: 27d842efd91aa312eae6e58d67e0d603da4fa3edd29b78b3a3bbbd14e6271763
+  Fastly-Debug-Digest: fab7c732e334802a39a635c63e878ed85f1b68ec2ea2492e47b40bf8e9075173
   Content-Length: '45074'
   Accept-Ranges: bytes
-  Date: Sat, 12 Dec 2015 17:58:01 GMT
-  Age: '263'
+  Date: Thu, 28 Jan 2016 15:15:51 GMT
+  Age: '241'
   Connection: close
-  X-Served-By: cache-sea1927-SEA, cache-ord1726-ORD
+  X-Served-By: cache-sea1925-SEA, cache-dfw1820-DFW
   X-Cache: HIT, HIT
-  X-Cache-Hits: 7, 2
+  X-Cache-Hits: 3, 1
   Vary: Accept-Encoding
-:content: "/*! stripe-js 09-12-2015 */\n(function(){var a,b,c,d,e,f,g,h,i,j={}.hasOwnProperty,k=function(a,b){function
+:content: "/*! stripe-js 25-01-2016 */\n(function(){var a,b,c,d,e,f,g,h,i,j={}.hasOwnProperty,k=function(a,b){function
   c(){this.constructor=a}for(var d in b)j.call(b,d)&&(a[d]=b[d]);return c.prototype=b.prototype,a.prototype=new
   c,a.__super__=b.prototype,a};if(g=\"https://js.stripe.com\",c=\"https://js.stripe.com\",d=/stripe\\.com$/.test(\"undefined\"!=typeof
   window&&null!==window?window.location.host:void 0)?!0:!1,b=\"console\"in window&&\"warn\"in
@@ -116,7 +116,7 @@
   c?c(d,e):void 0):d>=400&&500>d?(a._clearReceiverPoll(b),\"function\"==typeof c?c(d,e):void
   0):(f=500===d?5e3:a._pollInterval,g=setTimeout(function(){return a._pollReceiver(b,c)},f),a._activeReceiverPolls[b].timeoutId=g)})},a.cancelReceiverPoll=function(b){var
   c;if(c=a._activeReceiverPolls[b],null==c)throw new Error(\"You are not polling receiver
-  \"+b+\".\");null!=c.timeoutId&&clearTimeout(c.timeoutId),a._clearReceiverPoll(b)},a}(),a=[\"createToken\",\"getToken\",\"cardType\",\"validateExpiry\",\"validateCVC\",\"validateCardNumber\"];for(h=0,i=a.length;i>h;h++)e=a[h],this.Stripe[e]=this.Stripe.card[e];this.Stripe.stripejs_ua=\"stripe.js/699b119\",\"undefined\"!=typeof
+  \"+b+\".\");null!=c.timeoutId&&clearTimeout(c.timeoutId),a._clearReceiverPoll(b)},a}(),a=[\"createToken\",\"getToken\",\"cardType\",\"validateExpiry\",\"validateCVC\",\"validateCardNumber\"];for(h=0,i=a.length;i>h;h++)e=a[h],this.Stripe[e]=this.Stripe.card[e];this.Stripe.stripejs_ua=\"stripe.js/c180728\",\"undefined\"!=typeof
   module&&null!==module&&(module.exports=this.Stripe),\"function\"==typeof define&&define(\"stripe\",[],function(a){return
   function(){return a.Stripe}}(this))}).call(this),function(){this.Stripe.isDoubleLoaded||function(a){function
   b(a,e){function f(a){if(f[a]!==q)return f[a];var b;if(\"bug-string-char-index\"==a)b=\"a\"!=\"a\"[0];else

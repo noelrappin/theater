@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe PurchasesCart, :vcr, :aggregate_failures do
+describe PurchasesCartSetup, :vcr, :aggregate_failures do
   let(:ticket_1) { instance_spy(
     Ticket, status: "waiting", price: Money.new(1500), id: 1) }
   let(:ticket_2) { instance_spy(
@@ -8,7 +8,7 @@ describe PurchasesCart, :vcr, :aggregate_failures do
   let(:ticket_3) { instance_spy(Ticket, status: "unsold", id: 3) }
   let(:user) { instance_double(
     User, id: 5, tickets_in_cart: [ticket_1, ticket_2]) }
-  let(:action) { PurchasesCart.new(
+  let(:action) { PurchasesCartSetup.new(
     user: user, purchase_amount_cents: 3000, stripe_token: token,
     expected_ticket_ids: "1 2") }
 
@@ -19,6 +19,7 @@ describe PurchasesCart, :vcr, :aggregate_failures do
 
     before(:example) do
       allow(action).to receive(:save).and_return(true)
+      expect(action).to receive(:on_success)
       action.run
     end
 
@@ -39,104 +40,50 @@ describe PurchasesCart, :vcr, :aggregate_failures do
       expect(action.payment.payment_line_items.size).to eq(2)
     end
 
-    it "takes the response from the gateway" do
-      expect(action.payment).to have_attributes(
-        status: "succeeded", response_id: a_string_starting_with("ch_"),
-        full_response: JSON.parse(action.stripe_charge.response.to_json))
-    end
-
-    it "returns success" do
-      expect(action.success).to be_truthy
-    end
-
   end
-
-  # START: failed_credit_card
-  describe "an unsuccessful credit card purchase" do
-    let(:token) { StripeToken.new(
-      credit_card_number: "4000000000000002", expiration_month: "12",
-      expiration_year: Time.zone.now.year + 1, cvc: "123") }
-
-    before(:example) do
-      allow(action).to receive(:save).and_return(true)
-      action.run
-    end
-
-    it "updates the ticket status" do
-      expect(ticket_1).to have_received(:purchase)
-      expect(ticket_2).to have_received(:purchase)
-      expect(ticket_3).not_to have_received(:purchase)
-      expect(ticket_1).to have_received(:return_to_cart)
-      expect(ticket_2).to have_received(:return_to_cart)
-      expect(ticket_3).not_to have_received(:return_to_cart)
-    end
-
-    it "creates a transaction object" do
-      expect(action.payment).to have_attributes(
-        user_id: user.id, price_cents: 3000,
-        reference: a_truthy_value, payment_method: "stripe")
-      expect(action.payment.payment_line_items.size).to eq(2)
-    end
-
-    it "takes the response from the gateway" do
-      expect(action.payment).to have_attributes(
-        status: "failed", response_id: nil,
-        full_response: JSON.parse(action.stripe_charge.error.to_json))
-    end
-
-    it "returns failure" do
-      expect(action.success).to be_falsy
-    end
-  end
-  # END: failed_credit_card
 
   describe "pre-flight fails" do
     let(:token) { instance_spy(StripeToken) }
 
     describe "expected price" do
-      let(:action) { PurchasesCart.new(
+      let(:action) { PurchasesCartSetup.new(
         user: user, purchase_amount_cents: 2500, stripe_token: token,
         expected_ticket_ids: "1 2") }
 
       it "does not payment if the expected price is incorrect" do
         allow(action).to receive(:save).and_return(true)
-        action.run
+        expect(action).to receive(:on_success).never
         expect(action).not_to be_pre_charge_valid
         expect(ticket_1).not_to have_received(:purchase)
         expect(ticket_2).not_to have_received(:purchase)
         expect(ticket_3).not_to have_received(:purchase)
-        expect(action.success).to be_falsy
-        expect(action.payment).to be_nil
+        expect(action.payment).to be_new_record
       end
     end
 
     describe "expected tickets" do
-      let(:action) { PurchasesCart.new(
+      let(:action) { PurchasesCartSetup.new(
         user: user, purchase_amount_cents: 3000, stripe_token: token,
         expected_ticket_ids: "1 3") }
 
       it "does not payment if the expected tickets are incorrect" do
         allow(action).to receive(:save).and_return(true)
-        action.run
+        expect(action).to receive(:on_success).never
         expect(action).not_to be_pre_charge_valid
         expect(ticket_1).not_to have_received(:purchase)
         expect(ticket_2).not_to have_received(:purchase)
         expect(ticket_3).not_to have_received(:purchase)
-        expect(action.success).to be_falsy
-        expect(action.payment).to be_nil
+        expect(action.payment).to be_new_record
       end
     end
 
-    # START: database_failure
     describe "database failure" do
       it "does not payment if the database fails" do
-        expect(StripeCharge).to receive(:new).never
-        allow(action).to receive(:save).and_return(false)
-        action.run
-        expect(action.success).to be_falsy
+        allow(action).to receive(:save).and_raise(
+          ActiveRecord::RecordNotSaved.new("oops", action.payment))
+        expect { action.run }.to raise_error(ActiveRecord::RecordNotSaved)
       end
     end
-    # END: database_failure
 
   end
 
