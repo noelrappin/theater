@@ -8,7 +8,7 @@ class PaymentsController < ApplicationController
   def create
     reference = Payment.generate_reference
     PurchasesCartJob.perform_later(
-      user: current_user, params: params, order_reference: reference)
+      user: current_user, params: params, payment_reference: reference)
     redirect_to order_path(id: reference)
   end
 
