@@ -12,7 +12,7 @@ class PurchasesCartJob < ActiveJob::Base
       purchase_amount_cents: params[:purchase_amount_cents],
       expected_ticket_ids: params[:ticket_ids],
       payment_reference: payment_reference)
-    purchases_cart_action.run
+    purchases_cart_workflow.run
   end
 
   private def card_params(params)
