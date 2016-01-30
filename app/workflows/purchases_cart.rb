@@ -23,6 +23,7 @@ class PurchasesCart
     @success = @continue
   end
 
+  # START: pre_charge
   def pre_charge_valid?
     purchase_amount == tickets.map(&:price).sum &&
       expected_ticket_ids == tickets.map(&:id).sort
@@ -34,7 +35,6 @@ class PurchasesCart
     end
   end
 
-  # START: pre_charge
   def existing_payment
     Payment.find_by(reference: payment_reference)
   end
