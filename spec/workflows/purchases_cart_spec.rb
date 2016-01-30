@@ -4,13 +4,15 @@ describe PurchasesCart, :vcr, :aggregate_failures do
 
   let(:workflow) { PurchasesCart.new(
     user: user, purchase_amount_cents: 3000, stripe_token: token,
-    expected_ticket_ids: "1 2") }
+    expected_ticket_ids: "1 2", payment_reference: "reference") }
   let(:user) { instance_double(
     User, id: 5, tickets_in_cart: [ticket_1, ticket_2]) }
   let(:ticket_1) { instance_spy(
-    Ticket, status: "waiting", price: Money.new(1500), id: 1) }
+    Ticket, status: "waiting", price: Money.new(1500), id: 1,
+            payment_reference: "reference") }
   let(:ticket_2) { instance_spy(
-    Ticket, status: "waiting", price: Money.new(1500), id: 2) }
+    Ticket, status: "waiting", price: Money.new(1500), id: 2,
+            payment_reference: "reference") }
   let(:ticket_3) { instance_spy(Ticket, status: "unsold", id: 3) }
 
   describe "successful credit card purchase" do

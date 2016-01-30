@@ -4,6 +4,9 @@ class PurchasesCartJob < ActiveJob::Base
 
   def perform(user:, params:, payment_reference:)
     token = StripeToken.new(**card_params(params))
+    user.tickets_in_cart.each do |ticket|
+      ticket.update(payment_reference: payment_reference)
+    end
     purchases_cart_action = PurchasesCart.new(
       user: user, stripe_token: token,
       purchase_amount_cents: params[:purchase_amount_cents],

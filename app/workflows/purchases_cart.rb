@@ -29,7 +29,9 @@ class PurchasesCart
   end
 
   def tickets
-    @tickets ||= @user.tickets_in_cart
+    @tickets ||= @user.tickets_in_cart.select do |ticket|
+      ticket.payment_reference == payment_reference
+    end
   end
 
   # START: pre_charge
