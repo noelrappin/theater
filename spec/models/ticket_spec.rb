@@ -13,7 +13,7 @@ RSpec.describe Ticket, type: :model do
   it "can move to purchased" do
     user = create(:user)
     ticket = create(:ticket, status: "waiting", user: user)
-    ticket.purchase
+    ticket.make_purchased
     expect(ticket.user).to eq(user)
     expect(ticket.status).to eq("purchased")
   end

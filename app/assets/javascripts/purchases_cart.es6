@@ -7,6 +7,17 @@ class CheckoutForm {
 
   disableButton() { this.button().prop("disabled", true); }
 
+  paymentTypeRadio() { return $(".payment-type-radio"); }
+
+  selectedPaymentType() {return $("input[name=payment_type]:checked").val(); }
+
+  creditCardForm() { return $("#credit-card-info"); }
+
+  setCreditCardVisibility() {
+    this.creditCardForm().toggleClass(
+      "hidden", this.selectedPaymentType() === "paypal");
+  }
+
   submit() { this.form().get(0).submit(); }
 
   appendHidden(name, value) {
@@ -42,10 +53,17 @@ class StripeForm {
   constructor() {
     this.checkoutForm = new CheckoutForm();
     this.initSubmitHandler();
+    this.initPaymentTypeHandler();
   }
 
   initSubmitHandler() {
-    this.checkoutForm.form().submit((event) => { this.handleSubmit(event); });
+    this.checkoutForm.form().submit(event => { this.handleSubmit(event); });
+  }
+
+  initPaymentTypeHandler() {
+    this.checkoutForm.paymentTypeRadio().click(() => {
+      this.checkoutForm.setCreditCardVisibility();
+    });
   }
 
   handleSubmit(event) {

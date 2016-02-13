@@ -31,11 +31,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 28 Jan 2016 13:27:48 GMT
+      - Fri, 12 Feb 2016 15:17:27 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '778'
+      - '782'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_7nrX1SxByq0YwQ
+      - req_7tVhJ49rGRRcXM
       Stripe-Version:
       - '2015-10-16'
       Strict-Transport-Security:
@@ -58,10 +58,10 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_17YFoODTh2DhiR4RND1V0pnP",
+          "id": "tok_17difjDTh2DhiR4RDtrP3PWS",
           "object": "token",
           "card": {
-            "id": "card_17YFoODTh2DhiR4R7WgVYRvL",
+            "id": "card_17difjDTh2DhiR4RRE4Xk5Sn",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -84,20 +84,20 @@ http_interactions:
             "name": null,
             "tokenization_method": null
           },
-          "client_ip": "73.9.29.65",
-          "created": 1453987668,
+          "client_ip": "199.182.211.53",
+          "created": 1455290247,
           "livemode": false,
           "type": "card",
           "used": false
         }
     http_version: 
-  recorded_at: Thu, 28 Jan 2016 13:27:48 GMT
+  recorded_at: Fri, 12 Feb 2016 15:17:28 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/charges
     body:
       encoding: UTF-8
-      string: amount=3000&currency=usd&description=&metadata[reference]=6a023bed14deea93d41a&source=tok_17YFoODTh2DhiR4RND1V0pnP
+      string: amount=3000&currency=usd&description=&metadata[reference]=5a6f8da8e791b33a267d&source=tok_17difjDTh2DhiR4RDtrP3PWS
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
@@ -114,7 +114,7 @@ http_interactions:
         Noels-Computer.local 15.3.0 Darwin Kernel Version 15.3.0: Thu Dec 10 18:40:58
         PST 2015; root:xnu-3248.30.4~1/RELEASE_X86_64 x86_64","hostname":"Noels-Computer.local"}'
       Idempotency-Key:
-      - 6a023bed14deea93d41a
+      - 5a6f8da8e791b33a267d
       Content-Length:
       - '114'
   response:
@@ -125,7 +125,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 28 Jan 2016 13:27:49 GMT
+      - Fri, 12 Feb 2016 15:17:28 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -143,11 +143,11 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Idempotency-Key:
-      - 6a023bed14deea93d41a
+      - 5a6f8da8e791b33a267d
       Original-Request:
-      - req_7nrXD41cDEXttf
+      - req_7tVhYs7yGf9t23
       Request-Id:
-      - req_7nrXD41cDEXttf
+      - req_7tVhYs7yGf9t23
       Stripe-Version:
       - '2015-10-16'
       Strict-Transport-Security:
@@ -156,14 +156,14 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "ch_17YFoPDTh2DhiR4RrsprfLQv",
+          "id": "ch_17difjDTh2DhiR4RVMrZGArR",
           "object": "charge",
           "amount": 3000,
           "amount_refunded": 0,
           "application_fee": null,
-          "balance_transaction": "txn_17YFoPDTh2DhiR4RQmaUYDVJ",
+          "balance_transaction": "txn_17difjDTh2DhiR4R5JpMliEK",
           "captured": true,
-          "created": 1453987669,
+          "created": 1455290247,
           "currency": "usd",
           "customer": null,
           "description": "",
@@ -175,7 +175,7 @@ http_interactions:
           "invoice": null,
           "livemode": false,
           "metadata": {
-            "reference": "6a023bed14deea93d41a"
+            "reference": "5a6f8da8e791b33a267d"
           },
           "order": null,
           "paid": true,
@@ -187,11 +187,11 @@ http_interactions:
             "data": [],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/charges/ch_17YFoPDTh2DhiR4RrsprfLQv/refunds"
+            "url": "/v1/charges/ch_17difjDTh2DhiR4RVMrZGArR/refunds"
           },
           "shipping": null,
           "source": {
-            "id": "card_17YFoODTh2DhiR4R7WgVYRvL",
+            "id": "card_17difjDTh2DhiR4RRE4Xk5Sn",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -219,5 +219,5 @@ http_interactions:
           "status": "succeeded"
         }
     http_version: 
-  recorded_at: Thu, 28 Jan 2016 13:27:49 GMT
+  recorded_at: Fri, 12 Feb 2016 15:17:29 GMT
 recorded_with: VCR 3.0.1
