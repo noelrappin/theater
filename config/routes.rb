@@ -6,5 +6,7 @@ Rails.application.routes.draw do
   resources :users
   resources :payments
 
+  # START: paypal
   get "paypal/approved", to: "pay_pal_payments#approved"
+  # END: paypal
 end

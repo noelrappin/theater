@@ -6,10 +6,6 @@ class PayPalPurchasesCart < AbstractPurchasesCart
     tickets.each(&:make_pending)
   end
 
-  def success
-    true
-  end
-
   def redirect_on_success_url
     pay_pal_payment.redirect_url
   end

@@ -15,13 +15,6 @@ class PaymentsController < ApplicationController
     end
   end
 
-  # START: card_params
-  private def card_params
-    params.slice(:credit_card_number, :expiration_month,
-                 :expiration_year, :cvc, :stripe_token).symbolize_keys
-  end
-  # END: card_params
-
   private def create_workflow(payment_type)
     (payment_type == "paypal") ? paypal_workflow : stripe_workflow
   end
@@ -36,6 +29,11 @@ class PaymentsController < ApplicationController
       user: current_user,
       stripe_token: StripeToken.new(**card_params),
       purchase_amount_cents: params[:purchase_amount_cents])
+  end
+
+  private def card_params
+    params.slice(:credit_card_number, :expiration_month,
+                 :expiration_year, :cvc, :stripe_token).symbolize_keys
   end
 
 end

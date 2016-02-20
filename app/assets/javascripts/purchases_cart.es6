@@ -1,4 +1,3 @@
-// # START: checkout_form
 class CheckoutForm {
 
   form() { return $("#payment-form"); }
@@ -7,16 +6,19 @@ class CheckoutForm {
 
   disableButton() { this.button().prop("disabled", true); }
 
+  // # START: checkout_form
   paymentTypeRadio() { return $(".payment-type-radio"); }
 
   selectedPaymentType() {return $("input[name=payment_type]:checked").val(); }
 
   creditCardForm() { return $("#credit-card-info"); }
 
+  isPayPal() { return this.selectedPaymentType() === "paypal"; }
+
   setCreditCardVisibility() {
-    this.creditCardForm().toggleClass(
-      "hidden", this.selectedPaymentType() === "paypal");
+    this.creditCardForm().toggleClass("hidden", this.isPayPal());
   }
+  // # END: checkout_form
 
   submit() { this.form().get(0).submit(); }
 
@@ -47,8 +49,8 @@ class TokenHandler {
 }
 // # END: token_handler
 
-// # START: stripe_form
-class StripeForm {
+// # START: payment_form_handler
+class PaymentFormHandler {
 
   constructor() {
     this.checkoutForm = new CheckoutForm();
@@ -57,7 +59,11 @@ class StripeForm {
   }
 
   initSubmitHandler() {
-    this.checkoutForm.form().submit(event => { this.handleSubmit(event); });
+    this.checkoutForm.form().submit(event => {
+      if (!this.checkoutForm.isPayPal()) {
+        this.handleSubmit(event);
+      }
+    });
   }
 
   initPaymentTypeHandler() {
@@ -73,9 +79,6 @@ class StripeForm {
     return false;
   }
 }
-// # END: stripe_form
 
-
-// # START: jQuery
-$(() => { return new StripeForm(); });
-// # END: jQuery
+$(() => { return new PaymentFormHandler(); });
+// # END: payment_form_handler

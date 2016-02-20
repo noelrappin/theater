@@ -21,7 +21,7 @@ class AbstractPurchasesCart
     @tickets ||= @user.tickets_in_cart
   end
 
-  def success_redirect
+  def redirect_on_success_url
     nil
   end
 
@@ -38,6 +38,10 @@ class AbstractPurchasesCart
   def purchase_attributes
     {user_id: user.id, price_cents: purchase_amount.cents, status: "created",
      reference: Payment.generate_reference}
+  end
+
+  def success?
+    success
   end
 
 end

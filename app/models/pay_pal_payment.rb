@@ -2,6 +2,9 @@ class PayPalPayment
 
   attr_accessor :payment, :pay_pal_payment
 
+  delegate :create, to: :pay_pal_payment
+  delegate :execute, to: :pay_pal_payment
+
   def self.find(payment_id)
     PayPal::SDK::REST::Payment.find(payment_id)
   end
@@ -37,8 +40,6 @@ class PayPalPayment
     end
   end
 
-  delegate :create, to: :pay_pal_payment
-
   def created?
     pay_pal_payment.state == "created"
   end
@@ -52,7 +53,5 @@ class PayPalPayment
     create unless created?
     pay_pal_payment.id
   end
-
-  delegate :execute, to: :pay_pal_payment
 
 end
