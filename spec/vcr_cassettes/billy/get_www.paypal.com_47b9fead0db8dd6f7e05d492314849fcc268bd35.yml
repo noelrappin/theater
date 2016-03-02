@@ -6,16 +6,16 @@
 :method: get
 :headers:
   Server: Apache
-  Last-Modified: Fri, 29 Jan 2016 19:53:15 GMT
+  Last-Modified: Wed, 24 Feb 2016 11:33:27 GMT
   Accept-Ranges: bytes
   Content-Length: '389'
   Cache-Control: max-age=0, no-cache, no-store, must-revalidate
   Pragma: no-cache
   Content-Type: image/gif
-  DC: dcg11-origin-www-2.paypal.com
-  Date: Thu, 11 Feb 2016 15:46:49 GMT
+  DC: dcg12-origin-www-1.paypal.com
+  Date: Wed, 02 Mar 2016 01:35:05 GMT
   Connection: close
-  Set-Cookie: AKDC=dcg11-origin-www-2.paypal.com; expires=Thu, 11-Feb-2016 16:16:49
+  Set-Cookie: AKDC=dcg12-origin-www-1.paypal.com; expires=Wed, 02-Mar-2016 02:05:05
     GMT; path=/; secure
   Strict-Transport-Security: max-age=63072000
 :content: !binary |-

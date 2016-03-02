@@ -14,6 +14,10 @@ class AbstractPurchasesCart
     create_payment
     save
     purchase
+    calculate_success
+  end
+
+  def calculate_success
     @success = save && payment.succeeded?
   end
 

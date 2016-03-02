@@ -1,14 +1,14 @@
 ---
 :scope: 
-:url: https://js.stripe.com/v2/channel.html?stripe_xdm_e=http%3A%2F%2F127.0.0.1%3A53618&stripe_xdm_c=default657223&stripe_xdm_p=1
+:url: https://js.stripe.com/v2/channel.html?stripe_xdm_e=http%3A%2F%2F127.0.0.1%3A55248&stripe_xdm_c=default400550&stripe_xdm_p=1
 :body: ''
 :status: 200
 :method: get
 :headers:
   Server: nginx
   Content-Type: text/html
-  Last-Modified: Wed, 10 Feb 2016 03:55:13 GMT
-  ETag: '"56bab4a1-459"'
+  Last-Modified: Thu, 25 Feb 2016 19:08:20 GMT
+  ETag: '"56cf5124-459"'
   Cache-Control: public, max-age=300
   Via:
   - 1.1 varnish
@@ -16,12 +16,12 @@
   Fastly-Debug-Digest: da5a5f8366c53af83ffda87d2ec27f62664f0e2cdb529b3b029bc1431d93d0af
   Content-Length: '1113'
   Accept-Ranges: bytes
-  Date: Thu, 11 Feb 2016 15:46:49 GMT
-  Age: '222'
+  Date: Wed, 02 Mar 2016 01:35:05 GMT
+  Age: '172'
   Connection: close
-  X-Served-By: cache-sea1921-SEA, cache-dfw1825-DFW
+  X-Served-By: cache-sea1924-SEA, cache-dfw1828-DFW
   X-Cache: HIT, HIT
-  X-Cache-Hits: 2, 1
+  X-Cache-Hits: 36, 1
   Vary: Accept-Encoding
 :content: |
   <!doctype html>

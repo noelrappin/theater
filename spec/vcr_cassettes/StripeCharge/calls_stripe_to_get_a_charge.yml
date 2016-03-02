@@ -31,11 +31,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 11 Feb 2016 15:46:52 GMT
+      - Wed, 02 Mar 2016 01:35:08 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '780'
+      - '778'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_7t8wAxz7PpYVzr
+      - req_80PiMzBoBMTy0h
       Stripe-Version:
       - '2015-10-16'
       Strict-Transport-Security:
@@ -58,10 +58,10 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_17dMeeDTh2DhiR4RjBB3LNdF",
+          "id": "tok_17kOtMDTh2DhiR4RJ04A5Fl5",
           "object": "token",
           "card": {
-            "id": "card_17dMeeDTh2DhiR4R3Go82BSW",
+            "id": "card_17kOtMDTh2DhiR4R0HTU9ewQ",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -84,20 +84,20 @@ http_interactions:
             "name": null,
             "tokenization_method": null
           },
-          "client_ip": "75.103.4.126",
-          "created": 1455205612,
+          "client_ip": "73.9.29.65",
+          "created": 1456882508,
           "livemode": false,
           "type": "card",
           "used": false
         }
     http_version: 
-  recorded_at: Thu, 11 Feb 2016 15:46:52 GMT
+  recorded_at: Wed, 02 Mar 2016 01:35:09 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/charges
     body:
       encoding: UTF-8
-      string: amount=3000&currency=usd&description=&metadata[reference]=reference_stripe_charge_spec&source=tok_17dMeeDTh2DhiR4RjBB3LNdF
+      string: amount=3000&currency=usd&description=&metadata[reference]=reference_stripe_charge_spec&source=tok_17kOtMDTh2DhiR4RJ04A5Fl5
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
@@ -125,11 +125,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 11 Feb 2016 15:46:53 GMT
+      - Wed, 02 Mar 2016 01:35:09 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '1491'
+      - '1518'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -145,9 +145,9 @@ http_interactions:
       Idempotency-Key:
       - reference_stripe_charge_spec
       Original-Request:
-      - req_7t8wwA6LMJsiVO
+      - req_80Pi6zp1tNzutz
       Request-Id:
-      - req_7t8wwA6LMJsiVO
+      - req_80Pi6zp1tNzutz
       Stripe-Version:
       - '2015-10-16'
       Strict-Transport-Security:
@@ -156,14 +156,14 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "ch_17dMeeDTh2DhiR4RDBEkmNkZ",
+          "id": "ch_17kOtNDTh2DhiR4RyA1xF1Us",
           "object": "charge",
           "amount": 3000,
           "amount_refunded": 0,
           "application_fee": null,
-          "balance_transaction": "txn_17dMeeDTh2DhiR4Rn8UrAElx",
+          "balance_transaction": "txn_17kOtNDTh2DhiR4RAgbBDZFE",
           "captured": true,
-          "created": 1455205612,
+          "created": 1456882509,
           "currency": "usd",
           "customer": null,
           "description": "",
@@ -187,11 +187,11 @@ http_interactions:
             "data": [],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/charges/ch_17dMeeDTh2DhiR4RDBEkmNkZ/refunds"
+            "url": "/v1/charges/ch_17kOtNDTh2DhiR4RyA1xF1Us/refunds"
           },
           "shipping": null,
           "source": {
-            "id": "card_17dMeeDTh2DhiR4R3Go82BSW",
+            "id": "card_17kOtMDTh2DhiR4R0HTU9ewQ",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -215,9 +215,10 @@ http_interactions:
             "name": null,
             "tokenization_method": null
           },
+          "source_transfer": null,
           "statement_descriptor": null,
           "status": "succeeded"
         }
     http_version: 
-  recorded_at: Thu, 11 Feb 2016 15:46:53 GMT
+  recorded_at: Wed, 02 Mar 2016 01:35:10 GMT
 recorded_with: VCR 3.0.1

@@ -9,12 +9,7 @@ describe "purchasing a cart with paypal", :vcr do
     login_as(users(:buyer), scope: :user)
     visit shopping_cart_path
     choose "paypal_radio"
-    click_on "purchase"
-    # expect(page).to have_selector(".purchased_ticket", count: 2)
-    # expect(page).to have_selector(
-    #   "#purchased_ticket_#{tickets(:midsummer_bums_1).id}")
-    # expect(page).to have_selector(
-    #   "#purchased_ticket_#{tickets(:midsummer_bums_2).id}")
+    # click_on "purchase"
   end
 
 end

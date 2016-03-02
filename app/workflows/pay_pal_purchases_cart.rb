@@ -16,9 +16,14 @@ class PayPalPurchasesCart < AbstractPurchasesCart
     super.merge(payment_method: "paypal")
   end
 
+  def calculate_success
+    @success = save && payment.pending?
+  end
+
   def purchase
     @pay_pal_payment = PayPalPayment.new(payment: payment)
     payment.response_id = pay_pal_payment.response_id
+    payment.make_pending
   end
 
 end
