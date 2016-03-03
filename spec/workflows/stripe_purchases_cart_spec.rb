@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe PurchasesCart, :vcr, :aggregate_failures do
+describe StripePurchasesCart, :vcr, :aggregate_failures do
 
   let(:workflow) { PurchasesCart.new(
     user: user, purchase_amount_cents: 3000, stripe_token: token,
@@ -17,6 +17,8 @@ describe PurchasesCart, :vcr, :aggregate_failures do
     let(:token) { StripeToken.new(
       credit_card_number: "4242424242424242", expiration_month: "12",
       expiration_year: Time.zone.now.year + 1, cvc: "123") }
+    let(:workflow) { StripePurchasesCart.new(
+      user: user, purchase_amount_cents: 3000, stripe_token: token) }
 
     before(:example) do
       allow(workflow).to receive(:save).and_return(true)
@@ -24,12 +26,13 @@ describe PurchasesCart, :vcr, :aggregate_failures do
     end
 
     it "updates the ticket status" do
-      expect(ticket_1).to have_received(:purchase)
-      expect(ticket_2).to have_received(:purchase)
-      expect(ticket_3).not_to have_received(:purchase)
+      expect(ticket_1).to have_received(:make_purchased)
+      expect(ticket_2).to have_received(:make_purchased)
+      expect(ticket_3).not_to have_received(:make_purchased)
     end
 
-    it "creates a transworkflow object" do
+
+    it "creates a transaction object" do
       expect(workflow.payment).to have_attributes(
         user_id: user.id, price_cents: 3000,
         reference: a_truthy_value, payment_method: "stripe")
@@ -39,7 +42,7 @@ describe PurchasesCart, :vcr, :aggregate_failures do
     it "takes the response from the gateway" do
       expect(workflow.payment).to have_attributes(
         status: "succeeded", response_id: a_string_starting_with("ch_"),
-        full_response: JSON.parse(workflow.stripe_charge.response.to_json))
+        full_response: JSON.parse(workflow.stripe_charge.to_json))
     end
 
     it "returns success" do

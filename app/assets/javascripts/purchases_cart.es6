@@ -73,6 +73,20 @@ class CheckoutForm {
   isEnabled() { return !this.button().hasClass("disabled"); }
   // # END: checkout_form_display_status
 
+  // # START: checkout_form
+  paymentTypeRadio() { return $(".payment-type-radio"); }
+
+  selectedPaymentType() {return $("input[name=payment_type]:checked").val(); }
+
+  creditCardForm() { return $("#credit-card-info"); }
+
+  isPayPal() { return this.selectedPaymentType() === "paypal"; }
+
+  setCreditCardVisibility() {
+    this.creditCardForm().toggleClass("hidden", this.isPayPal());
+  }
+  // # END: checkout_form
+
   submit() { this.form().get(0).submit(); }
 
   appendHidden(name, value) {
@@ -116,13 +130,16 @@ class TokenHandler {
 }
 // # END: token_handler
 
-class StripeForm {
+// # START: payment_form_handler
+class PaymentFormHandler {
 
   // # START: stripe_form_constructor
   constructor() {
     this.checkoutForm = new CheckoutForm();
     this.checkoutForm.format();
     this.initEventHandlers();
+    this.initSubmitHandler();
+    this.initPaymentTypeHandler();
   }
   // # END: stripe_form_constructor
 
@@ -131,6 +148,18 @@ class StripeForm {
     this.checkoutForm.form().submit((event) => this.handleSubmit(event));
     this.checkoutForm.validFields().keyup(() => {
       this.checkoutForm.displayStatus();
+
+  initSubmitHandler() {
+    this.checkoutForm.form().submit(event => {
+      if (!this.checkoutForm.isPayPal()) {
+        this.handleSubmit(event);
+      }
+    });
+  }
+
+  initPaymentTypeHandler() {
+    this.checkoutForm.paymentTypeRadio().click(() => {
+      this.checkoutForm.setCreditCardVisibility();
     });
   }
   // # END: stripe_form_event_handlers
@@ -146,11 +175,11 @@ class StripeForm {
   }
 }
 
-
 // # START: jQuery
 $(() => {
   if ($(".credit-card-form").size() > 0) {
-    return new StripeForm();
+    return new PaymentFormHandler();
   }
 });
 // # END: jQuery
+
