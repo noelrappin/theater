@@ -1,6 +1,6 @@
 ---
 :scope: 
-:url: https://js.stripe.com/v2/channel.html?stripe_xdm_e=http%3A%2F%2F127.0.0.1%3A61348&stripe_xdm_c=default346205&stripe_xdm_p=1
+:url: https://js.stripe.com/v2/channel.html?stripe_xdm_e=http%3A%2F%2F127.0.0.1%3A62865&stripe_xdm_c=default720923&stripe_xdm_p=1
 :body: ''
 :status: 200
 :method: get
@@ -16,12 +16,12 @@
   Fastly-Debug-Digest: da5a5f8366c53af83ffda87d2ec27f62664f0e2cdb529b3b029bc1431d93d0af
   Content-Length: '1113'
   Accept-Ranges: bytes
-  Date: Thu, 03 Mar 2016 02:23:21 GMT
-  Age: '209'
+  Date: Thu, 03 Mar 2016 02:56:10 GMT
+  Age: '69'
   Connection: close
-  X-Served-By: cache-sea1922-SEA, cache-ord1730-ORD
+  X-Served-By: cache-sea1920-SEA, cache-ord1722-ORD
   X-Cache: HIT, HIT
-  X-Cache-Hits: 3, 1
+  X-Cache-Hits: 5, 1
   Vary: Accept-Encoding
 :content: |
   <!doctype html>

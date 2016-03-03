@@ -177,7 +177,7 @@ $(() => {
   if ($(".credit-card-form").size() > 0) {
     return new PaymentFormHandler();
   }
-  return nil;
+  return null;
 });
 // # END: jQuery
 

@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.stripe.com/v1/charges
     body:
       encoding: UTF-8
-      string: amount=3000&currency=usd&description=&metadata[reference]=a951bfb3c95295b7f87a&source=tok_17km7yDTh2DhiR4Rzl8r8Bie
+      string: amount=3000&currency=usd&description=&metadata[reference]=fb0fb3aa10767a14d98b&source=tok_17kmdKDTh2DhiR4Rrd4utHUo
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
@@ -22,7 +22,7 @@ http_interactions:
         Noels-Computer.local 15.3.0 Darwin Kernel Version 15.3.0: Thu Dec 10 18:40:58
         PST 2015; root:xnu-3248.30.4~1/RELEASE_X86_64 x86_64","hostname":"Noels-Computer.local"}'
       Idempotency-Key:
-      - a951bfb3c95295b7f87a
+      - fb0fb3aa10767a14d98b
       Content-Length:
       - '114'
   response:
@@ -33,7 +33,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 03 Mar 2016 02:24:42 GMT
+      - Thu, 03 Mar 2016 02:56:11 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -51,11 +51,11 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Idempotency-Key:
-      - a951bfb3c95295b7f87a
+      - fb0fb3aa10767a14d98b
       Original-Request:
-      - req_80nkDEz95RRj8X
+      - req_80oFMkD8NYGgol
       Request-Id:
-      - req_80nkDEz95RRj8X
+      - req_80oFMkD8NYGgol
       Stripe-Version:
       - '2015-10-16'
       Strict-Transport-Security:
@@ -64,14 +64,14 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "ch_17km8sDTh2DhiR4Rtumk28hP",
+          "id": "ch_17kmdLDTh2DhiR4RMWThUDDs",
           "object": "charge",
           "amount": 3000,
           "amount_refunded": 0,
           "application_fee": null,
-          "balance_transaction": "txn_17km8sDTh2DhiR4RiA4kIyqC",
+          "balance_transaction": "txn_17kmdLDTh2DhiR4R2MMmcgdO",
           "captured": true,
-          "created": 1456971882,
+          "created": 1456973771,
           "currency": "usd",
           "customer": null,
           "description": "",
@@ -83,7 +83,7 @@ http_interactions:
           "invoice": null,
           "livemode": false,
           "metadata": {
-            "reference": "a951bfb3c95295b7f87a"
+            "reference": "fb0fb3aa10767a14d98b"
           },
           "order": null,
           "paid": true,
@@ -95,11 +95,11 @@ http_interactions:
             "data": [],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/charges/ch_17km8sDTh2DhiR4Rtumk28hP/refunds"
+            "url": "/v1/charges/ch_17kmdLDTh2DhiR4RMWThUDDs/refunds"
           },
           "shipping": null,
           "source": {
-            "id": "card_17km7yDTh2DhiR4RiNVg21Wg",
+            "id": "card_17kmdKDTh2DhiR4RqNp3QyDY",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -128,5 +128,5 @@ http_interactions:
           "status": "succeeded"
         }
     http_version: 
-  recorded_at: Thu, 03 Mar 2016 02:24:42 GMT
+  recorded_at: Thu, 03 Mar 2016 02:56:11 GMT
 recorded_with: VCR 3.0.1
