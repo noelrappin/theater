@@ -138,22 +138,19 @@ class PaymentFormHandler {
     this.checkoutForm = new CheckoutForm();
     this.checkoutForm.format();
     this.initEventHandlers();
-    this.initSubmitHandler();
     this.initPaymentTypeHandler();
   }
   // # END: stripe_form_constructor
 
   // # START: stripe_form_event_handlers
   initEventHandlers() {
-    this.checkoutForm.form().submit((event) => this.handleSubmit(event));
-    this.checkoutForm.validFields().keyup(() => {
-      this.checkoutForm.displayStatus();
-
-  initSubmitHandler() {
     this.checkoutForm.form().submit(event => {
       if (!this.checkoutForm.isPayPal()) {
         this.handleSubmit(event);
       }
+    });
+    this.checkoutForm.validFields().keyup(() => {
+      this.checkoutForm.displayStatus();
     });
   }
 
@@ -180,6 +177,7 @@ $(() => {
   if ($(".credit-card-form").size() > 0) {
     return new PaymentFormHandler();
   }
+  return nil;
 });
 // # END: jQuery
 

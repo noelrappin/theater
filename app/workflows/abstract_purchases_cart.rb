@@ -84,9 +84,9 @@ class AbstractPurchasesCart
   ## END: purchases_charge
 
   ## START: purchases_post_charge
-  def post_charge
+  def post_purchase
     return unless @continue
-    @continue = save && payment.succeeded?
+    @continue = save && calculate_success
   end
   ## END: purchases_post_charge
 

@@ -2,8 +2,10 @@ class StripePurchasesCart < AbstractPurchasesCart
 
   attr_accessor :stripe_token, :stripe_charge
 
-  def initialize(user:, stripe_token:, purchase_amount_cents:)
-    super(user: user, purchase_amount_cents: purchase_amount_cents)
+  def initialize(user:, stripe_token:, purchase_amount_cents:,
+                 expected_ticket_ids:)
+    super(user: user, purchase_amount_cents: purchase_amount_cents,
+          expected_ticket_ids: expected_ticket_ids)
     @stripe_token = stripe_token
   end
 

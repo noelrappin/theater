@@ -8,10 +8,10 @@ describe PayPalPurchasesCart, :vcr, :aggregate_failures do
     let(:ticket_2) { instance_spy(
       Ticket, status: "waiting", price: Money.new(1500), id: 2) }
     let(:ticket_3) { instance_spy(Ticket, status: "unsold", id: 3) }
-    let(:user) { instance_double(User,
-                                 id: 5, tickets_in_cart: [ticket_1, ticket_2]) }
+    let(:user) { instance_double(
+      User, id: 5, tickets_in_cart: [ticket_1, ticket_2]) }
     let(:workflow) { PayPalPurchasesCart.new(
-      user: user, purchase_amount_cents: 3000) }
+      user: user, purchase_amount_cents: 3000, expected_ticket_ids: "1 2") }
 
     before(:example) do
       allow(workflow).to receive(:save).and_return(true)

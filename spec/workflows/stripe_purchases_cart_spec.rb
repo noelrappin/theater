@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe StripePurchasesCart, :vcr, :aggregate_failures do
 
-  let(:workflow) { PurchasesCart.new(
+  let(:workflow) { StripePurchasesCart.new(
     user: user, purchase_amount_cents: 3000, stripe_token: token,
     expected_ticket_ids: "1 2") }
   let(:user) { instance_double(
@@ -17,8 +17,6 @@ describe StripePurchasesCart, :vcr, :aggregate_failures do
     let(:token) { StripeToken.new(
       credit_card_number: "4242424242424242", expiration_month: "12",
       expiration_year: Time.zone.now.year + 1, cvc: "123") }
-    let(:workflow) { StripePurchasesCart.new(
-      user: user, purchase_amount_cents: 3000, stripe_token: token) }
 
     before(:example) do
       allow(workflow).to receive(:save).and_return(true)
@@ -31,7 +29,6 @@ describe StripePurchasesCart, :vcr, :aggregate_failures do
       expect(ticket_3).not_to have_received(:make_purchased)
     end
 
-
     it "creates a transaction object" do
       expect(workflow.payment).to have_attributes(
         user_id: user.id, price_cents: 3000,
@@ -42,7 +39,7 @@ describe StripePurchasesCart, :vcr, :aggregate_failures do
     it "takes the response from the gateway" do
       expect(workflow.payment).to have_attributes(
         status: "succeeded", response_id: a_string_starting_with("ch_"),
-        full_response: JSON.parse(workflow.stripe_charge.to_json))
+        full_response: JSON.parse(workflow.stripe_charge.response.to_json))
     end
 
     it "returns success" do
@@ -63,9 +60,9 @@ describe StripePurchasesCart, :vcr, :aggregate_failures do
     end
 
     it "updates the ticket status" do
-      expect(ticket_1).to have_received(:purchase)
-      expect(ticket_2).to have_received(:purchase)
-      expect(ticket_3).not_to have_received(:purchase)
+      expect(ticket_1).to have_received(:make_purchased)
+      expect(ticket_2).to have_received(:make_purchased)
+      expect(ticket_3).not_to have_received(:make_purchased)
       expect(ticket_1).to have_received(:return_to_cart)
       expect(ticket_2).to have_received(:return_to_cart)
       expect(ticket_3).not_to have_received(:return_to_cart)
@@ -94,34 +91,34 @@ describe StripePurchasesCart, :vcr, :aggregate_failures do
     let(:token) { instance_spy(StripeToken) }
 
     describe "expected price" do
-      let(:workflow) { PurchasesCart.new(
+      let(:workflow) { StripePurchasesCart.new(
         user: user, purchase_amount_cents: 2500, stripe_token: token,
         expected_ticket_ids: "1 2") }
 
       it "does not payment if the expected price is incorrect" do
         allow(workflow).to receive(:save).and_return(true)
         workflow.run
-        expect(workflow).not_to be_pre_charge_valid
-        expect(ticket_1).not_to have_received(:purchase)
-        expect(ticket_2).not_to have_received(:purchase)
-        expect(ticket_3).not_to have_received(:purchase)
+        expect(workflow).not_to be_pre_purchase_valid
+        expect(ticket_1).not_to have_received(:make_purchased)
+        expect(ticket_2).not_to have_received(:make_purchased)
+        expect(ticket_3).not_to have_received(:make_purchased)
         expect(workflow.success).to be_falsy
         expect(workflow.payment).to be_nil
       end
     end
 
     describe "expected tickets" do
-      let(:workflow) { PurchasesCart.new(
+      let(:workflow) { StripePurchasesCart.new(
         user: user, purchase_amount_cents: 3000, stripe_token: token,
         expected_ticket_ids: "1 3") }
 
       it "does not payment if the expected tickets are incorrect" do
         allow(workflow).to receive(:save).and_return(true)
         workflow.run
-        expect(workflow).not_to be_pre_charge_valid
-        expect(ticket_1).not_to have_received(:purchase)
-        expect(ticket_2).not_to have_received(:purchase)
-        expect(ticket_3).not_to have_received(:purchase)
+        expect(workflow).not_to be_pre_purchase_valid
+        expect(ticket_1).not_to have_received(:make_purchased)
+        expect(ticket_2).not_to have_received(:make_purchased)
+        expect(ticket_3).not_to have_received(:make_purchased)
         expect(workflow.success).to be_falsy
         expect(workflow.payment).to be_nil
       end
