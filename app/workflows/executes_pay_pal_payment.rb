@@ -7,24 +7,43 @@ class ExecutesPayPalPayment
     @token = token
     @payer_id = payer_id
     @success = false
+    @continue = true
   end
 
-  def find_payment
-    Payment.find_by(payment_method: "paypal", response_id: payment_id)
+  def payment
+    @payment ||= Payment.find_by(
+      payment_method: "paypal", response_id: payment_id)
   end
 
   def pay_pal_payment
-    @pay_pal_payment ||= PayPalPayment.find(payment_id)
+    @pay_pal_payment ||= PayPalPayment.find(payment_id, payment: payment)
+  end
+
+  def pre_purchase
+    @continue = pay_pal_payment.match?
   end
 
   def run
-    @payment = find_payment
-    execute_ok = pay_pal_payment.execute(payer_id: payer_id)
-    return unless execute_ok
-    payment.tickets.each(&:make_purchased)
-    payment.make_succeeded
-    save
-    self.success = true
+    pre_purchase
+    purchase
+    post_purchase
+  end
+
+  def purchase
+    return unless @continue
+    @continue = pay_pal_payment.execute(payer_id: payer_id)
+  end
+
+  def post_purchase
+    if @continue
+      payment.tickets.each(&:make_purchased)
+      payment.make_succeeded
+      self.success = save
+    else
+      payment.tickets.each(&:return_to_cart)
+      payment.make_failed
+      save
+    end
   end
 
   def save

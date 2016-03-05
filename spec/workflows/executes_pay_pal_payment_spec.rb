@@ -13,10 +13,11 @@ describe ExecutesPayPalPayment, :vcr, :aggregate_failures do
     let(:workflow) { ExecutesPayPalPayment.new(
       payment_id: "PAYMENTID", token: "TOKEN", payer_id: "PAYER_ID") }
     let(:payment) { instance_spy(Payment, tickets: [ticket_1, ticket_2]) }
-    let(:pay_pal_payment) { instance_spy(PayPalPayment, execute: true) }
+    let(:pay_pal_payment) {
+      instance_spy(PayPalPayment, execute: true, match?: true) }
 
     before(:example) do
-      allow(workflow).to receive(:find_payment).and_return(payment)
+      allow(workflow).to receive(:payment).and_return(payment)
       allow(workflow).to receive(:pay_pal_payment).and_return(pay_pal_payment)
       workflow.run
     end

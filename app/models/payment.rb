@@ -22,4 +22,8 @@ class Payment < ActiveRecord::Base
     tickets.map(&:price).sum
   end
 
+  def sorted_ticket_ids
+    tickets.map(&:id).sort
+  end
+
 end

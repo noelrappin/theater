@@ -5,8 +5,10 @@ class PayPalPayment
   delegate :create, to: :pay_pal_payment
   delegate :execute, to: :pay_pal_payment
 
-  def self.find(payment_id)
-    PayPal::SDK::REST::Payment.find(payment_id)
+  def self.find(payment_id, payment:)
+    result = PayPalPayment.new(payment: payment)
+    result.pay_pal_payment = PayPal::SDK::REST::Payment.find(payment_id)
+    result
   end
 
   def initialize(payment:)
@@ -32,7 +34,7 @@ class PayPalPayment
 
   def build_item_list
     payment.payment_line_items.map do |payment_line_item|
-      {name: payment_line_item.name,
+      {name: payment_line_item.id,
        sku: payment_line_item.event_id,
        price: payment_line_item.price.format(symbol: false),
        currency: "USD",
@@ -53,5 +55,31 @@ class PayPalPayment
     create unless created?
     pay_pal_payment.id
   end
+
+  # START: payment_check
+  def pay_pal_transaction
+    pay_pal_payment.transactions.first
+  end
+
+  def pay_pal_amount
+    Money.new(pay_pal_transaction.amount.total.to_f * 100)
+  end
+
+  def price_match?
+    pay_pal_payment == payment.price
+  end
+
+  def pay_pal_ticket_ids
+    pay_pal_transaction.items.map(&:name).map(&:to_i).sort
+  end
+
+  def item_match
+    payment.sorted_ticket_ids == pay_pal_ticket_ids
+  end
+
+  def match?
+    price_match? && item_match
+  end
+  # END: payment_check
 
 end
