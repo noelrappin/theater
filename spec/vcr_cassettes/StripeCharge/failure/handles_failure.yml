@@ -31,11 +31,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 28 Jan 2016 14:50:29 GMT
+      - Sun, 06 Mar 2016 21:56:26 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '782'
+      - '778'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_7nssAvgLA7EMbf
+      - req_82EKzJN56IbQna
       Stripe-Version:
       - '2015-10-16'
       Strict-Transport-Security:
@@ -58,10 +58,10 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_17YH6PDTh2DhiR4RmxhnTUcR",
+          "id": "tok_17m9rSDTh2DhiR4RED2Py4Sa",
           "object": "token",
           "card": {
-            "id": "card_17YH6ODTh2DhiR4RTMvVeBC8",
+            "id": "card_17m9rSDTh2DhiR4RCFCvekDj",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -84,20 +84,20 @@ http_interactions:
             "name": null,
             "tokenization_method": null
           },
-          "client_ip": "199.182.211.53",
-          "created": 1453992629,
+          "client_ip": "73.9.29.65",
+          "created": 1457301386,
           "livemode": false,
           "type": "card",
           "used": false
         }
     http_version: 
-  recorded_at: Thu, 28 Jan 2016 14:50:28 GMT
+  recorded_at: Sun, 06 Mar 2016 21:56:26 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/charges
     body:
       encoding: UTF-8
-      string: amount=3000&currency=usd&description=&metadata[reference]=3f13cbef97ab08ff387e&source=tok_17YH6PDTh2DhiR4RmxhnTUcR
+      string: amount=3000&currency=usd&description=&metadata[reference]=b79dba1f8b883323845b&source=tok_17m9rSDTh2DhiR4RED2Py4Sa
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
@@ -114,7 +114,7 @@ http_interactions:
         Noels-Computer.local 15.3.0 Darwin Kernel Version 15.3.0: Thu Dec 10 18:40:58
         PST 2015; root:xnu-3248.30.4~1/RELEASE_X86_64 x86_64","hostname":"Noels-Computer.local"}'
       Idempotency-Key:
-      - 3f13cbef97ab08ff387e
+      - b79dba1f8b883323845b
       Content-Length:
       - '114'
   response:
@@ -125,7 +125,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 28 Jan 2016 14:50:29 GMT
+      - Sun, 06 Mar 2016 21:56:26 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -143,11 +143,11 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Idempotency-Key:
-      - 3f13cbef97ab08ff387e
+      - b79dba1f8b883323845b
       Original-Request:
-      - req_7nssb04xRldjTJ
+      - req_82EKAM2IfPEQGF
       Request-Id:
-      - req_7nssb04xRldjTJ
+      - req_82EKAM2IfPEQGF
       Stripe-Version:
       - '2015-10-16'
     body:
@@ -158,9 +158,9 @@ http_interactions:
             "message": "Your card was declined.",
             "type": "card_error",
             "code": "card_declined",
-            "charge": "ch_17YH6PDTh2DhiR4RNVDPvb5m"
+            "charge": "ch_17m9rSDTh2DhiR4RZjtZxmIl"
           }
         }
     http_version: 
-  recorded_at: Thu, 28 Jan 2016 14:50:29 GMT
+  recorded_at: Sun, 06 Mar 2016 21:56:26 GMT
 recorded_with: VCR 3.0.1

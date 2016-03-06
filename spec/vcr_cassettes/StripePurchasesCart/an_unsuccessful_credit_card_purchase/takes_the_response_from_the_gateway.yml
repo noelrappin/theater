@@ -31,7 +31,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 29 Jan 2016 04:02:05 GMT
+      - Sun, 06 Mar 2016 22:12:58 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_7o5d9c1XULg0nK
+      - req_82Eaaj5c2e8jZG
       Stripe-Version:
       - '2015-10-16'
       Strict-Transport-Security:
@@ -58,10 +58,10 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_17YTSTDTh2DhiR4RwFgJV2uL",
+          "id": "tok_17mA7SDTh2DhiR4RsKRdyLML",
           "object": "token",
           "card": {
-            "id": "card_17YTSTDTh2DhiR4RzYAEM0C1",
+            "id": "card_17mA7SDTh2DhiR4Rh2f4VGC6",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -85,19 +85,19 @@ http_interactions:
             "tokenization_method": null
           },
           "client_ip": "73.9.29.65",
-          "created": 1454040125,
+          "created": 1457302378,
           "livemode": false,
           "type": "card",
           "used": false
         }
     http_version: 
-  recorded_at: Fri, 29 Jan 2016 04:02:05 GMT
+  recorded_at: Sun, 06 Mar 2016 22:12:58 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/charges
     body:
       encoding: UTF-8
-      string: amount=3000&currency=usd&description=&metadata[reference]=ac5296debb15c74d3813&source=tok_17YTSTDTh2DhiR4RwFgJV2uL
+      string: amount=3000&currency=usd&description=&metadata[reference]=ecde686fab2d7c68d857&source=tok_17mA7SDTh2DhiR4RsKRdyLML
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
@@ -114,7 +114,7 @@ http_interactions:
         Noels-Computer.local 15.3.0 Darwin Kernel Version 15.3.0: Thu Dec 10 18:40:58
         PST 2015; root:xnu-3248.30.4~1/RELEASE_X86_64 x86_64","hostname":"Noels-Computer.local"}'
       Idempotency-Key:
-      - ac5296debb15c74d3813
+      - ecde686fab2d7c68d857
       Content-Length:
       - '114'
   response:
@@ -125,7 +125,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 29 Jan 2016 04:02:06 GMT
+      - Sun, 06 Mar 2016 22:12:59 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -143,11 +143,11 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Idempotency-Key:
-      - ac5296debb15c74d3813
+      - ecde686fab2d7c68d857
       Original-Request:
-      - req_7o5dt1nBx5g00C
+      - req_82EajcxmiG7KQX
       Request-Id:
-      - req_7o5dt1nBx5g00C
+      - req_82EajcxmiG7KQX
       Stripe-Version:
       - '2015-10-16'
     body:
@@ -158,80 +158,9 @@ http_interactions:
             "message": "Your card was declined.",
             "type": "card_error",
             "code": "card_declined",
-            "charge": "ch_17YTSUDTh2DhiR4RBpzRLCQs"
+            "charge": "ch_17mA7SDTh2DhiR4RiTXyPzTr"
           }
         }
     http_version: 
-  recorded_at: Fri, 29 Jan 2016 04:02:06 GMT
-- request:
-    method: post
-    uri: https://api.stripe.com/v1/charges
-    body:
-      encoding: UTF-8
-      string: amount=3000&currency=usd&description=&metadata[reference]=f10e87c8968a7265096a&source=tok_17YTSTDTh2DhiR4RwFgJV2uL
-    headers:
-      Accept:
-      - "*/*; q=0.5, application/xml"
-      Accept-Encoding:
-      - gzip, deflate
-      User-Agent:
-      - Stripe/v1 RubyBindings/1.34.0
-      Authorization:
-      - Bearer sk_test_bk4FEql3Fvd9j98YEhaAOXXN
-      Content-Type:
-      - application/x-www-form-urlencoded
-      X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.34.0","lang":"ruby","lang_version":"2.3.0 p0 (2015-12-25)","platform":"x86_64-darwin15","engine":"ruby","publisher":"stripe","uname":"Darwin
-        Noels-Computer.local 15.3.0 Darwin Kernel Version 15.3.0: Thu Dec 10 18:40:58
-        PST 2015; root:xnu-3248.30.4~1/RELEASE_X86_64 x86_64","hostname":"Noels-Computer.local"}'
-      Idempotency-Key:
-      - f10e87c8968a7265096a
-      Content-Length:
-      - '114'
-  response:
-    status:
-      code: 402
-      message: Payment Required
-    headers:
-      Server:
-      - nginx
-      Date:
-      - Fri, 29 Jan 2016 04:02:06 GMT
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '162'
-      Connection:
-      - keep-alive
-      Access-Control-Allow-Credentials:
-      - 'true'
-      Access-Control-Allow-Methods:
-      - GET, POST, HEAD, OPTIONS, DELETE
-      Access-Control-Allow-Origin:
-      - "*"
-      Access-Control-Max-Age:
-      - '300'
-      Cache-Control:
-      - no-cache, no-store
-      Idempotency-Key:
-      - f10e87c8968a7265096a
-      Original-Request:
-      - req_7o5dyMGzM1vYjG
-      Request-Id:
-      - req_7o5dyMGzM1vYjG
-      Stripe-Version:
-      - '2015-10-16'
-    body:
-      encoding: UTF-8
-      string: |
-        {
-          "error": {
-            "message": "Your card was declined.",
-            "type": "card_error",
-            "code": "card_declined",
-            "charge": "ch_17YTSUDTh2DhiR4RvRBamk1l"
-          }
-        }
-    http_version: 
-  recorded_at: Fri, 29 Jan 2016 04:02:06 GMT
+  recorded_at: Sun, 06 Mar 2016 22:12:59 GMT
 recorded_with: VCR 3.0.1
