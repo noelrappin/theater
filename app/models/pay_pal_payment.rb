@@ -70,7 +70,9 @@ class PayPalPayment
   end
 
   def pay_pal_ticket_ids
-    pay_pal_transaction.items.map(&:name).map(&:to_i).sort
+    line_item_ids = pay_pal_transaction.items.map(&:name).map(&:to_i)
+    line_items = line_item_ids.map { |id| PurchaseLineItem.find(id) }
+    line_items.flat_map(&:tickets).map(&:id).sort
   end
 
   def item_match
