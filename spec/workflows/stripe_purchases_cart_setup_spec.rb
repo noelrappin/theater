@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe PurchasesCartSetup, :vcr, :aggregate_failures do
+describe StripePurchasesCartSetup, :vcr, :aggregate_failures do
   let(:ticket_1) { instance_spy(
     Ticket, status: "waiting", price: Money.new(1500), id: 1,
             payment_reference: "reference") }
@@ -11,7 +11,7 @@ describe PurchasesCartSetup, :vcr, :aggregate_failures do
                                         payment_reference: "reference") }
   let(:user) { instance_double(
     User, id: 5, tickets_in_cart: [ticket_1, ticket_2]) }
-  let(:workflow) { PurchasesCartSetup.new(
+  let(:workflow) { StripePurchasesCartSetup.new(
     user: user, purchase_amount_cents: 3000, stripe_token: token,
     expected_ticket_ids: "1 2", payment_reference: "reference") }
 
@@ -27,16 +27,16 @@ describe PurchasesCartSetup, :vcr, :aggregate_failures do
     end
 
     it "is pre-call valid" do
-      expect(workflow).to be_pre_charge_valid
+      expect(workflow).to be_pre_purchase_valid
     end
 
     it "updates the ticket status" do
-      expect(ticket_1).to have_received(:purchase)
-      expect(ticket_2).to have_received(:purchase)
-      expect(ticket_3).not_to have_received(:purchase)
+      expect(ticket_1).to have_received(:make_purchased)
+      expect(ticket_2).to have_received(:make_purchased)
+      expect(ticket_3).not_to have_received(:make_purchased)
     end
 
-    it "creates a transworkflow object" do
+    it "creates a transaction object" do
       expect(workflow.payment).to have_attributes(
         user_id: user.id, price_cents: 3000,
         reference: a_truthy_value, payment_method: "stripe")
@@ -49,34 +49,34 @@ describe PurchasesCartSetup, :vcr, :aggregate_failures do
     let(:token) { instance_spy(StripeToken) }
 
     describe "expected price" do
-      let(:workflow) { PurchasesCartSetup.new(
+      let(:workflow) { StripePurchasesCartSetup.new(
         user: user, purchase_amount_cents: 2500, stripe_token: token,
         expected_ticket_ids: "1 2") }
 
       it "does not payment if the expected price is incorrect" do
         allow(workflow).to receive(:save).and_return(true)
         expect(workflow).to receive(:on_success).never
-        expect(workflow).not_to be_pre_charge_valid
-        expect(ticket_1).not_to have_received(:purchase)
-        expect(ticket_2).not_to have_received(:purchase)
-        expect(ticket_3).not_to have_received(:purchase)
-        expect(workflow.payment).to be_new_record
+        expect(workflow).not_to be_pre_purchase_valid
+        expect(ticket_1).not_to have_received(:make_purchased)
+        expect(ticket_2).not_to have_received(:make_purchased)
+        expect(ticket_3).not_to have_received(:make_purchased)
+        expect(workflow.payment).to be_nil
       end
     end
 
     describe "expected tickets" do
-      let(:workflow) { PurchasesCartSetup.new(
+      let(:workflow) { StripePurchasesCartSetup.new(
         user: user, purchase_amount_cents: 3000, stripe_token: token,
         expected_ticket_ids: "1 3") }
 
       it "does not payment if the expected tickets are incorrect" do
         allow(workflow).to receive(:save).and_return(true)
         expect(workflow).to receive(:on_success).never
-        expect(workflow).not_to be_pre_charge_valid
-        expect(ticket_1).not_to have_received(:purchase)
-        expect(ticket_2).not_to have_received(:purchase)
-        expect(ticket_3).not_to have_received(:purchase)
-        expect(workflow.payment).to be_new_record
+        expect(workflow).not_to be_pre_purchase_valid
+        expect(ticket_1).not_to have_received(:make_purchased)
+        expect(ticket_2).not_to have_received(:make_purchased)
+        expect(ticket_3).not_to have_received(:make_purchased)
+        expect(workflow.payment).to be_nil
       end
     end
 

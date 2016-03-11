@@ -6,7 +6,9 @@ class Ticket < ActiveRecord::Base
   belongs_to :performance
   has_one :event, through: :performance
 
-  enum status: [:unsold, :waiting, :purchased]
+  STATUSES = %i(unsold waiting purchased pending).freeze
+
+  enum status: STATUSES
   enum access: [:general]
 
   monetize :price_cents
@@ -15,16 +17,11 @@ class Ticket < ActiveRecord::Base
     update(status: :waiting, user: user)
   end
 
-  ## START: code.purchase
-  def purchase
-    self.status = :purchased
+  STATUSES.each do |status|
+    define_method "make_#{status}" do
+      self.status = status
+    end
   end
-
-  def purchase!
-    purchase
-    save
-  end
-  ## END: code.purchase
 
   def return_to_cart
     self.status = :waiting

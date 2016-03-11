@@ -7,26 +7,26 @@
 :headers:
   Server: nginx
   Content-Type: application/x-javascript
-  Last-Modified: Mon, 25 Jan 2016 17:48:36 GMT
-  ETag: '"56a65ff4-b012"'
+  Last-Modified: Thu, 25 Feb 2016 19:08:21 GMT
+  ETag: '"56cf5125-b201"'
   Cache-Control: public, max-age=300
   Via:
   - 1.1 varnish
   - 1.1 varnish
   Fastly-Debug-Digest: fab7c732e334802a39a635c63e878ed85f1b68ec2ea2492e47b40bf8e9075173
-  Content-Length: '45074'
+  Content-Length: '45569'
   Accept-Ranges: bytes
-  Date: Thu, 28 Jan 2016 15:15:51 GMT
-  Age: '241'
+  Date: Fri, 11 Mar 2016 05:52:21 GMT
+  Age: '154'
   Connection: close
-  X-Served-By: cache-sea1925-SEA, cache-dfw1820-DFW
+  X-Served-By: cache-sea1923-SEA, cache-dfw1838-DFW
   X-Cache: HIT, HIT
-  X-Cache-Hits: 3, 1
+  X-Cache-Hits: 2, 1
   Vary: Accept-Encoding
-:content: "/*! stripe-js 25-01-2016 */\n(function(){var a,b,c,d,e,f,g,h,i,j={}.hasOwnProperty,k=function(a,b){function
+:content: "/*! stripe-js 25-02-2016 */\n(function(){var a,b,c,d,e,f,g,h,i,j={}.hasOwnProperty,k=function(a,b){function
   c(){this.constructor=a}for(var d in b)j.call(b,d)&&(a[d]=b[d]);return c.prototype=b.prototype,a.prototype=new
-  c,a.__super__=b.prototype,a};if(g=\"https://js.stripe.com\",c=\"https://js.stripe.com\",d=/stripe\\.com$/.test(\"undefined\"!=typeof
-  window&&null!==window?window.location.host:void 0)?!0:!1,b=\"console\"in window&&\"warn\"in
+  c,a.__super__=b.prototype,a};if(g=\"https://js.stripe.com\",c=\"https://js.stripe.com\",d=!!/stripe\\.com$/.test(\"undefined\"!=typeof
+  window&&null!==window?window.location.host:void 0),b=\"console\"in window&&\"warn\"in
   window.console,!d&&\"querySelectorAll\"in document&&b&&(f=document.querySelectorAll('script[src^=\"'+g+'\"]'),f.length||console.warn(\"It
   looks like Stripe.js is not being loaded from https://js.stripe.com. Stripe does
   not support serving Stripe.js from your own domain.\")),this.Stripe)return!b||this.Stripe.isDoubleLoaded||this.Stripe.earlyError||console.warn(\"It
@@ -37,7 +37,7 @@
   a._language=b},a._allowedCustomHeaders=[\"X-Stripe-Livemode\",\"Authorization\"],a._customHeaders={},a._setCustomHeader=function(a,b){var
   c,d,e,f,g;for(d=!1,g=this._allowedCustomHeaders,e=0,f=g.length;f>e;e++)if(c=g[e],c===a){this._customHeaders[a]=b,d=!0;break}return
   d},a.trackPerf=!1,a._isChannel=\"#__stripe_transport__\"===(\"undefined\"!=typeof
-  window&&null!==window?window.location.hash:void 0)?!0:!1,a._isSafeStripeDomain=d,a._iframeOnAmount=1,a._isSafeDomain=function(){return\"#__forcedss3__\"===window.location.hash?!1:a._isSafeStripeDomain||window.StripeTemporaryNoDSS3?!0:a._iframeOnAmount<Math.random()}(),a._finalTransport=\"undefined\"!=typeof
+  window&&null!==window?window.location.hash:void 0),a._isSafeStripeDomain=d,a._iframeOnAmount=1,a._isSafeDomain=function(){return\"#__forcedss3__\"===window.location.hash?!1:a._isSafeStripeDomain||window.StripeTemporaryNoDSS3?!0:a._iframeOnAmount<Math.random()}(),a._finalTransport=\"undefined\"!=typeof
   window&&null!==window&&\"XMLHttpRequest\"in window&&\"withCredentials\"in new XMLHttpRequest?\"cors\":\"jsonp\",a._transport=a._isChannel||a._isSafeDomain?a._finalTransport:\"iframe\",a._fallBackToOldStripeJsTechniques=function(){return
   this._transport=\"jsonp\",this._finalTransport=\"jsonp\",this._isSafeDomain=\"true\"},a._iframeRequestQueue=[],a._iframePendingRequests={},a._iframeChannelStatus=\"pending\",a._iframeChannelComplete=function(b){var
   c,d,e,f;for(this._iframeChannelStatus=b?\"success\":\"failure\",\"failure\"===this._iframeChannelStatus&&this._fallBackToOldStripeJsTechniques(),d=this._iframeRequestQueue,delete
@@ -79,7 +79,8 @@
   in a)d=a[c],null==d&&delete a[c];return Stripe.utils.underscoreKeys(a),\"string\"==typeof
   a.exp&&(e=Stripe.utils.parseExpString(a.exp),a.exp_month=e[0],a.exp_year=e[1],delete
   a.exp),a},a.create=function(a,b){var c,d;return a.key||(a.key=Stripe.key||Stripe.publishableKey),Stripe.utils.validateKey(a.key),d=function(){switch(!1){case
-  null==a.card:return\"card\";case null==a.bank_account:return\"bank_account\";default:return\"unknown\"}}(),c={url:\"\"+Stripe.endpoint+\"/tokens\",data:a,method:\"POST\",headers:{},success:function(a,c){return\"function\"==typeof
+  null==a.card:return\"card\";case null==a.bank_account:return\"bank_account\";case
+  null==a.pii:return\"pii\";default:return\"unknown\"}}(),c={url:\"\"+Stripe.endpoint+\"/tokens\",data:a,method:\"POST\",headers:{},success:function(a,c){return\"function\"==typeof
   b?b(c,a):void 0},complete:Stripe.complete(b,\"A network error has occurred, and
   you have not been charged. Please try again.\"),timeout:4e4,tokenType:d},Stripe._language&&(c.headers[\"Accept-Language\"]=Stripe._language),Stripe.request(c)},a.get=function(a,b){if(!a)throw
   new Error(\"token required\");return Stripe.utils.validateKey(Stripe.key),Stripe.request({url:\"\"+Stripe.endpoint+\"/tokens/\"+a,data:{key:Stripe.key},success:function(a,c){return\"function\"==typeof
@@ -97,7 +98,7 @@
   b.cardType(a)},b.cardTypes=function(){var a,b,c,d;for(b={},a=c=40;49>=c;a=++c)b[a]=\"Visa\";for(a=d=50;59>=d;a=++d)b[a]=\"MasterCard\";return
   b[34]=b[37]=\"American Express\",b[60]=b[62]=b[64]=b[65]=\"Discover\",b[35]=\"JCB\",b[30]=b[36]=b[38]=b[39]=\"Diners
   Club\",b}(),b}(this.Stripe.token),this.Stripe.bankAccount=function(a){function b(){return
-  b.__super__.constructor.apply(this,arguments)}return k(b,a),b.tokenName=\"bank_account\",b.whitelistedAttrs=[\"country\",\"currency\",\"routing_number\",\"account_number\",\"name\",\"account_holder_type\"],b.createToken=function(a,c,d){return
+  b.__super__.constructor.apply(this,arguments)}return k(b,a),b.tokenName=\"bank_account\",b.whitelistedAttrs=[\"country\",\"currency\",\"routing_number\",\"account_number\",\"name\",\"account_holder_type\",\"account_holder_name\"],b.createToken=function(a,c,d){return
   null==c&&(c={}),Stripe.token.validate(a,\"bank account\"),\"function\"==typeof c&&(d=c,c={}),c[b.tokenName]=Stripe.token.formatData(a,b.whitelistedAttrs),Stripe.token.create(c,d)},b.getToken=function(a,b){return
   Stripe.token.get(a,b)},b.validateRoutingNumber=function(a,c){switch(a=Stripe.utils.trim(a),c){case\"US\":return/^\\d+$/.test(a)&&9===a.length&&b.routingChecksum(a);case\"CA\":return/\\d{5}\\-\\d{3}/.test(a)&&9===a.length;default:return!0}},b.validateAccountNumber=function(a,b){switch(a=Stripe.utils.trim(a),b){case\"US\":return/^\\d+$/.test(a)&&a.length>=1&&a.length<=17;default:return!0}},b.routingChecksum=function(a){var
   b,c,d,e,f,g;for(d=0,b=(a+\"\").split(\"\"),g=[0,3,6],e=0,f=g.length;f>e;e++)c=g[e],d+=3*parseInt(b[c]),d+=7*parseInt(b[c+1]),d+=parseInt(b[c+2]);return
@@ -116,7 +117,10 @@
   c?c(d,e):void 0):d>=400&&500>d?(a._clearReceiverPoll(b),\"function\"==typeof c?c(d,e):void
   0):(f=500===d?5e3:a._pollInterval,g=setTimeout(function(){return a._pollReceiver(b,c)},f),a._activeReceiverPolls[b].timeoutId=g)})},a.cancelReceiverPoll=function(b){var
   c;if(c=a._activeReceiverPolls[b],null==c)throw new Error(\"You are not polling receiver
-  \"+b+\".\");null!=c.timeoutId&&clearTimeout(c.timeoutId),a._clearReceiverPoll(b)},a}(),a=[\"createToken\",\"getToken\",\"cardType\",\"validateExpiry\",\"validateCVC\",\"validateCardNumber\"];for(h=0,i=a.length;i>h;h++)e=a[h],this.Stripe[e]=this.Stripe.card[e];this.Stripe.stripejs_ua=\"stripe.js/c180728\",\"undefined\"!=typeof
+  \"+b+\".\");null!=c.timeoutId&&clearTimeout(c.timeoutId),a._clearReceiverPoll(b)},a}(),this.Stripe.piiData=function(a){function
+  b(){return b.__super__.constructor.apply(this,arguments)}return k(b,a),b.tokenName=\"pii\",b.whitelistedAttrs=[\"personal_id_number\"],b.createToken=function(a,c,d){return
+  null==c&&(c={}),Stripe.token.validate(a,\"pii data\"),\"function\"==typeof c&&(d=c,c={}),c[b.tokenName]=Stripe.token.formatData(a,b.whitelistedAttrs),Stripe.token.create(c,d)},b.getToken=function(a,b){return
+  Stripe.token.get(a,b)},b}(this.Stripe.token),a=[\"createToken\",\"getToken\",\"cardType\",\"validateExpiry\",\"validateCVC\",\"validateCardNumber\"];for(h=0,i=a.length;i>h;h++)e=a[h],this.Stripe[e]=this.Stripe.card[e];this.Stripe.stripejs_ua=\"stripe.js/5948ccd\",\"undefined\"!=typeof
   module&&null!==module&&(module.exports=this.Stripe),\"function\"==typeof define&&define(\"stripe\",[],function(a){return
   function(){return a.Stripe}}(this))}).call(this),function(){this.Stripe.isDoubleLoaded||function(a){function
   b(a,e){function f(a){if(f[a]!==q)return f[a];var b;if(\"bug-string-char-index\"==a)b=\"a\"!=\"a\"[0];else
@@ -161,12 +165,12 @@
   44:return a=B?f.charAt(L):f[L],L++,a;case 34:for(a=\"@\",L++;g>L;)if(e=f.charCodeAt(L),32>e)P();else
   if(92==e)switch(e=f.charCodeAt(++L)){case 92:case 34:case 47:case 98:case 116:case
   110:case 102:case 114:a+=O[e],L++;break;case 117:for(b=++L,c=L+4;c>L;L++)e=f.charCodeAt(L),e>=48&&57>=e||e>=97&&102>=e||e>=65&&70>=e||P();a+=N(\"0x\"+f.slice(b,L));break;default:P()}else{if(34==e)break;for(e=f.charCodeAt(L),b=L;e>=32&&92!=e&&34!=e;)e=f.charCodeAt(++L);a+=f.slice(b,L)}if(34==f.charCodeAt(L))return
-  L++,a;P();default:if(b=L,45==e&&(d=!0,e=f.charCodeAt(++L)),e>=48&&57>=e){for(48==e&&(e=f.charCodeAt(L+1),e>=48&&57>=e)&&P(),d=!1;g>L&&(e=f.charCodeAt(L),e>=48&&57>=e);L++);if(46==f.charCodeAt(L)){for(c=++L;g>c&&(e=f.charCodeAt(c),e>=48&&57>=e);c++);c==L&&P(),L=c}if(e=f.charCodeAt(L),101==e||69==e){for(e=f.charCodeAt(++L),(43==e||45==e)&&L++,c=L;g>c&&(e=f.charCodeAt(c),e>=48&&57>=e);c++);c==L&&P(),L=c}return+f.slice(b,L)}if(d&&P(),\"true\"==f.slice(L,L+4))return
+  L++,a;P();default:if(b=L,45==e&&(d=!0,e=f.charCodeAt(++L)),e>=48&&57>=e){for(48==e&&(e=f.charCodeAt(L+1),e>=48&&57>=e)&&P(),d=!1;g>L&&(e=f.charCodeAt(L),e>=48&&57>=e);L++);if(46==f.charCodeAt(L)){for(c=++L;g>c&&(e=f.charCodeAt(c),e>=48&&57>=e);c++);c==L&&P(),L=c}if(e=f.charCodeAt(L),101==e||69==e){for(e=f.charCodeAt(++L),43!=e&&45!=e||L++,c=L;g>c&&(e=f.charCodeAt(c),e>=48&&57>=e);c++);c==L&&P(),L=c}return+f.slice(b,L)}if(d&&P(),\"true\"==f.slice(L,L+4))return
   L+=4,!0;if(\"false\"==f.slice(L,L+5))return L+=5,!1;if(\"null\"==f.slice(L,L+4))return
   L+=4,null;P()}return\"$\"},R=function(a){var b,c;if(\"$\"==a&&P(),\"string\"==typeof
   a){if(\"@\"==(B?a.charAt(0):a[0]))return a.slice(1);if(\"[\"==a){for(b=[];a=Q(),\"]\"!=a;c||(c=!0))c&&(\",\"==a?(a=Q(),\"]\"==a&&P()):P()),\",\"==a&&P(),b.push(R(a));return
-  b}if(\"{\"==a){for(b={};a=Q(),\"}\"!=a;c||(c=!0))c&&(\",\"==a?(a=Q(),\"}\"==a&&P()):P()),(\",\"==a||\"string\"!=typeof
-  a||\"@\"!=(B?a.charAt(0):a[0])||\":\"!=Q())&&P(),b[a.slice(1)]=R(Q());return b}P()}return
+  b}if(\"{\"==a){for(b={};a=Q(),\"}\"!=a;c||(c=!0))c&&(\",\"==a?(a=Q(),\"}\"==a&&P()):P()),\",\"!=a&&\"string\"==typeof
+  a&&\"@\"==(B?a.charAt(0):a[0])&&\":\"==Q()||P(),b[a.slice(1)]=R(Q());return b}P()}return
   a},S=function(a,b,c){var d=T(a,b,c);d===q?delete a[b]:a[b]=d},T=function(a,b,c){var
   d,e=a[b];if(\"object\"==typeof e&&e)if(s.call(e)==z)for(d=e.length;d--;)S(e,d,c);else
   p(e,function(a){S(e,a,c)});return c.call(a,b,e)};e.parse=function(a,b){var c,d;return
@@ -235,12 +239,12 @@
   b;return-1};this.Stripe.isDoubleLoaded||(this.Stripe.utils=function(){function b(){}var
   c;return c=/^[\\s\\uFEFF\\xA0]+|[\\s\\uFEFF\\xA0]+$/g,b.trim=function(a){return
   null===a?\"\":(a+\"\").replace(c,\"\")},b.serialize=function(a,b,c){var d,e,f;null==b&&(b=[]);try{for(e
-  in a)f=a[e],c&&(e=\"\"+c+\"[\"+e+\"]\"),\"object\"==typeof f?this.serialize(f,b,e):b.push(\"\"+e+\"=\"+encodeURIComponent(f));return
+  in a)f=a[e],c&&(e=\"\"+c+\"[\"+e+\"]\"),\"object\"==typeof f?this.serialize(f,b,e):b.push(\"\"+e+\"=\"+encodeURIComponent(f));\nreturn
   b.join(\"&\").replace(/%20/g,\"+\")}catch(g){throw d=g,new Error(\"Unable to serialize:
   \"+a)}},b.underscore=function(a){return(a+\"\").replace(/([A-Z])/g,function(a){return\"_\"+a.toLowerCase()}).replace(/-/g,\"_\")},b.underscoreKeys=function(a){var
   b,c,d;d=[];for(b in a)c=a[b],delete a[b],d.push(a[this.underscore(b)]=c);return
   d},b.isElement=function(a){return\"object\"!=typeof a?!1:a.jquery?!0:1===a.nodeType},b.paramsFromForm=function(b,c){var
-  d,e,f,g,h,i,j,k,l,m;for(null==c&&(c=[]),\nb.jquery&&(b=b[0]),f=b.getElementsByTagName(\"input\"),h=b.getElementsByTagName(\"select\"),i={},j=0,l=f.length;l>j;j++)e=f[j],d=this.underscore(e.getAttribute(\"data-stripe\")),a.call(c,d)<0||(i[d]=e.value);for(k=0,m=h.length;m>k;k++)g=h[k],d=this.underscore(g.getAttribute(\"data-stripe\")),a.call(c,d)<0||null!=g.selectedIndex&&(i[d]=g.options[g.selectedIndex].value);return
+  d,e,f,g,h,i,j,k,l,m;for(null==c&&(c=[]),b.jquery&&(b=b[0]),f=b.getElementsByTagName(\"input\"),h=b.getElementsByTagName(\"select\"),i={},j=0,l=f.length;l>j;j++)e=f[j],d=this.underscore(e.getAttribute(\"data-stripe\")),a.call(c,d)<0||(i[d]=e.value);for(k=0,m=h.length;m>k;k++)g=h[k],d=this.underscore(g.getAttribute(\"data-stripe\")),a.call(c,d)<0||null!=g.selectedIndex&&(i[d]=g.options[g.selectedIndex].value);return
   i},b.validateProtocol=function(a){var b;if(a&&\"string\"==typeof a)return/_live_/g.test(a)&&\"https:\"!==window.location.protocol&&null!=(null!=(b=window.console)?b.warn:void
   0)?window.console.warn(\"You are using Stripe.js in live mode over an insecure connection.
   This is considered unsafe. Please conduct live requests only on sites served over
