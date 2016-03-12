@@ -17,11 +17,14 @@ class PurchasesCartSetupJob < ActiveJob::Base
 
   def perform(user:, params:, order_reference:)
     token = StripeToken.new(**card_params(params))
-    purchases_cart_action = PurchasesCartSetup.new(
+    user.tickets_in_cart.each do |ticket|
+      ticket.update(payment_reference: payment_reference)
+    end
+    purchases_cart_workflow = StripePurchasesCartSetup.new(
       user: user, stripe_token: token, purchase_amount_cents:
       params[:purchase_amount_cents], expected_ticket_ids: params[:ticket_ids],
       order_reference: order_reference)
-    purchases_cart_action.run
+    purchases_cart_workflow.run
   end
 
   private def card_params(params)

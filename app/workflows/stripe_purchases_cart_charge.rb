@@ -1,4 +1,4 @@
-class PurchasesCartCharge
+class StripePurchasesCartCharge
 
   attr_accessor :payment, :stripe_token, :stripe_charge
 

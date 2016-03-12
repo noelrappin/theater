@@ -82,6 +82,21 @@ ActiveRecord::Schema.define(version: 20160109215951) do
     t.string  "interval",        null: false
     t.integer "tickets_allowed", null: false
     t.string  "ticket_category", null: false
+<<<<<<< HEAD
+=======
+    t.integer "status"
+    t.text    "description"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "plan_id"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+>>>>>>> failure_04
   end
 
   create_table "tickets", force: :cascade do |t|
@@ -91,8 +106,9 @@ ActiveRecord::Schema.define(version: 20160109215951) do
     t.integer  "access"
     t.integer  "price_cents"
     t.string   "reference"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "payment_reference"
   end
 
   add_index "tickets", ["performance_id"], name: "index_tickets_on_performance_id", using: :btree
@@ -113,6 +129,7 @@ ActiveRecord::Schema.define(version: 20160109215951) do
     t.datetime "updated_at",                          null: false
     t.string   "name"
     t.integer  "role"
+    t.string   "stripe_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

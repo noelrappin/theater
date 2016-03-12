@@ -2,11 +2,10 @@ require "rails_helper"
 
 RSpec.describe PurchasesCartCharge, :vcr, :aggregate_failures do
   let(:user) { instance_double(User, id: 5) }
-  let(:payment) { Payment.new(user_id: user.id,
-                              price_cents: 2500, status: "created",
-                              reference: Payment.generate_reference,
-                              payment_method: "stripe") }
-  let(:action) { PurchasesCartCharge.new(payment, token.id) }
+  let(:payment) { Payment.new(
+    user_id: user.id, price_cents: 2500, status: "created",
+    reference: Payment.generate_reference, payment_method: "stripe") }
+  let(:action) { StripePurchasesCartCharge.new(payment, token.id) }
 
   describe "successful credit card purchase" do
     let(:token) { StripeToken.new(
