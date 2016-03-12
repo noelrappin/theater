@@ -1,4 +1,4 @@
-class PreExistingPurchaseException
+class PreExistingPurchaseException < StandardError
 
   attr_accessor :purchase
 

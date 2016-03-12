@@ -1,0 +1,30 @@
+---
+:scope: 
+:url: https://www.paypal.com/en_US/i/logo/PayPal_mark_37x23.gif
+:body: ''
+:status: 200
+:method: get
+:headers:
+  Server: Apache
+  Last-Modified: Fri, 04 Mar 2016 06:29:14 GMT
+  Accept-Ranges: bytes
+  Content-Length: '389'
+  Cache-Control: max-age=0, no-cache, no-store, must-revalidate
+  Pragma: no-cache
+  Content-Type: image/gif
+  DC: dcg11-origin-www.paypal.com
+  Date: Sat, 12 Mar 2016 22:32:07 GMT
+  Connection: close
+  Set-Cookie: AKDC=dcg11-origin-www.paypal.com; expires=Sat, 12-Mar-2016 23:02:07
+    GMT; path=/; secure
+  Strict-Transport-Security: max-age=63072000
+:content: !binary |-
+  R0lGODlhJQAXAPQWAAI0ZyVOdfmoGPmsI/zLcjNmmURpi2B5jFl/o3CEk2qL
+  p4WUm4CZrJmmq7S4sr/DvP7cn9LOvv7gqtnUwubcxv/tzAAAAAAAAAAAAAAA
+  AAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAABYALAAAAAAlABcAAAX+oGUJZGme
+  aHqK40BAcCzPdA0Rg9BKVe//wKDQJ8kJCMOkMkggQZZQJYQUrQ6p1qwPW5k4
+  HpFoJPIYlnvcAGAd4FXcQEdhXjj7GIUGopDrUQABDmoNAQYGCwkHFREGCgoF
+  DngKDI4MFXtdD1gOgIIACQkLawYAE2pyBRGPDQp6dQUKWwI9CWtrDQtqgKK1
+  BRN0sA6Pcw15sj2kXxUNAAbMB8xrFHIKERQVBQgRe8V2WGtu0becnxV4YT3A
+  jgXXaLOL7T0ODhNlE4DXFOh+9NYU8RW4BIFDqoEWd1EaGDwY8B3DKk4eRply
+  RCKUJgIGwLE4MEeLFxx/3PAoQoXJkygDRIQAADs=
