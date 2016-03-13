@@ -13,6 +13,8 @@ class StripePurchasesCart < AbstractPurchasesCart
     tickets.each(&:make_purchased)
   end
 
+  # START: purchases_charge
+
   def purchase
     return unless @continue
     @stripe_charge = StripeCharge.new(token: stripe_token, payment: payment)
@@ -25,8 +27,6 @@ class StripePurchasesCart < AbstractPurchasesCart
     super.merge(payment_method: "stripe")
   end
 
-  def unpurchase_tickets
-    tickets.each(&:return_to_cart)
-  end
+  ## END: purchases_charge
 
 end

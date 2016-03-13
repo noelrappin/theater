@@ -81,7 +81,6 @@ class AbstractPurchasesCart
     save
     @continue = false
   end
-  ## END: purchases_charge
 
   ## START: purchases_post_charge
   def post_purchase
