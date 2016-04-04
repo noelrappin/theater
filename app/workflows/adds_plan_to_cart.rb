@@ -11,7 +11,7 @@ class AddsPlanToCart
   def run
     @result = Subscription.create(
       user: user, plan: plan, start_date: Time.zone.now.to_date,
-      end_date: plan.end_date.to_date, status: :waiting)
+      end_date: plan.end_date_from, status: :waiting)
   end
 
   def success?

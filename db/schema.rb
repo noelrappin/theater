@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160109215951) do
+ActiveRecord::Schema.define(version: 20160130001242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,16 +76,14 @@ ActiveRecord::Schema.define(version: 20160109215951) do
   add_index "performances", ["event_id"], name: "index_performances_on_event_id", using: :btree
 
   create_table "plans", force: :cascade do |t|
-    t.string  "remote_id",       null: false
-    t.string  "plan_name",       null: false
-    t.integer "amount_cents",    null: false
-    t.string  "interval",        null: false
-    t.integer "tickets_allowed", null: false
-    t.string  "ticket_category", null: false
-<<<<<<< HEAD
-=======
-    t.integer "status"
-    t.text    "description"
+    t.string  "remote_id"
+    t.string  "plan_name",                   null: false
+    t.integer "price_cents",                 null: false
+    t.string  "interval",                    null: false
+    t.integer "tickets_allowed",             null: false
+    t.string  "ticket_category",             null: false
+    t.integer "status",          default: 0
+    t.string  "description"
   end
 
   create_table "subscriptions", force: :cascade do |t|
@@ -94,9 +92,10 @@ ActiveRecord::Schema.define(version: 20160109215951) do
     t.date     "start_date"
     t.date     "end_date"
     t.integer  "status"
+    t.string   "payment_method"
+    t.string   "remote_id"
     t.datetime "created_at"
     t.datetime "updated_at"
->>>>>>> failure_04
   end
 
   create_table "tickets", force: :cascade do |t|

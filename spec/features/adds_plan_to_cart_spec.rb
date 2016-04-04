@@ -12,7 +12,7 @@ describe "adding a subscription plan to cart" do
       click_on("add-to-cart")
     end
     expect(current_url).to match("cart")
-    within("#plans_#{plan.id}") do
+    within("#subscription_#{users(:buyer).subscriptions.last.id}") do
       expect(page).to have_selector(".subtotal", text: "$300")
     end
   end

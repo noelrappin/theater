@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   after_initialize :set_default_role, if: :new_record?
 
   has_many :tickets
+  has_many :subscriptions
 
   def set_default_role
     self.role ||= :user
@@ -19,5 +20,16 @@ class User < ActiveRecord::Base
     tickets.waiting.all.to_a
   end
   ## END: code.user_tickets_in_cart
+
+  def subscriptions_in_cart
+    subscriptions.waiting.all.to_a
+  end
+
+  def attach_to_stripe(token:, plan:)
+    stripe_customer = StripeCustomer.create(
+      token: token, plan: plan, email: email)
+    self.stripe_id = stripe_customer.id
+    stripe_customer
+  end
 
 end

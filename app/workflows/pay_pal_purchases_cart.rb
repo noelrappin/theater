@@ -25,7 +25,7 @@ class PayPalPurchasesCart < AbstractPurchasesCart
     payment.response_id = pay_pal_payment.response_id
     payment.make_pending
     reverse_purchase if payment.failed?
-    calculate_successgit
+    calculate_success
   end
 
 end

@@ -7,23 +7,23 @@
 :headers:
   Server: nginx
   Content-Type: application/x-javascript
-  Last-Modified: Thu, 25 Feb 2016 19:08:21 GMT
-  ETag: '"56cf5125-b201"'
+  Last-Modified: Wed, 30 Mar 2016 18:27:41 GMT
+  ETag: '"56fc1a9d-b76d"'
   Cache-Control: public, max-age=300
   Via:
   - 1.1 varnish
   - 1.1 varnish
   Fastly-Debug-Digest: fab7c732e334802a39a635c63e878ed85f1b68ec2ea2492e47b40bf8e9075173
-  Content-Length: '45569'
+  Content-Length: '46957'
   Accept-Ranges: bytes
-  Date: Sat, 12 Mar 2016 22:32:06 GMT
-  Age: '262'
+  Date: Sun, 03 Apr 2016 12:16:17 GMT
+  Age: '351'
   Connection: close
-  X-Served-By: cache-sea1927-SEA, cache-ord1741-ORD
+  X-Served-By: cache-sea1922-SEA, cache-dfw1834-DFW
   X-Cache: HIT, HIT
-  X-Cache-Hits: 12, 1
+  X-Cache-Hits: 3, 4
   Vary: Accept-Encoding
-:content: "/*! stripe-js 25-02-2016 */\n(function(){var a,b,c,d,e,f,g,h,i,j={}.hasOwnProperty,k=function(a,b){function
+:content: "/*! stripe-js 30-03-2016 */\n(function(){var a,b,c,d,e,f,g,h,i,j={}.hasOwnProperty,k=function(a,b){function
   c(){this.constructor=a}for(var d in b)j.call(b,d)&&(a[d]=b[d]);return c.prototype=b.prototype,a.prototype=new
   c,a.__super__=b.prototype,a};if(g=\"https://js.stripe.com\",c=\"https://js.stripe.com\",d=!!/stripe\\.com$/.test(\"undefined\"!=typeof
   window&&null!==window?window.location.host:void 0),b=\"console\"in window&&\"warn\"in
@@ -102,25 +102,35 @@
   null==c&&(c={}),Stripe.token.validate(a,\"bank account\"),\"function\"==typeof c&&(d=c,c={}),c[b.tokenName]=Stripe.token.formatData(a,b.whitelistedAttrs),Stripe.token.create(c,d)},b.getToken=function(a,b){return
   Stripe.token.get(a,b)},b.validateRoutingNumber=function(a,c){switch(a=Stripe.utils.trim(a),c){case\"US\":return/^\\d+$/.test(a)&&9===a.length&&b.routingChecksum(a);case\"CA\":return/\\d{5}\\-\\d{3}/.test(a)&&9===a.length;default:return!0}},b.validateAccountNumber=function(a,b){switch(a=Stripe.utils.trim(a),b){case\"US\":return/^\\d+$/.test(a)&&a.length>=1&&a.length<=17;default:return!0}},b.routingChecksum=function(a){var
   b,c,d,e,f,g;for(d=0,b=(a+\"\").split(\"\"),g=[0,3,6],e=0,f=g.length;f>e;e++)c=g[e],d+=3*parseInt(b[c]),d+=7*parseInt(b[c+1]),d+=parseInt(b[c+2]);return
-  0!==d&&d%10===0},b}(this.Stripe.token),this.Stripe.bitcoinReceiver=function(){function
-  a(){}return a._whitelistedAttrs=[\"amount\",\"currency\",\"email\",\"description\"],a.createReceiver=function(a,b){var
-  c;return Stripe.token.validate(a,\"bitcoin_receiver data\"),c=Stripe.token.formatData(a,this._whitelistedAttrs),c.key=Stripe.key||Stripe.publishableKey,Stripe.utils.validateKey(c.key),Stripe.request({url:\"\"+Stripe.endpoint+\"/bitcoin/receivers\",data:c,method:\"POST\",success:function(a,c){return\"function\"==typeof
-  b?b(c,a):void 0},complete:Stripe.complete(b,\"A network error has occurred while
-  creating a Bitcoin address. Please try again.\"),timeout:4e4})},a.getReceiver=function(a,b){var
-  c;if(!a)throw new Error(\"receiver id required\");return c=Stripe.key||Stripe.publishableKey,Stripe.utils.validateKey(c),Stripe.request({url:\"\"+Stripe.endpoint+\"/bitcoin/receivers/\"+a,data:{key:c},success:function(a,c){return\"function\"==typeof
-  b?b(c,a):void 0},complete:Stripe.complete(b,\"A network error has occurred loading
-  data from Stripe. Please try again.\"),timeout:4e4})},a._activeReceiverPolls={},a._clearReceiverPoll=function(b){return
-  delete a._activeReceiverPolls[b]},a._pollInterval=1500,a.pollReceiver=function(a,b){if(null!=this._activeReceiverPolls[a])throw
-  new Error(\"You are already polling receiver \"+a+\". Please cancel that poll before
-  polling it again.\");return this._activeReceiverPolls[a]={},this._pollReceiver(a,b)},a._pollReceiver=function(b,c){a.getReceiver(b,function(d,e){var
-  f,g;if(null!=a._activeReceiverPolls[b])return 200===d&&e.filled?(a._clearReceiverPoll(b),\"function\"==typeof
-  c?c(d,e):void 0):d>=400&&500>d?(a._clearReceiverPoll(b),\"function\"==typeof c?c(d,e):void
-  0):(f=500===d?5e3:a._pollInterval,g=setTimeout(function(){return a._pollReceiver(b,c)},f),a._activeReceiverPolls[b].timeoutId=g)})},a.cancelReceiverPoll=function(b){var
-  c;if(c=a._activeReceiverPolls[b],null==c)throw new Error(\"You are not polling receiver
-  \"+b+\".\");null!=c.timeoutId&&clearTimeout(c.timeoutId),a._clearReceiverPoll(b)},a}(),this.Stripe.piiData=function(a){function
+  0!==d&&d%10===0},b}(this.Stripe.token),this.Stripe.piiData=function(a){function
   b(){return b.__super__.constructor.apply(this,arguments)}return k(b,a),b.tokenName=\"pii\",b.whitelistedAttrs=[\"personal_id_number\"],b.createToken=function(a,c,d){return
   null==c&&(c={}),Stripe.token.validate(a,\"pii data\"),\"function\"==typeof c&&(d=c,c={}),c[b.tokenName]=Stripe.token.formatData(a,b.whitelistedAttrs),Stripe.token.create(c,d)},b.getToken=function(a,b){return
-  Stripe.token.get(a,b)},b}(this.Stripe.token),a=[\"createToken\",\"getToken\",\"cardType\",\"validateExpiry\",\"validateCVC\",\"validateCardNumber\"];for(h=0,i=a.length;i>h;h++)e=a[h],this.Stripe[e]=this.Stripe.card[e];this.Stripe.stripejs_ua=\"stripe.js/5948ccd\",\"undefined\"!=typeof
+  Stripe.token.get(a,b)},b}(this.Stripe.token),this.Stripe._poller=function(){function
+  a(){}return a._activePolls={},a._clearPoll=function(b){return delete a._activePolls[b]},a._defaultPollInterval=1500,a._maxPollInterval=24e3,a._initPoll=function(b){if(null!=a._activePolls[b])throw
+  new Error(\"You are already polling \"+b+\". Please cancel that poll before polling
+  it again.\");return a._activePolls[b]={}},a._poll=function(b,c,d,e,f){c(b,function(g,h){var
+  i;if(null!=a._activePolls[b])return g>=400&&500>g?(a._clearPoll(b),\"function\"==typeof
+  f?f(g,h):void 0):200===g&&e(b,h)?(a._clearPoll(b),\"function\"==typeof f?f(g,h):void
+  0):(200===g&&d(b,h)&&\"function\"==typeof f&&f(g,h),500===g&&2*a._activePolls[b].interval<=a._maxPollInterval?a._activePolls[b].interval*=2:g>=200&&500>g&&(a._activePolls[b].interval=a._defaultPollInterval),i=setTimeout(function(){return
+  a._poll(b,c,d,e,f)},a._activePolls[b].interval),a._activePolls[b].timeoutId=i)})},a._cancelPoll=function(b){var
+  c;if(c=a._activePolls[b],null==c)throw new Error(\"You are not polling \"+b+\".\");null!=c.timeoutId&&clearTimeout(c.timeoutId),a._clearPoll(b)},a}(),this.Stripe.bitcoinReceiver=function(a){function
+  b(){return b.__super__.constructor.apply(this,arguments)}return k(b,a),b._whitelistedAttrs=[\"amount\",\"currency\",\"email\",\"description\"],b.createReceiver=function(a,b){var
+  c;return Stripe.token.validate(a,\"bitcoin_receiver data\"),c=Stripe.token.formatData(a,this._whitelistedAttrs),c.key=Stripe.key||Stripe.publishableKey,Stripe.utils.validateKey(c.key),Stripe.request({url:\"\"+Stripe.endpoint+\"/bitcoin/receivers\",data:c,method:\"POST\",success:function(a,c){return\"function\"==typeof
+  b?b(c,a):void 0},complete:Stripe.complete(b,\"A network error has occurred while
+  creating a Bitcoin address. Please try again.\"),timeout:4e4})},b.getReceiver=function(a,b){var
+  c;if(!a)throw new Error(\"receiver id required\");return c=Stripe.key||Stripe.publishableKey,Stripe.utils.validateKey(c),Stripe.request({url:\"\"+Stripe.endpoint+\"/bitcoin/receivers/\"+a,data:{key:c},success:function(a,c){return\"function\"==typeof
+  b?b(c,a):void 0},complete:Stripe.complete(b,\"A network error has occurred loading
+  data from Stripe. Please try again.\"),timeout:4e4})},b.pollReceiver=function(a,b){return
+  this._initPoll(a),this._poll(a,function(a){return function(b,c){return a.getReceiver(b,c)}}(this),function(a,b){return!1},function(a,b){return
+  b.filled},b)},b.cancelReceiverPoll=function(a){return b._cancelPoll(a)},b}(this.Stripe._poller),this.Stripe.source=function(a){function
+  b(){return b.__super__.constructor.apply(this,arguments)}return k(b,a),b.get=function(a,b,c){var
+  d,e;if(!a)throw new Error(\"sourceId required\");if(!b)throw new Error(\"clientSecret
+  required\");return d=Stripe.key||Stripe.publishableKey,Stripe.utils.validateKey(d),e={},e.key=d,e.client_secret=b,Stripe.request({url:\"\"+Stripe.endpoint+\"/sources/\"+a,data:e,success:function(a,b){return\"function\"==typeof
+  c?c(b,a):void 0},complete:Stripe.complete(c,\"A network error has occurred loading
+  data from Stripe. Please try again.\"),timeout:4e4})},b.poll=function(a,b,c){return
+  this._initPoll(a),this._poll(a,function(a){return function(c,d){return a.get(c,b,d)}}(this),function(a){return
+  function(b,c){return a._activePolls[b].source_status!==c.status?(a._activePolls[b].source_status=c.status,!0):!1}}(this),function(a,b){return!1},c)},b.cancelPoll=function(a){return
+  this._cancelPoll(a)},b}(this.Stripe._poller),a=[\"createToken\",\"getToken\",\"cardType\",\"validateExpiry\",\"validateCVC\",\"validateCardNumber\"];for(h=0,i=a.length;i>h;h++)e=a[h],this.Stripe[e]=this.Stripe.card[e];this.Stripe.stripejs_ua=\"stripe.js/127787e\",\"undefined\"!=typeof
   module&&null!==module&&(module.exports=this.Stripe),\"function\"==typeof define&&define(\"stripe\",[],function(a){return
   function(){return a.Stripe}}(this))}).call(this),function(){this.Stripe.isDoubleLoaded||function(a){function
   b(a,e){function f(a){if(f[a]!==q)return f[a];var b;if(\"bug-string-char-index\"==a)b=\"a\"!=\"a\"[0];else
@@ -229,7 +239,7 @@
   \"+a,c||k),d&&d()}catch(e){b.onInternalError&&b.onInternalError.call(b,\"CallerWindowError\")}},destroy:function(){A(a,\"message\",f),h&&(i=null,h.parentNode.removeChild(h),h=null)},onDOMReady:function(){if(k=m(b.remote),b.isHost){var
   e=function(c){c.data==b.channel+\"-ready\"&&(i=\"postMessage\"in h.contentWindow?h.contentWindow:h.contentWindow.document,A(a,\"message\",e),z(a,\"message\",f),d(function(){g.up.callback(!0)},0))};z(a,\"message\",e),q(b.props,{src:o(b.remote,{xdm_e:m(c.href),xdm_c:b.channel,xdm_p:1}),name:I+b.channel+\"_provider\"}),h=s(b)}else
   z(a,\"message\",f),i=\"postMessage\"in a.parent?a.parent:a.parent.document,i.postMessage(b.channel+\"-ready\",k),d(function(){g.up.callback(!0)},0)},init:function(){j(g.onDOMReady,g)}}},H.stack.QueueBehavior=function(a){function
-  b(){if(a.remove&&0===h.length)return void v(c);if(!i&&0!==h.length&&!g){i=!0;var
+  b(){if(a.remove&&0===h.length)return void v(c);if(!i&&0!==h.length&&!g){\ni=!0;var
   e=h.shift();c.down.outgoing(e.data,e.origin,function(a){i=!1,e.callback&&d(function(){e.callback(a)},0),b()})}}var
   c,g,h=[],i=!0,j=\"\",k=0,l=!1,m=!1;return c={init:function(){p(a)&&(a={}),a.maxLength&&(k=a.maxLength,m=!0),a.lazy?l=!0:c.down.init()},callback:function(a){i=!1;var
   d=c.up;b(),d.callback(a)},incoming:function(b,d){if(m){var f=b.indexOf(\"_\"),g=parseInt(b.substring(0,f),10);j+=b.substring(f+1),0===g&&(a.encode&&(j=e(j)),c.up.incoming(j,d),j=\"\")}else
@@ -239,7 +249,7 @@
   b;return-1};this.Stripe.isDoubleLoaded||(this.Stripe.utils=function(){function b(){}var
   c;return c=/^[\\s\\uFEFF\\xA0]+|[\\s\\uFEFF\\xA0]+$/g,b.trim=function(a){return
   null===a?\"\":(a+\"\").replace(c,\"\")},b.serialize=function(a,b,c){var d,e,f;null==b&&(b=[]);try{for(e
-  in a)f=a[e],c&&(e=\"\"+c+\"[\"+e+\"]\"),\"object\"==typeof f?this.serialize(f,b,e):b.push(\"\"+e+\"=\"+encodeURIComponent(f));\nreturn
+  in a)f=a[e],c&&(e=\"\"+c+\"[\"+e+\"]\"),\"object\"==typeof f?this.serialize(f,b,e):b.push(\"\"+e+\"=\"+encodeURIComponent(f));return
   b.join(\"&\").replace(/%20/g,\"+\")}catch(g){throw d=g,new Error(\"Unable to serialize:
   \"+a)}},b.underscore=function(a){return(a+\"\").replace(/([A-Z])/g,function(a){return\"_\"+a.toLowerCase()}).replace(/-/g,\"_\")},b.underscoreKeys=function(a){var
   b,c,d;d=[];for(b in a)c=a[b],delete a[b],d.push(a[this.underscore(b)]=c);return

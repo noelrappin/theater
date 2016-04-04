@@ -10,10 +10,10 @@ RSpec.describe AddsPlanToCart do
     it "adds a ticket to a cart" do
       action.run
       expect(action).to be_a_success
-      expect(action.subscription).to have_attributes(
+      expect(action.result).to have_attributes(
         user: user, plan: plan, start_date: Time.zone.today.to_date,
         end_date: 1.month.from_now.to_date)
-      expect(action.subscription).to be_waiting
+      expect(action.result).to be_waiting
     end
   end
 
