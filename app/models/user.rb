@@ -25,11 +25,4 @@ class User < ActiveRecord::Base
     subscriptions.waiting.all.to_a
   end
 
-  def attach_to_stripe(token:, plan:)
-    stripe_customer = StripeCustomer.create(
-      token: token, plan: plan, email: email)
-    self.stripe_id = stripe_customer.id
-    stripe_customer
-  end
-
 end

@@ -21,4 +21,8 @@ class Subscription < ActiveRecord::Base
     self.remote_id = stripe_customer.find_subscription_for(plan)
   end
 
+  def remote_plan_id
+    plan.remote_id
+  end
+
 end

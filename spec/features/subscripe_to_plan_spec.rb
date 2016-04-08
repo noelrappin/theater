@@ -17,11 +17,13 @@ describe "purchasing a subscription plan", :vcr do
     login_as(users(:buyer), scope: :user)
     visit subscription_cart_path
     choose "credit_radio"
-    find(:xpath, "//input[@id='stripe_token']").set(token.id)
+    find("#stripe_token", visible: false).set(token.id)
     click_on "purchase"
     visit user_path(users(:buyer))
-    # expect subscription to be there in a pending mode
-    # expect the user has a stripe id
+    users(:buyer).reload
+    subscription.reload
+    expect(users(:buyer).stripe_id).not_to be_nil
+    expect(subscription).to be_pending_initial_payment
   end
 
 end

@@ -13,15 +13,20 @@ class StripeCreatesSubscription
     @subscription ||= user.subscriptions_in_cart.first
   end
 
-  def plan_id
-    subscription.plan.remote_id
+  def expected_plan_valid?
+    expected_subscription_id.first.to_i == subscription.id.to_i
   end
 
   def run
-    stripe_customer = user.attach_to_stripe(
-      token: token, plan: subscription.plan)
+    return unless expected_plan_valid?
+    stripe_customer = StripeCustomer.new(user: user)
+    return unless stripe_customer.valid?
+    stripe_customer.source = token
     subscription.make_stripe_payment(stripe_customer)
+    stripe_customer.add_subscription(subscription)
     @success = save
+  rescue Stripe::StripeError => exception
+    Rollbar.error(exception)
   end
 
   def save

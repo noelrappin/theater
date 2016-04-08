@@ -1,28 +1,42 @@
 class StripeCustomer
 
-  def self.create(token:, plan:, email:)
-    remote_customer = Stripe::Customer.create(
-      source: token&.id, plan: plan&.remote_id, email: email)
-    StripeCustomer.new(remote_customer: remote_customer)
-  end
+  attr_accessor :user
 
-  def initialize(id: nil, remote_customer: nil)
-    @id = id
-    @remote_customer = remote_customer
-  end
+  delegate :subscriptions, :id, to: :remote_customer
 
-  def id
-    @id ||= remote_customer.id
+  def initialize(user: nil)
+    @user = user
   end
 
   def remote_customer
-    @remote_customer ||= Stripe::Customer.retrieve(id)
+    @remote_customer ||= begin
+      if user.stripe_id
+        Stripe::Customer.retrieve(user.stripe_id)
+      else
+        Stripe::Customer.create(email: user.email).tap do |rc|
+          user.stripe_id = rc.id
+        end
+      end
+    end
   end
 
-  delegate :subscriptions, to: :remote_customer
+  def valid?
+    remote_customer.present?
+  end
 
   def find_subscription_for(plan)
     subscriptions.find { |s| s.plan.id == plan.remote_id }
+  end
+
+  def add_subscription(subscription)
+    remote_subscription = remote_customer.subscriptions.create(
+      plan: subscription.remote_plan_id)
+    subscription.remote_id = remote_subscription.id
+  end
+
+  def source=(token)
+    remote_customer.source = token.id
+    remote_customer.save
   end
 
 end

@@ -16,6 +16,11 @@ class PaymentsController < ApplicationController
     end
   end
 
+  private def failure_path
+    shopping_cart_path
+  end
+
+  # START: choose_workflow
   private def create_workflow(payment_type, purchase_type)
     case purchase_type
     when "SubscriptionCart"
@@ -24,6 +29,14 @@ class PaymentsController < ApplicationController
       (payment_type == "paypal") ? paypal_workflow : stripe_workflow
     end
   end
+
+  private def stripe_subscription_workflow
+    StripeCreatesSubscription.new(
+      user: current_user,
+      expected_subscription_id: params[:subscription_ids].first,
+      token: StripeToken.new(**card_params))
+  end
+  # END: choose_workflow
 
   private def paypal_workflow
     PayPalPurchasesCart.new(
@@ -37,13 +50,6 @@ class PaymentsController < ApplicationController
     PurchasesCartSetupJob.perform_later(
       user: current_user, params: params, order_reference: reference)
     redirect_to order_path(id: reference)
-  end
-
-  private def stripe_subscription_workflow
-    StripeCreatesSubscription.new(
-      user: current_user,
-      expected_subscription_id: params[:subscription_ids].first,
-      token: StripeToken.new(**card_params))
   end
 
   private def card_params
