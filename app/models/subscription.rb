@@ -15,11 +15,13 @@ class Subscription < ActiveRecord::Base
     end
   end
 
+  # START: make_stripe_payment
   def make_stripe_payment(stripe_customer)
     make_pending_initial_payment
     self.payment_method = :stripe
     self.remote_id = stripe_customer.find_subscription_for(plan)
   end
+  # END: make_stripe_payment
 
   def remote_plan_id
     plan.remote_id
