@@ -1,7 +1,7 @@
 class PaymentLineItem < ActiveRecord::Base
 
   belongs_to :payment
-  belongs_to :ticket
+  belongs_to :reference, polymorphic: true
   has_one :performance, through: :ticket
   has_one :event, through: :performance
 

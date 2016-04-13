@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   resources :payments
   resources :plans
 
-  # START: paypal
   get "paypal/approved", to: "pay_pal_payments#approved"
-  # END: paypal
+
+  # START: stripe
+  post "stripe/webhook", to: "stripe_webhook#action"
+  # END: stripe
 end

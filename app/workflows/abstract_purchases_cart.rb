@@ -62,7 +62,7 @@ class AbstractPurchasesCart
     payment.assign_attributes(purchase_attributes)
     tickets.each do |ticket|
       payment.payment_line_items.build(
-        ticket_id: ticket.id, price_cents: ticket.price.cents)
+        reference: ticket, price_cents: ticket.price.cents)
     end
   end
 

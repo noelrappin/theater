@@ -27,4 +27,14 @@ class Subscription < ActiveRecord::Base
     plan.remote_id
   end
 
+  def update_end_date
+    self.end_date = plan.end_date_from
+  end
+
+  # START: currently_active
+  def currently_active?
+    active? && (end_date > Date.today)
+  end
+  # END: currently_active
+
 end

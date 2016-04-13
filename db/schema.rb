@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160130001242) do
+ActiveRecord::Schema.define(version: 20160410181847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,14 +42,15 @@ ActiveRecord::Schema.define(version: 20160130001242) do
 
   create_table "payment_line_items", force: :cascade do |t|
     t.integer  "payment_id"
-    t.integer  "ticket_id"
+    t.integer  "reference_id"
     t.integer  "price_cents"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "reference_type"
   end
 
   add_index "payment_line_items", ["payment_id"], name: "index_payment_line_items_on_payment_id", using: :btree
-  add_index "payment_line_items", ["ticket_id"], name: "index_payment_line_items_on_ticket_id", using: :btree
+  add_index "payment_line_items", ["reference_id"], name: "index_payment_line_items_on_reference_id", using: :btree
 
   create_table "payments", force: :cascade do |t|
     t.integer  "user_id"
@@ -135,7 +136,7 @@ ActiveRecord::Schema.define(version: 20160130001242) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "payment_line_items", "payments"
-  add_foreign_key "payment_line_items", "tickets"
+  add_foreign_key "payment_line_items", "tickets", column: "reference_id"
   add_foreign_key "payments", "users"
   add_foreign_key "performances", "events"
   add_foreign_key "tickets", "performances"
