@@ -4,6 +4,7 @@ class StripeWebhookController < ApplicationController
 
   def action
     @event_data = JSON.parse(request.body.read)
+    ap @event_data
     workflow = workflow_class.new(verify_event)
     workflow.run
     if workflow.success

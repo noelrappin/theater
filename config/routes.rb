@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :users
   resources :payments
   resources :plans
+  resources :subscriptions
 
   get "paypal/approved", to: "pay_pal_payments#approved"
 

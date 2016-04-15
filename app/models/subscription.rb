@@ -3,7 +3,7 @@ class Subscription < ActiveRecord::Base
   belongs_to :user
   belongs_to :plan
 
-  STATUSES = %i(active inactive waiting pending_initial_payment).freeze
+  STATUSES = %i(active inactive waiting pending_initial_payment canceled).freeze
 
   delegate :plan_name, to: :plan
 
