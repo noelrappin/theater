@@ -58,6 +58,7 @@ class AbstractPurchasesCart
     nil
   end
 
+  ## START: create_payment
   def create_payment
     self.payment = existing_payment || Payment.new
     payment.assign_attributes(purchase_attributes)
@@ -66,6 +67,7 @@ class AbstractPurchasesCart
         ticket_id: ticket.id, price_cents: ticket.price.cents)
     end
   end
+  ## END: create_payment
 
   # START: save
   def save
