@@ -18,16 +18,24 @@ class PayPalPayment
     PayPal::SDK::REST::Payment.new(
       intent: "sale",
       payer: {payment_method: "paypal"},
-      redirect_urls: {
-        return_url:
-          "http://#{Rails.application.secrets.host_name}/paypal/approved",
-        cancel_url:
-          "http://#{Rails.application.secrets.host_name}/paypal/rejected"},
-      transactions: [{
-        item_list: {items: build_item_list},
-        amount: {
-          total: payment.price.format(symbol: false),
-          currency: "USD"}}])
+      redirect_urls: redirect_info,
+      transactions: [payment_info])
+  end
+
+  def host_name
+    Rails.application.secrets.host_name
+  end
+
+  def redirect_info
+    {return_url: "http://#{host_name}/paypal/approved",
+     cancel_url: "http://#{host_name}/paypal/rejected"}
+  end
+
+  def payment_info
+    {item_list: {items: build_item_list},
+     amount: {
+       total: payment.price.format(symbol: false),
+       currency: "USD"}}
   end
 
   def build_item_list

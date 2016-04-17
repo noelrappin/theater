@@ -8,12 +8,12 @@ describe ExecutesPayPalPayment, :vcr, :aggregate_failures do
     let(:ticket_2) { instance_spy(
       Ticket, status: "pending", price: Money.new(1500), id: 2) }
     let(:ticket_3) { instance_spy(Ticket, status: "unsold", id: 3) }
+    let(:payment) { instance_spy(Payment, tickets: [ticket_1, ticket_2]) }
+    let(:pay_pal_payment) { instance_spy(PayPalPayment, execute: true) }
     let(:user) { instance_double(
       User, id: 5, tickets_in_cart: [ticket_1, ticket_2]) }
     let(:workflow) { ExecutesPayPalPayment.new(
       payment_id: "PAYMENTID", token: "TOKEN", payer_id: "PAYER_ID") }
-    let(:payment) { instance_spy(Payment, tickets: [ticket_1, ticket_2]) }
-    let(:pay_pal_payment) { instance_spy(PayPalPayment, execute: true) }
 
     before(:example) do
       allow(workflow).to receive(:find_payment).and_return(payment)
