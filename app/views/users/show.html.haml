@@ -4,7 +4,7 @@
 
 - current_user.subscriptions.each do |subscription|
   .subscription
-    #{subscription.plan.name} ending #{subscription.end_date}
+    #{subscription.plan.plan_name} ending #{subscription.end_date}
     .btn
       = link_to "Cancel Subscription", subscription, method: :delete,
         confirm: "Are you sure you want to delete this subscription?"

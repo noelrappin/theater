@@ -7,8 +7,8 @@ describe StripePurchasesCartSetup, :vcr, :aggregate_failures do
   let(:ticket_2) { instance_spy(
     Ticket, status: "waiting", price: Money.new(1500), id: 2,
             payment_reference: "reference") }
-  let(:ticket_3) { instance_spy(Ticket, status: "unsold", id: 3,
-                                        payment_reference: "reference") }
+  let(:ticket_3) { instance_spy(
+    Ticket, status: "unsold", id: 3, payment_reference: "reference") }
   let(:user) { instance_double(
     User, id: 5, tickets_in_cart: [ticket_1, ticket_2]) }
   let(:workflow) { StripePurchasesCartSetup.new(
