@@ -33,7 +33,7 @@ class Subscription < ActiveRecord::Base
 
   # START: currently_active
   def currently_active?
-    active? && (end_date > Date.today)
+    active? && (end_date > Time.zone.today)
   end
   # END: currently_active
 

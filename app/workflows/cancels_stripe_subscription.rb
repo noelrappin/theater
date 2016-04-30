@@ -9,7 +9,7 @@ class CancelsStripeSubscription
   end
 
   def subscription
-    @subscription || = Subscription.find_by(id: subscription_id)
+    @subscription ||= Subscription.find_by(id: subscription_id)
   end
 
   def customer
@@ -17,7 +17,8 @@ class CancelsStripeSubscription
   end
 
   def remote_subscription
-    @remote_subscription ||= customer.subcriptions.retrieve(subscription.remote_id)
+    @remote_subscription ||=
+      customer.subcriptions.retrieve(subscription.remote_id)
   end
 
   def user_is_subscribed?
@@ -30,4 +31,5 @@ class CancelsStripeSubscription
     remote_subscription.delete
     subscription.canceled
   end
+
 end

@@ -14,7 +14,7 @@ class ChangesStripeSubsriptionPlan
   end
 
   def subscription
-    @subscription || = Subscription.find_by(id: subscription_id)
+    @subscription ||= Subscription.find_by(id: subscription_id)
   end
 
   def customer
@@ -22,7 +22,8 @@ class ChangesStripeSubsriptionPlan
   end
 
   def remote_subscription
-    @remote_subscription ||= customer.subcriptions.retrieve(subscription.remote_id)
+    @remote_subscription ||=
+      customer.subcriptions.retrieve(subscription.remote_id)
   end
 
   def user_is_subscribed?
@@ -37,4 +38,5 @@ class ChangesStripeSubsriptionPlan
     subscription.save
     remote_subscription.save
   end
+
 end

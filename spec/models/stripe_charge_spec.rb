@@ -3,7 +3,7 @@ require "rails_helper"
 describe StripeCharge, :vcr do
 
   let(:payment) { build_stubbed(
-    Payment, price: Money.new(3000), reference: Payment.generate_reference) }
+    :payment, price: Money.new(3000), reference: Payment.generate_reference) }
 
   describe "success", :aggregate_failures do
 
