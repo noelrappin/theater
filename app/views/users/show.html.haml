@@ -1,4 +1,9 @@
-%h1 User dashboard for #{current_user.email}
+%h1 User dashboard for #{@user.name}
+
+%h2 Profile Info
+
+.profile_item
+  Email: #{@user.email}
 
 %h2 Subscriptions
 

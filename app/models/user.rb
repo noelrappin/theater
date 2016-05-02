@@ -1,5 +1,10 @@
 class User < ActiveRecord::Base
 
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, if: :new_record?
 
@@ -10,16 +15,9 @@ class User < ActiveRecord::Base
     self.role ||= :user
   end
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-
-  ## START: code.user_tickets_in_cart
   def tickets_in_cart
     tickets.waiting.all.to_a
   end
-  ## END: code.user_tickets_in_cart
 
   def subscriptions_in_cart
     subscriptions.waiting.all.to_a
