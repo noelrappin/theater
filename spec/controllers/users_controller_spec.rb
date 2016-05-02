@@ -1,0 +1,49 @@
+require "rails_helper"
+
+RSpec.describe UsersController, :aggregate_failures do
+
+  let(:logged_in_user) { create(:user) }
+  let(:other_user) { create(:user) }
+
+  describe "access to show and edit" do
+
+    before(:example) do
+      sign_in(logged_in_user)
+    end
+
+    it "allows a user to view their own page" do
+      get :show, id: logged_in_user
+      expect(response).to be_a_success
+    end
+
+    it "allows a user to edit their own page" do
+      get :edit, id: logged_in_user
+      expect(response).to be_a_success
+    end
+
+    it "allows a user to update their own page" do
+      put :update, id: logged_in_user, user: {name: "fred"}
+      expect(response).to be_a_success
+    end
+
+    it "blocks a user from viewing another user's page" do
+      get :show, id: other_user
+      expect(response).to be_forbidden
+      expect(controller.user_signed_in?).to be_falsy
+    end
+
+    it "blocks a user from editing another user's page" do
+      get :edit, id: other_user
+      expect(response).to be_forbidden
+      expect(controller.user_signed_in?).to be_falsy
+    end
+
+    it "blocks a user from updating another user's page" do
+      put :update, id: other_user, user: {name: "fred"}
+      expect(response).to be_forbidden
+      expect(controller.user_signed_in?).to be_falsy
+    end
+
+  end
+
+end
