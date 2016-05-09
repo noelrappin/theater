@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
   def update
     @user.update(user_params)
+    authorize(@user)
     render :show
   end
 
