@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :users
+    resources :events
+    resources :payments
+    resources :payment_line_items
+    resources :performances
+    resources :plans
+    resources :subscriptions
+    resources :tickets
+
+    root to: "users#index"
+  end
+
   root to: 'visitors#index'
   devise_for :users
   resources :events

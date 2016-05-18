@@ -36,11 +36,11 @@ class ExecutesPayPalPayment
 
   def post_purchase
     if @continue
-      payment.tickets.each(&:make_purchased)
+      payment.references.each(&:make_purchased)
       payment.make_succeeded
       self.success = save
     else
-      payment.tickets.each(&:return_to_cart)
+      payment.references.each(&:return_to_cart)
       payment.make_failed
       save
     end
@@ -48,7 +48,7 @@ class ExecutesPayPalPayment
 
   def save
     Payment.transaction do
-      payment.tickets.each(&:save)
+      payment.references.each(&:save)
       payment.save
     end
   end

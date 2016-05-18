@@ -10,7 +10,7 @@ class PurchasesCartSetupJob < ActiveJob::Base
     Rollbar.error(exception)
   end
 
-  rescue_from(PreExistingOrderException) do |exception|
+  rescue_from(PreExistingPurchaseException) do |exception|
     Rollbar.error(exception)
   end
   # END: rescue_from

@@ -5,6 +5,8 @@ gem "rails"
 gem "pg"
 
 gem "active_model_serializers"
+gem "administrate"
+gem "administrate-field-image"
 gem "bootstrap-sass"
 gem "coffee-rails"
 gem "delayed_job_active_record"
