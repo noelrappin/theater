@@ -15,7 +15,6 @@ class CreatesStripeRefund
       on_success
     end
   rescue StandardError => e
-    p e
     on_failure
   end
 
@@ -28,14 +27,12 @@ class CreatesStripeRefund
 
   def update_payment
     payment_to_refund.update(stripe_refund.refund_attributes)
-    payment_to_refund.payment_line_items.each do |line_item|
-      line_item.refunded!
-    end
+    payment_to_refund.payment_line_items.each(&:refunded!)
     payment_to_refund.original_payment.refunded! if stripe_refund.success?
   end
 
   def update_tickets
-    payment_to_refund.references.each { |ticket| ticket.refund_successful }
+    payment_to_refund.references.each(&:refund_successful)
   end
 
   def on_success
