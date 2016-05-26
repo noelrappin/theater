@@ -10,14 +10,14 @@ http_interactions:
       X-Paypal-Sandbox-Email-Address:
       - Platform.sdk.seller@gmail.com
       Authorization:
-      - Bearer A101.yCWPz8jn7AFrIqM9HYFlaPI8yXjPcOGnHypOlPNqnpQGOl5fTJTcTe2Ys92N2V2x.-Xun7zlr0NTAZQyAyn4Ojc0z0Ry
+      - Bearer A101.nsXwBn-sXJoUohDAU6kkG9dvXJPZ6LAxgaqTWIPxUyrDALVqzRiCO_etuhz88HN1.rPswXogf3d5kUZpEqdXC9RUEe90
       Content-Type:
       - application/json
       User-Agent:
-      - PayPalSDK/PayPal-Ruby-SDK 1.4.3 (paypal-sdk-core 1.4.3; ruby 2.3.0p0-x86_64-darwin15;OpenSSL
-        1.0.2e 3 Dec 2015)
+      - PayPalSDK/PayPal-Ruby-SDK 1.4.4 (paypal-sdk-core 1.4.4; ruby 2.3.1p112-x86_64-darwin15;OpenSSL
+        1.0.2g  1 Mar 2016)
       Paypal-Request-Id:
-      - d06190f7-0641-45cc-ab01-374c7221cbed
+      - f33b1c37-2dcc-4a7c-a9e7-e4f1e54531e5
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -28,22 +28,23 @@ http_interactions:
       message: Created
     headers:
       Date:
-      - Sat, 12 Mar 2016 22:32:15 GMT
+      - Tue, 24 May 2016 23:31:11 GMT
       Server:
       - Apache
       Proxy-Server-Info:
-      - host=slcsbplatformapiserv3002.slc.paypal.com;threadId=335
+      - host=slcsbplatformapiserv3002.slc.paypal.com;threadId=311
       Paypal-Debug-Id:
-      - da31ff0084598
-      - da31ff0084598
+      - f70a4e12dc39e
+      - f70a4e12dc39e
       Correlation-Id:
-      - da31ff0084598
+      - f70a4e12dc39e
       Content-Language:
       - "*"
       Set-Cookie:
       - X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT
-      - X-PP-SILOVER=name%3DSANDBOX3.API.1%26silo_version%3D1880%26app%3Dplatformapiserv%26TIME%3D4019774550;
-        domain=.paypal.com; path=/; Secure; HttpOnly
+      - X-PP-SILOVER=name%3DSANDBOX3.API.1%26silo_version%3D1880%26app%3Dplatformapiserv%26TIME%3D1071924311%26HTTP_X_PP_AZ_LOCATOR%3D;
+        Expires=Wed, 25 May 2016 00:01:12 GMT; domain=.paypal.com; path=/; Secure;
+        HttpOnly
       Vary:
       - Authorization
       Content-Length:
@@ -54,7 +55,7 @@ http_interactions:
       - application/json
     body:
       encoding: UTF-8
-      string: '{"id":"PAY-96K97708RW657810KK3SJR3Y","intent":"sale","state":"created","payer":{"payment_method":"paypal"},"transactions":[{"amount":{"total":"30.00","currency":"USD"},"item_list":{"items":[{"price":"15.00","currency":"USD","quantity":1},{"price":"15.00","currency":"USD","quantity":1}]},"related_resources":[]}],"create_time":"2016-03-12T22:32:15Z","links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAY-96K97708RW657810KK3SJR3Y","rel":"self","method":"GET"},{"href":"https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-3D9427609P8100405","rel":"approval_url","method":"REDIRECT"},{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAY-96K97708RW657810KK3SJR3Y/execute","rel":"execute","method":"POST"}]}'
+      string: '{"id":"PAY-2B358523SH665121EK5COIQA","intent":"sale","state":"created","payer":{"payment_method":"paypal"},"transactions":[{"amount":{"total":"30.00","currency":"USD"},"item_list":{"items":[{"price":"15.00","currency":"USD","quantity":1},{"price":"15.00","currency":"USD","quantity":1}]},"related_resources":[]}],"create_time":"2016-05-24T23:31:11Z","links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAY-2B358523SH665121EK5COIQA","rel":"self","method":"GET"},{"href":"https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-18P221549P956045G","rel":"approval_url","method":"REDIRECT"},{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAY-2B358523SH665121EK5COIQA/execute","rel":"execute","method":"POST"}]}'
     http_version: 
-  recorded_at: Sat, 12 Mar 2016 22:32:16 GMT
-recorded_with: VCR 3.0.1
+  recorded_at: Tue, 24 May 2016 23:31:12 GMT
+recorded_with: VCR 3.0.3

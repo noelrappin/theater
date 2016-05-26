@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160410181847) do
+ActiveRecord::Schema.define(version: 20160522134809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,11 +44,16 @@ ActiveRecord::Schema.define(version: 20160410181847) do
     t.integer  "payment_id"
     t.integer  "reference_id"
     t.integer  "price_cents"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "reference_type"
+    t.integer  "original_line_item_id"
+    t.integer  "administrator_id"
+    t.integer  "refund_status",         default: 0
   end
 
+  add_index "payment_line_items", ["administrator_id"], name: "index_payment_line_items_on_administrator_id", using: :btree
+  add_index "payment_line_items", ["original_line_item_id"], name: "index_payment_line_items_on_original_line_item_id", using: :btree
   add_index "payment_line_items", ["payment_id"], name: "index_payment_line_items_on_payment_id", using: :btree
   add_index "payment_line_items", ["reference_id"], name: "index_payment_line_items_on_reference_id", using: :btree
 
@@ -60,10 +65,14 @@ ActiveRecord::Schema.define(version: 20160410181847) do
     t.string   "payment_method"
     t.string   "response_id"
     t.json     "full_response"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "original_payment_id"
+    t.integer  "administrator_id"
   end
 
+  add_index "payments", ["administrator_id"], name: "index_payments_on_administrator_id", using: :btree
+  add_index "payments", ["original_payment_id"], name: "index_payments_on_original_payment_id", using: :btree
   add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
 
   create_table "performances", force: :cascade do |t|

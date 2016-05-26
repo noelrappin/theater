@@ -12,15 +12,15 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - Stripe/v1 RubyBindings/1.40.0
+      - Stripe/v1 RubyBindings/1.41.0
       Authorization:
-      - Bearer sk_test_bk4FEql3Fvd9j98YEhaAOXXN
+      - Bearer sk_test_hDphyYsTATxE4eOIrHbtqAlV
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.40.0","lang":"ruby","lang_version":"2.3.0 p0 (2015-12-25)","platform":"x86_64-darwin15","engine":"ruby","publisher":"stripe","uname":"Darwin
-        Noels-Computer.local 15.4.0 Darwin Kernel Version 15.4.0: Fri Feb 26 22:08:05
-        PST 2016; root:xnu-3248.40.184~3/RELEASE_X86_64 x86_64","hostname":"Noels-Computer.local"}'
+      - '{"bindings_version":"1.41.0","lang":"ruby","lang_version":"2.3.1 p112 (2016-04-26)","platform":"x86_64-darwin15","engine":"ruby","publisher":"stripe","uname":"Darwin
+        Noels-Computer.local 15.5.0 Darwin Kernel Version 15.5.0: Tue Apr 19 18:36:36
+        PDT 2016; root:xnu-3248.50.21~8/RELEASE_X86_64 x86_64","hostname":"Noels-Computer.local"}'
       Content-Length:
       - '82'
   response:
@@ -31,7 +31,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 08 Apr 2016 02:09:38 GMT
+      - Tue, 24 May 2016 23:30:54 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_8EHdyeFLA8Hqn7
+      - req_8VqgaETItRoQGl
       Stripe-Version:
       - '2016-03-07'
       Strict-Transport-Security:
@@ -58,10 +58,10 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_17xp42DTh2DhiR4Rv5wcqoTM",
+          "id": "tok_18EozCDTh2DhiR4RDuDlOPTG",
           "object": "token",
           "card": {
-            "id": "card_17xp42DTh2DhiR4RX10x1rEZ",
+            "id": "card_18EozCDTh2DhiR4RTSFKIAZJ",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -85,13 +85,13 @@ http_interactions:
             "tokenization_method": null
           },
           "client_ip": "24.13.236.96",
-          "created": 1460081378,
+          "created": 1464132654,
           "livemode": false,
           "type": "card",
           "used": false
         }
     http_version: 
-  recorded_at: Fri, 08 Apr 2016 02:09:38 GMT
+  recorded_at: Tue, 24 May 2016 23:30:54 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/customers
@@ -104,15 +104,15 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - Stripe/v1 RubyBindings/1.40.0
+      - Stripe/v1 RubyBindings/1.41.0
       Authorization:
-      - Bearer sk_test_bk4FEql3Fvd9j98YEhaAOXXN
+      - Bearer sk_test_hDphyYsTATxE4eOIrHbtqAlV
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.40.0","lang":"ruby","lang_version":"2.3.0 p0 (2015-12-25)","platform":"x86_64-darwin15","engine":"ruby","publisher":"stripe","uname":"Darwin
-        Noels-Computer.local 15.4.0 Darwin Kernel Version 15.4.0: Fri Feb 26 22:08:05
-        PST 2016; root:xnu-3248.40.184~3/RELEASE_X86_64 x86_64","hostname":"Noels-Computer.local"}'
+      - '{"bindings_version":"1.41.0","lang":"ruby","lang_version":"2.3.1 p112 (2016-04-26)","platform":"x86_64-darwin15","engine":"ruby","publisher":"stripe","uname":"Darwin
+        Noels-Computer.local 15.5.0 Darwin Kernel Version 15.5.0: Tue Apr 19 18:36:36
+        PDT 2016; root:xnu-3248.50.21~8/RELEASE_X86_64 x86_64","hostname":"Noels-Computer.local"}'
       Content-Length:
       - '22'
   response:
@@ -123,11 +123,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 08 Apr 2016 02:09:38 GMT
+      - Tue, 24 May 2016 23:30:55 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '632'
+      - '659'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -141,7 +141,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_8EHdSJZGhZAo3S
+      - req_8VqgpSLKfPraWJ
       Stripe-Version:
       - '2016-03-07'
       Strict-Transport-Security:
@@ -150,10 +150,11 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "cus_8EHdQEbQ8zSfhQ",
+          "id": "cus_8VqgDztGr3KV36",
           "object": "customer",
           "account_balance": 0,
-          "created": 1460081378,
+          "business_vat_id": null,
+          "created": 1464132655,
           "currency": null,
           "default_source": null,
           "delinquent": false,
@@ -168,39 +169,39 @@ http_interactions:
             "data": [],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/customers/cus_8EHdQEbQ8zSfhQ/sources"
+            "url": "/v1/customers/cus_8VqgDztGr3KV36/sources"
           },
           "subscriptions": {
             "object": "list",
             "data": [],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/customers/cus_8EHdQEbQ8zSfhQ/subscriptions"
+            "url": "/v1/customers/cus_8VqgDztGr3KV36/subscriptions"
           }
         }
     http_version: 
-  recorded_at: Fri, 08 Apr 2016 02:09:38 GMT
+  recorded_at: Tue, 24 May 2016 23:30:55 GMT
 - request:
     method: post
-    uri: https://api.stripe.com/v1/customers/cus_8EHdQEbQ8zSfhQ
+    uri: https://api.stripe.com/v1/customers/cus_8VqgDztGr3KV36
     body:
       encoding: UTF-8
-      string: source=tok_17xp42DTh2DhiR4Rv5wcqoTM
+      string: source=tok_18EozCDTh2DhiR4RDuDlOPTG
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - Stripe/v1 RubyBindings/1.40.0
+      - Stripe/v1 RubyBindings/1.41.0
       Authorization:
-      - Bearer sk_test_bk4FEql3Fvd9j98YEhaAOXXN
+      - Bearer sk_test_hDphyYsTATxE4eOIrHbtqAlV
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.40.0","lang":"ruby","lang_version":"2.3.0 p0 (2015-12-25)","platform":"x86_64-darwin15","engine":"ruby","publisher":"stripe","uname":"Darwin
-        Noels-Computer.local 15.4.0 Darwin Kernel Version 15.4.0: Fri Feb 26 22:08:05
-        PST 2016; root:xnu-3248.40.184~3/RELEASE_X86_64 x86_64","hostname":"Noels-Computer.local"}'
+      - '{"bindings_version":"1.41.0","lang":"ruby","lang_version":"2.3.1 p112 (2016-04-26)","platform":"x86_64-darwin15","engine":"ruby","publisher":"stripe","uname":"Darwin
+        Noels-Computer.local 15.5.0 Darwin Kernel Version 15.5.0: Tue Apr 19 18:36:36
+        PDT 2016; root:xnu-3248.50.21~8/RELEASE_X86_64 x86_64","hostname":"Noels-Computer.local"}'
       Content-Length:
       - '35'
   response:
@@ -211,11 +212,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 08 Apr 2016 02:09:39 GMT
+      - Tue, 24 May 2016 23:30:55 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '1392'
+      - '1419'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -229,7 +230,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_8EHd83nNA52RGN
+      - req_8VqgPz56GiKUTr
       Stripe-Version:
       - '2016-03-07'
       Strict-Transport-Security:
@@ -238,12 +239,13 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "cus_8EHdQEbQ8zSfhQ",
+          "id": "cus_8VqgDztGr3KV36",
           "object": "customer",
           "account_balance": 0,
-          "created": 1460081378,
+          "business_vat_id": null,
+          "created": 1464132655,
           "currency": null,
-          "default_source": "card_17xp42DTh2DhiR4RX10x1rEZ",
+          "default_source": "card_18EozCDTh2DhiR4RTSFKIAZJ",
           "delinquent": false,
           "description": null,
           "discount": null,
@@ -255,7 +257,7 @@ http_interactions:
             "object": "list",
             "data": [
               {
-                "id": "card_17xp42DTh2DhiR4RX10x1rEZ",
+                "id": "card_18EozCDTh2DhiR4RTSFKIAZJ",
                 "object": "card",
                 "address_city": null,
                 "address_country": null,
@@ -267,7 +269,7 @@ http_interactions:
                 "address_zip_check": null,
                 "brand": "Visa",
                 "country": "US",
-                "customer": "cus_8EHdQEbQ8zSfhQ",
+                "customer": "cus_8VqgDztGr3KV36",
                 "cvc_check": "pass",
                 "dynamic_last4": null,
                 "exp_month": 12,
@@ -282,21 +284,21 @@ http_interactions:
             ],
             "has_more": false,
             "total_count": 1,
-            "url": "/v1/customers/cus_8EHdQEbQ8zSfhQ/sources"
+            "url": "/v1/customers/cus_8VqgDztGr3KV36/sources"
           },
           "subscriptions": {
             "object": "list",
             "data": [],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/customers/cus_8EHdQEbQ8zSfhQ/subscriptions"
+            "url": "/v1/customers/cus_8VqgDztGr3KV36/subscriptions"
           }
         }
     http_version: 
-  recorded_at: Fri, 08 Apr 2016 02:09:39 GMT
+  recorded_at: Tue, 24 May 2016 23:30:56 GMT
 - request:
     method: post
-    uri: https://api.stripe.com/v1/customers/cus_8EHdQEbQ8zSfhQ/subscriptions
+    uri: https://api.stripe.com/v1/customers/cus_8VqgDztGr3KV36/subscriptions
     body:
       encoding: UTF-8
       string: plan=vip_monthly
@@ -306,15 +308,15 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - Stripe/v1 RubyBindings/1.40.0
+      - Stripe/v1 RubyBindings/1.41.0
       Authorization:
-      - Bearer sk_test_bk4FEql3Fvd9j98YEhaAOXXN
+      - Bearer sk_test_hDphyYsTATxE4eOIrHbtqAlV
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.40.0","lang":"ruby","lang_version":"2.3.0 p0 (2015-12-25)","platform":"x86_64-darwin15","engine":"ruby","publisher":"stripe","uname":"Darwin
-        Noels-Computer.local 15.4.0 Darwin Kernel Version 15.4.0: Fri Feb 26 22:08:05
-        PST 2016; root:xnu-3248.40.184~3/RELEASE_X86_64 x86_64","hostname":"Noels-Computer.local"}'
+      - '{"bindings_version":"1.41.0","lang":"ruby","lang_version":"2.3.1 p112 (2016-04-26)","platform":"x86_64-darwin15","engine":"ruby","publisher":"stripe","uname":"Darwin
+        Noels-Computer.local 15.5.0 Darwin Kernel Version 15.5.0: Tue Apr 19 18:36:36
+        PDT 2016; root:xnu-3248.50.21~8/RELEASE_X86_64 x86_64","hostname":"Noels-Computer.local"}'
       Content-Length:
       - '16'
   response:
@@ -325,11 +327,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 08 Apr 2016 02:09:40 GMT
+      - Tue, 24 May 2016 23:30:56 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '768'
+      - '793'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -343,7 +345,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_8EHdVTmOo28PuC
+      - req_8VqgnWwbFC4Ljl
       Stripe-Version:
       - '2016-03-07'
       Strict-Transport-Security:
@@ -352,14 +354,15 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "sub_8EHdpF1zVwqvEA",
+          "id": "sub_8Vqg6sZ5hCFDWL",
           "object": "subscription",
           "application_fee_percent": null,
           "cancel_at_period_end": false,
           "canceled_at": null,
-          "current_period_end": 1462673380,
-          "current_period_start": 1460081380,
-          "customer": "cus_8EHdQEbQ8zSfhQ",
+          "created": 1464132656,
+          "current_period_end": 1466811056,
+          "current_period_start": 1464132656,
+          "customer": "cus_8VqgDztGr3KV36",
           "discount": null,
           "ended_at": null,
           "metadata": {},
@@ -378,12 +381,12 @@ http_interactions:
             "trial_period_days": null
           },
           "quantity": 1,
-          "start": 1460081380,
+          "start": 1464132656,
           "status": "active",
           "tax_percent": null,
           "trial_end": null,
           "trial_start": null
         }
     http_version: 
-  recorded_at: Fri, 08 Apr 2016 02:09:40 GMT
-recorded_with: VCR 3.0.1
+  recorded_at: Tue, 24 May 2016 23:30:56 GMT
+recorded_with: VCR 3.0.3

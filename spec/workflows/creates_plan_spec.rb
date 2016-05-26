@@ -4,7 +4,7 @@ RSpec.describe CreatesPlan, :vcr, :aggregate_failures do
 
   it "creates a plan" do
     workflow = CreatesPlan.new(
-      remote_id: "basic_monthly_#{Time.now.to_i}", plan_name: "Basic Monthly",
+      remote_id: "basic_monthly_1464132664", plan_name: "Basic Monthly",
       price_cents: 2000, interval: "month", tickets_allowed: 1,
       ticket_category: "mezzanine")
     workflow.run
