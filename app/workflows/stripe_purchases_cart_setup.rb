@@ -15,7 +15,7 @@ class StripePurchasesCartSetup < AbstractPurchasesCart
   end
 
   def on_success
-    PurchasesCartChargeJob.perform_later(payment, stripe_token)
+    PurchasesCartChargeJob.perform_later(payment, stripe_token.id)
     calculate_success
   end
 

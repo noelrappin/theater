@@ -40,7 +40,6 @@ class PaymentDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = [
     :user,
     :payment_line_items,
-    :references,
     :id,
     :price_cents,
     :status,
@@ -58,7 +57,6 @@ class PaymentDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :user,
     :payment_line_items,
-    :references,
     :price_cents,
     :status,
     :reference,

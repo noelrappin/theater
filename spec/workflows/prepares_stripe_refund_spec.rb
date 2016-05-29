@@ -3,13 +3,12 @@ require "rails_helper"
 RSpec.describe PreparesStripeRefund, :vcr, :aggregate_failures do
   let(:ticket) { instance_spy(Ticket) }
   let(:payment) { instance_spy(Payment, id: 1) }
-  let(:user) { instance_double(User, id: 5) }
   let(:administrator) { instance_double(User, id: 5) }
 
   describe "preparation successful" do
 
     let(:workflow) { PreparesStripeRefund.new(
-      user: user, administrator: administrator,
+      administrator: administrator,
       refund_amount_cents: 3000, refundable: payment) }
 
     before(:example) {
@@ -44,7 +43,7 @@ RSpec.describe PreparesStripeRefund, :vcr, :aggregate_failures do
     let(:ticket_to_keep) { instance_spy(Ticket) }
 
     let(:workflow) { PreparesStripeRefund.new(
-      user: user, administrator: administrator,
+      administrator: administrator,
       refund_amount_cents: 3000, refundable: item_to_refund) }
 
     before(:example) do
@@ -69,7 +68,7 @@ RSpec.describe PreparesStripeRefund, :vcr, :aggregate_failures do
   describe "does not create a job if the payment does not exist" do
 
     let(:workflow) { PreparesStripeRefund.new(
-      user: user, administrator: administrator,
+      administrator: administrator,
       refund_amount_cents: 3000, refundable: nil) }
 
     it "creates a shadow " do
@@ -84,7 +83,7 @@ RSpec.describe PreparesStripeRefund, :vcr, :aggregate_failures do
 
   describe "does not create a job if the refund is too large" do
     let(:workflow) { PreparesStripeRefund.new(
-      user: user, administrator: administrator,
+      administrator: administrator,
       refund_amount_cents: 4000, refundable: payment) }
 
     it "creates a shadow " do

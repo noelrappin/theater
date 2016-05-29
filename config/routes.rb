@@ -8,7 +8,6 @@ Rails.application.routes.draw do
     resources :plans
     resources :subscriptions
     resources :tickets
-
     root to: "users#index"
   end
 
@@ -21,6 +20,7 @@ Rails.application.routes.draw do
   resources :payments
   resources :plans
   resources :subscriptions
+  resources :refund
 
   get "paypal/approved", to: "pay_pal_payments#approved"
 

@@ -1,16 +1,16 @@
 class PreparesStripeRefund
 
-  attr_accessor :user, :administrator, :refund_amount_cents, :payment_id,
-                :success, :refund_payment, :refundable
+  attr_accessor :administrator, :refund_amount_cents, :payment_id,
+                :success, :refund_payment, :refundable, :error
 
   delegate :save, to: :refund_payment
 
-  def initialize(user:, administrator:, refund_amount_cents:, refundable:)
-    @user = user
+  def initialize(administrator:, refund_amount_cents:, refundable:)
     @administrator = administrator
     @refund_amount_cents = refund_amount_cents
     @refundable = refundable
     @success = false
+    @error = nil
   end
 
   def pre_purchase_valid?
@@ -20,15 +20,16 @@ class PreparesStripeRefund
   def run
     Payment.transaction do
       raise "not valid" unless pre_purchase_valid?
-      self.success = true
       self.refund_payment = generate_refund_payment.payment
       raise "can't refund that amount" unless
         refund_payment.can_refund?(refund_amount_cents)
       update_tickets
       save
       RefundChargeJob.perform_later(refundable_id: refund_payment.id)
+      self.success = true
     end
-  rescue StandardError
+  rescue StandardError => exception
+    self.error = exception.message
     on_failure
   end
 

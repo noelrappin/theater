@@ -48,8 +48,7 @@ class PaymentsController < ApplicationController
   private def stripe_workflow
     reference = Payment.generate_reference
     PurchasesCartSetupJob.perform_later(
-      user: current_user, params: params, order_reference: reference)
-    redirect_to order_path(id: reference)
+      user: current_user, params: params, payment_reference: reference)
   end
 
   private def card_params

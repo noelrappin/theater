@@ -57,4 +57,8 @@ class Payment < ActiveRecord::Base
     price <= maximum_available_refund
   end
 
+  def refund?
+    price < 0
+  end
+
 end
