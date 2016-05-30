@@ -32,10 +32,12 @@ class Ticket < ActiveRecord::Base
     save
   end
 
+  # START: refund_successful
   def refund_successful
     refunded!
     new_ticket = dup
     new_ticket.unsold!
   end
+  # END: refund_successful
 
 end
