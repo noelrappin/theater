@@ -43,6 +43,12 @@ Style/EmptyLinesAroundModuleBody:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
+Style/MultilineMethodCallBraceLayout:
+  EnforcedStyle: same_line
+
+Style/MultilineHashBraceLayout:
+  EnforcedStyle: same_line
+
 Style/SignalException:
   EnforcedStyle: only_raise
 

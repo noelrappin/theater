@@ -15,8 +15,7 @@ class EventDashboard < Administrate::BaseDashboard
     description: Field::Text,
     image_url: Field::String,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime
-  }.freeze
+    updated_at: Field::DateTime}.freeze
 
   # COLLECTION_ATTRIBUTES
   # an array of attributes that will be displayed on the model's index page.

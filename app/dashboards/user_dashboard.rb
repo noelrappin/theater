@@ -26,8 +26,7 @@ class UserDashboard < Administrate::BaseDashboard
     updated_at: Field::DateTime,
     name: Field::String,
     role: Field::String.with_options(searchable: false),
-    stripe_id: Field::String
-  }.freeze
+    stripe_id: Field::String}.freeze
 
   # COLLECTION_ATTRIBUTES
   # an array of attributes that will be displayed on the model's index page.

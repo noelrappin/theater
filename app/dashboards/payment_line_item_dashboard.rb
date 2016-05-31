@@ -14,8 +14,7 @@ class PaymentLineItemDashboard < Administrate::BaseDashboard
     id: Field::Number,
     price_cents: Field::Number,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime
-  }.freeze
+    updated_at: Field::DateTime}.freeze
 
   # COLLECTION_ATTRIBUTES
   # an array of attributes that will be displayed on the model's index page.

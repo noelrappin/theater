@@ -15,8 +15,7 @@ class PerformanceDashboard < Administrate::BaseDashboard
     start_time: Field::DateTime,
     end_time: Field::DateTime,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime
-  }.freeze
+    updated_at: Field::DateTime}.freeze
 
   # COLLECTION_ATTRIBUTES
   # an array of attributes that will be displayed on the model's index page.

@@ -20,8 +20,7 @@ class PaymentDashboard < Administrate::BaseDashboard
     response_id: Field::String,
     full_response: Field::String.with_options(searchable: false),
     created_at: Field::DateTime,
-    updated_at: Field::DateTime
-  }.freeze
+    updated_at: Field::DateTime}.freeze
 
   # COLLECTION_ATTRIBUTES
   # an array of attributes that will be displayed on the model's index page.

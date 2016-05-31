@@ -19,8 +19,7 @@ class TicketDashboard < Administrate::BaseDashboard
     reference: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    payment_reference: Field::String
-  }.freeze
+    payment_reference: Field::String}.freeze
 
   # COLLECTION_ATTRIBUTES
   # an array of attributes that will be displayed on the model's index page.

@@ -17,8 +17,7 @@ class PlanDashboard < Administrate::BaseDashboard
     tickets_allowed: Field::Number,
     ticket_category: Field::String,
     status: Field::String.with_options(searchable: false),
-    description: Field::String
-  }.freeze
+    description: Field::String}.freeze
 
   # COLLECTION_ATTRIBUTES
   # an array of attributes that will be displayed on the model's index page.

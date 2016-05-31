@@ -18,8 +18,7 @@ class SubscriptionDashboard < Administrate::BaseDashboard
     payment_method: Field::String,
     remote_id: Field::String,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime
-  }.freeze
+    updated_at: Field::DateTime}.freeze
 
   # COLLECTION_ATTRIBUTES
   # an array of attributes that will be displayed on the model's index page.

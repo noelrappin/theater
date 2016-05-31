@@ -200,7 +200,7 @@ Teaspoon.configure do |config|
   # You can have multiple coverage configs by passing a name to config.coverage.
   # e.g. config.coverage :ci do |coverage|
   # The default coverage config name is :default.
-  config.coverage do |coverage|
+  config.coverage do |_coverage|
     # Which coverage reports Istanbul should generate. Correlates directly to
     # what Istanbul supports.
     #
