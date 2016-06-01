@@ -10,8 +10,10 @@ class Payment < ActiveRecord::Base
   has_many :refunds, class_name: "Payment",
                      foreign_key: "original_payment_id"
   belongs_to :original_payment, class_name: "Payment"
+  belongs_to :discount_code
 
   monetize :price_cents
+  monetize :discount_cents
 
   STATUSES = %i(created succeeded pending failed refund_pending refunded).freeze
 

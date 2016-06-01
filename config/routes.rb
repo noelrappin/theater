@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: 'visitors#index'
+
   namespace :admin do
     resources :users
     resources :events
@@ -11,7 +13,7 @@ Rails.application.routes.draw do
     root to: "users#index"
   end
 
-  root to: 'visitors#index'
+
   devise_for :users
   resources :events
   resource :shopping_cart
@@ -21,6 +23,7 @@ Rails.application.routes.draw do
   resources :plans
   resources :subscriptions
   resources :refund
+  resources :discount_codes
 
   get "paypal/approved", to: "pay_pal_payments#approved"
 
