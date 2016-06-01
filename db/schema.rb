@@ -76,12 +76,12 @@ ActiveRecord::Schema.define(version: 20160531114033) do
     t.string   "payment_method"
     t.string   "response_id"
     t.json     "full_response"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "original_payment_id"
     t.integer  "administrator_id"
     t.integer  "discount_code_id"
-    t.integer  "discount_cents"
+    t.integer  "discount_cents",      default: 0
   end
 
   add_index "payments", ["administrator_id"], name: "index_payments_on_administrator_id", using: :btree

@@ -13,8 +13,8 @@ class CreateDiscountCodes < ActiveRecord::Migration
 
     change_table :payments do |t|
       t.references :discount_code
-      t.integer :discount_cents
+      t.integer :discount_cents, default: 0
     end
-    
+
   end
 end

@@ -5,7 +5,13 @@ class PaymentsController < ApplicationController
     @payment = Payment.find_by(reference: @reference)
   end
 
+  # START: with_discount
   def create
+    if params[:discount_code]
+      session[:new_discount_code] = params[:discount_code]
+      redirect_to shopping_cart_path
+      return
+    end
     workflow = create_workflow(params[:payment_type], params[:purchase_type])
     workflow.run
     if workflow.success
@@ -15,12 +21,12 @@ class PaymentsController < ApplicationController
       redirect_to shopping_cart_path
     end
   end
+  # END: with_discount
 
   private def failure_path
     shopping_cart_path
   end
 
-  # START: choose_workflow
   private def create_workflow(payment_type, purchase_type)
     case purchase_type
     when "SubscriptionCart"
@@ -36,7 +42,6 @@ class PaymentsController < ApplicationController
       expected_subscription_id: params[:subscription_ids].first,
       token: StripeToken.new(**card_params))
   end
-  # END: choose_workflow
 
   private def paypal_workflow
     PayPalPurchasesCart.new(

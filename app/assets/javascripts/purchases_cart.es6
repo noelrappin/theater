@@ -1,15 +1,12 @@
 class CheckoutForm {
 
-  // # START: checkout_form_format
   format() {
     this.numberField().payment("formatCardNumber")
     this.expiryField().payment("formatCardExpiry")
     this.cvcField().payment("formatCardCVC")
     this.disableButton()
   }
-  // # END: checkout_form_format
 
-  // # START: checkout_form_valid_fields
   form() { return $("#payment-form") }
 
   validFields() { return this.form().find(".valid-field") }
@@ -19,9 +16,7 @@ class CheckoutForm {
   expiryField() { return this.form().find("#expiration_date") }
 
   cvcField() { return this.form().find("#cvc") }
-  // # END: checkout_form_valid_fields
 
-  // # START: checkout_form_display_status
   displayStatus() {
     this.displayFieldStatus(this.numberField(), this.isNumberValid())
     this.displayFieldStatus(this.expiryField(), this.isExpiryValid())
@@ -77,9 +72,7 @@ class CheckoutForm {
   enableButton() { this.button().toggleClass("disabled", false) }
 
   isEnabled() { return !this.button().hasClass("disabled") }
-  // # END: checkout_form_display_status
 
-  // # START: checkout_form
   paymentTypeRadio() { return $(".payment-type-radio") }
 
   selectedPaymentType() { return $("input[name=payment_type]:checked").val() }
@@ -91,7 +84,6 @@ class CheckoutForm {
   setCreditCardVisibility() {
     this.creditCardForm().toggleClass("hidden", this.isPayPal())
   }
-  // # END: checkout_form
 
   submit() { this.form().get(0).submit() }
 
@@ -108,9 +100,7 @@ class CheckoutForm {
   appendError(text) { this.errorText().text(text) }
 
 }
-// # END: checkout_form
 
-// # START: token_handler
 class TokenHandler {
   static handle(status, response) {
     new TokenHandler(status, response).handle()
@@ -134,21 +124,16 @@ class TokenHandler {
     }
   }
 }
-// # END: token_handler
 
-// # START: payment_form_handler
 class PaymentFormHandler {
 
-  // # START: stripe_form_constructor
   constructor() {
     this.checkoutForm = new CheckoutForm()
     this.checkoutForm.format()
     this.initEventHandlers()
     this.initPaymentTypeHandler()
   }
-  // # END: stripe_form_constructor
 
-  // # START: stripe_form_event_handlers
   initEventHandlers() {
     this.checkoutForm.form().submit(event => {
       if (!this.checkoutForm.isPayPal()) {
@@ -165,7 +150,6 @@ class PaymentFormHandler {
       this.checkoutForm.setCreditCardVisibility()
     })
   }
-  // # END: stripe_form_event_handlers
 
   handleSubmit(event) {
     event.preventDefault()
@@ -178,11 +162,9 @@ class PaymentFormHandler {
   }
 }
 
-// # START: jQuery
 $(() => {
   if ($(".credit-card-form").size() > 0) {
     return new PaymentFormHandler()
   }
   return null
 })
-// # END: jQuery

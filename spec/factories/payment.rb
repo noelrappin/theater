@@ -5,6 +5,7 @@ FactoryGirl.define do
     status :created
     reference "MyString"
     payment_method "MyString"
+    discount_cents 0
   end
 
 end
