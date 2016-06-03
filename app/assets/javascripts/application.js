@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.payment
+//= require jquery.cardswipe
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
