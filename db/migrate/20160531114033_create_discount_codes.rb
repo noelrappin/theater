@@ -1,4 +1,5 @@
 class CreateDiscountCodes < ActiveRecord::Migration
+
   def change
     create_table :discount_codes do |t|
       t.string :code
@@ -15,6 +16,6 @@ class CreateDiscountCodes < ActiveRecord::Migration
       t.references :discount_code
       t.integer :discount_cents, default: 0
     end
-
   end
+
 end

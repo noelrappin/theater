@@ -1,6 +1,7 @@
 require "administrate/base_dashboard"
 
 class DiscountCodeDashboard < Administrate::BaseDashboard
+
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -16,8 +17,7 @@ class DiscountCodeDashboard < Administrate::BaseDashboard
     max_discount_cents: Field::Number,
     max_uses: Field::Number,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
-  }.freeze
+    updated_at: Field::DateTime}.freeze
 
   # COLLECTION_ATTRIBUTES
   # an array of attributes that will be displayed on the model's index page.
@@ -28,7 +28,7 @@ class DiscountCodeDashboard < Administrate::BaseDashboard
     :id,
     :code,
     :percentage,
-    :description,
+    :description
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -42,7 +42,7 @@ class DiscountCodeDashboard < Administrate::BaseDashboard
     :max_discount_cents,
     :max_uses,
     :created_at,
-    :updated_at,
+    :updated_at
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -54,7 +54,7 @@ class DiscountCodeDashboard < Administrate::BaseDashboard
     :description,
     :min_amount_cents,
     :max_discount_cents,
-    :max_uses,
+    :max_uses
   ].freeze
 
   # Overwrite this method to customize how discount codes are displayed
@@ -63,4 +63,5 @@ class DiscountCodeDashboard < Administrate::BaseDashboard
   # def display_resource(discount_code)
   #   "DiscountCode ##{discount_code.id}"
   # end
+
 end

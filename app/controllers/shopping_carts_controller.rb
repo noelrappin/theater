@@ -1,8 +1,10 @@
 class ShoppingCartsController < ApplicationController
 
+  # START: shopping_cart_show
   def show
-    @cart = ShoppingCart.new(current_user)
+    @cart = ShoppingCart.new(current_user, session[:new_discount_code])
   end
+  # END: shopping_cart_show
 
   def update
     performance = Performance.find(params[:performance_id])

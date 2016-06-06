@@ -7,8 +7,8 @@ class PaymentsController < ApplicationController
 
   # START: with_discount
   def create
-    if params[:discount_code]
-      session[:new_discount_code] = params[:discount_code]
+    if params[:discount_code].present?
+      session[:new_discount_code] = code
       redirect_to shopping_cart_path
       return
     end

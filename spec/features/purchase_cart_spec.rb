@@ -34,7 +34,7 @@ describe "purchasing a cart", :vcr, :aggregate_failures do
       fill_in :discount_code, with: "CODE"
       click_on "apply_code"
       expect(page).to have_selector(".active_code", text: "CODE")
-      expect(page).to have_selector(".subtotal", text: "$22.50")
+      expect(page).to have_selector(".total", text: "$22.50")
 
     end
 

@@ -9,7 +9,7 @@
       = label_tag(:discount_code, "Discount Code", class: "control-label")
     .col-sm-2
       %input.form-control.valid-field{name: "discount_code",
-        id: "expiration_date"}
+        id: "discount_code"}
     .col-sm-3
       = submit_tag("Apply Code", class: "btn btn-primary", id: "apply_code")
     = hidden_field_tag(:active_discount_code, "")
@@ -19,7 +19,7 @@
   = hidden_field_tag(@cart.item_attribute, @cart.item_ids)
   = hidden_field_tag(:purchase_type, @cart.class.name)
   = hidden_field_tag(:stripe_token, "")
-  
+
   .paypal
     %img{src: "https://www.paypal.com/en_US/i/logo/PayPal_mark_37x23.gif",
        align: "left", style: "margin-right:7px;"}
