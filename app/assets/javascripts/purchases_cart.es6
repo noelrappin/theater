@@ -1,15 +1,40 @@
+// START: cardswipe
+function discoverParser(rawData) {
+  const pattern = new RegExp(
+    "^%B(6[0-9]{15})\\^([A-Z ]+)/([A-Z ]+)\\^([0-9]{2})([0-9]{2})")
+  const match = pattern.exec(rawData)
+  if (!match) { return null }
+  const data = {
+    type: "discover",
+    account: match[1],
+    lastName: match[2].trim(),
+    firstName: match[3].trim(),
+    expYear: match[4],
+    expMonth: match[5],
+  }
+  return data
+}
+
 class CheckoutForm {
 
-  // # START: checkout_form_format
+  static cardswipe(data) {
+    new CheckoutForm().cardswipe(data)
+  }
+
+  cardswipe(data) {
+    this.numberField().val(data.account)
+    this.expiryField().val(`${data.expMonth}/${data.expYear}`)
+    this.cvcField().focus()
+  }
+// END: cardswipe
+
   format() {
     this.numberField().payment("formatCardNumber")
     this.expiryField().payment("formatCardExpiry")
     this.cvcField().payment("formatCardCVC")
     this.disableButton()
   }
-  // # END: checkout_form_format
 
-  // # START: checkout_form_valid_fields
   form() { return $("#payment-form") }
 
   validFields() { return this.form().find(".valid-field") }
@@ -19,9 +44,7 @@ class CheckoutForm {
   expiryField() { return this.form().find("#expiration_date") }
 
   cvcField() { return this.form().find("#cvc") }
-  // # END: checkout_form_valid_fields
 
-  // # START: checkout_form_display_status
   displayStatus() {
     this.displayFieldStatus(this.numberField(), this.isNumberValid())
     this.displayFieldStatus(this.expiryField(), this.isExpiryValid())
@@ -77,9 +100,7 @@ class CheckoutForm {
   enableButton() { this.button().toggleClass("disabled", false) }
 
   isEnabled() { return !this.button().hasClass("disabled") }
-  // # END: checkout_form_display_status
 
-  // # START: checkout_form
   paymentTypeRadio() { return $(".payment-type-radio") }
 
   selectedPaymentType() { return $("input[name=payment_type]:checked").val() }
@@ -91,7 +112,6 @@ class CheckoutForm {
   setCreditCardVisibility() {
     this.creditCardForm().toggleClass("hidden", this.isPayPal())
   }
-  // # END: checkout_form
 
   submit() { this.form().get(0).submit() }
 
@@ -108,9 +128,7 @@ class CheckoutForm {
   appendError(text) { this.errorText().text(text) }
 
 }
-// # END: checkout_form
 
-// # START: token_handler
 class TokenHandler {
   static handle(status, response) {
     new TokenHandler(status, response).handle()
@@ -134,21 +152,16 @@ class TokenHandler {
     }
   }
 }
-// # END: token_handler
 
-// # START: payment_form_handler
 class PaymentFormHandler {
 
-  // # START: stripe_form_constructor
   constructor() {
     this.checkoutForm = new CheckoutForm()
     this.checkoutForm.format()
     this.initEventHandlers()
     this.initPaymentTypeHandler()
   }
-  // # END: stripe_form_constructor
 
-  // # START: stripe_form_event_handlers
   initEventHandlers() {
     this.checkoutForm.form().submit(event => {
       if (!this.checkoutForm.isPayPal()) {
@@ -165,7 +178,6 @@ class PaymentFormHandler {
       this.checkoutForm.setCreditCardVisibility()
     })
   }
-  // # END: stripe_form_event_handlers
 
   handleSubmit(event) {
     event.preventDefault()
@@ -178,11 +190,20 @@ class PaymentFormHandler {
   }
 }
 
-// # START: jQuery
+// # START: cardswipe_setup
 $(() => {
+  if ($("#admin_credit_card_info").size() > 0) {
+    $.cardswipe({
+      firstLineOnly: false,
+      success: CheckoutForm.cardswipe,
+      parsers: ["visa", "amex", "mastercard", discoverParser, "generic"],
+      debug: false,
+    })
+  }
   if ($(".credit-card-form").size() > 0) {
     return new PaymentFormHandler()
   }
+
   return null
 })
-// # END: jQuery
+// # END: cardswipe_setup
