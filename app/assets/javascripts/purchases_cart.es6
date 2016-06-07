@@ -1,4 +1,32 @@
+// START: cardswipe
+function discoverParser(rawData) {
+  const pattern = new RegExp(
+    "^%B(6[0-9]{15})\\^([A-Z ]+)/([A-Z ]+)\\^([0-9]{2})([0-9]{2})")
+  const match = pattern.exec(rawData)
+  if (!match) { return null }
+  const data = {
+    type: "discover",
+    account: match[1],
+    lastName: match[2].trim(),
+    firstName: match[3].trim(),
+    expYear: match[4],
+    expMonth: match[5],
+  }
+  return data
+}
+
 class CheckoutForm {
+
+  static cardswipe(data) {
+    new CheckoutForm().cardswipe(data)
+  }
+
+  cardswipe(data) {
+    this.numberField().val(data.account)
+    this.expiryField().val(`${data.expMonth}/${data.expYear}`)
+    this.cvcField().focus()
+  }
+// END: cardswipe
 
   format() {
     this.numberField().payment("formatCardNumber")
@@ -162,9 +190,20 @@ class PaymentFormHandler {
   }
 }
 
+// # START: cardswipe_setup
 $(() => {
+  if ($("#admin_credit_card_info").size() > 0) {
+    $.cardswipe({
+      firstLineOnly: false,
+      success: CheckoutForm.cardswipe,
+      parsers: ["visa", "amex", "mastercard", discoverParser, "generic"],
+      debug: false,
+    })
+  }
   if ($(".credit-card-form").size() > 0) {
     return new PaymentFormHandler()
   }
+
   return null
 })
+// # END: cardswipe_setup
