@@ -1,5 +1,6 @@
 class AbstractPurchasesCart
 
+  # START: with_codes
   attr_accessor :user, :purchase_amount_cents, :purchase_amount, :success,
                 :payment, :expected_ticket_ids, :payment_reference,
                 :discount_code_string
@@ -33,6 +34,8 @@ class AbstractPurchasesCart
     purchase_amount == total_price &&
       expected_ticket_ids == tickets.map(&:id).sort
   end
+
+  # END: with_codes
 
   def tickets
     @tickets ||= @user.tickets_in_cart.select do |ticket|
@@ -87,12 +90,14 @@ class AbstractPurchasesCart
     end
   end
 
+  # START: code_purchase_attributes
   def purchase_attributes
     {user_id: user.id, price_cents: purchase_amount.cents,
      status: "created", reference: Payment.generate_reference,
      discount_code_id: discount_code&.id,
      discount: price_calculator.discount}
   end
+  # END: code_purchase_attributes
 
   def success?
     success

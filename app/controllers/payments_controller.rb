@@ -43,18 +43,23 @@ class PaymentsController < ApplicationController
       token: StripeToken.new(**card_params))
   end
 
+  # START: controller_with_code
   private def paypal_workflow
     PayPalPurchasesCart.new(
       user: current_user,
       purchase_amount_cents: params[:purchase_amount_cents],
-      expected_ticket_ids: params[:ticket_ids])
+      expected_ticket_ids: params[:ticket_ids],
+      discount_code: session[:new_discount_code])
   end
 
   private def stripe_workflow
     reference = Payment.generate_reference
     PurchasesCartSetupJob.perform_later(
-      user: current_user, params: params, payment_reference: reference)
+      user: current_user, params: params,
+      payment_reference: reference,
+      discount_code: session[:new_discount_code])
   end
+  # END: controller_with_code
 
   private def card_params
     params.slice(:credit_card_number, :expiration_month,
