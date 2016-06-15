@@ -1,6 +1,5 @@
 class AbstractPurchasesCart
 
-  # START: with_codes
   attr_accessor :user, :purchase_amount_cents, :purchase_amount, :success,
                 :payment, :expected_ticket_ids, :payment_reference,
                 :discount_code_string
@@ -30,12 +29,20 @@ class AbstractPurchasesCart
     @success = save && payment.succeeded?
   end
 
-  def pre_purchase_valid?
-    purchase_amount == total_price &&
-      expected_ticket_ids == tickets.map(&:id).sort
+  # START: admin_valid
+  def amount_valid?
+    return true if user.admin?
+    purchase_amount == total_price
   end
 
-  # END: with_codes
+  def tickets_valid?
+    expected_ticket_ids == tickets.map(&:id).sort
+  end
+
+  def pre_purchase_valid?
+    amount_valid? && tickets_valid?
+  end
+  # END: admin_valid
 
   def tickets
     @tickets ||= @user.tickets_in_cart.select do |ticket|
@@ -47,13 +54,16 @@ class AbstractPurchasesCart
     Payment.find_by(reference: payment_reference)
   end
 
-  # START: run_with_exception
-  def run
+  def validity_check
     raise PreExistingPurchaseException.new(purchase) if existing_payment
     raise ChargeSetupValidityException.new(
       user: user,
       expected_purchase_cents: purchase_amount.to_i,
       expected_ticket_ids: expected_ticket_ids) unless pre_purchase_valid?
+  end
+
+  def run
+    validity_check
     update_tickets
     create_payment
     save
@@ -62,7 +72,6 @@ class AbstractPurchasesCart
     on_failure
     raise
   end
-  # END: run_with_exception
 
   def on_failure
     unpurchase_tickets
@@ -84,7 +93,7 @@ class AbstractPurchasesCart
   end
 
   def save
-    payment.transaction do
+    Payment.transaction do
       payment.save!
       true
     end

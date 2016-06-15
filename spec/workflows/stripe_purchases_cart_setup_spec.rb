@@ -10,7 +10,7 @@ describe StripePurchasesCartSetup, :vcr, :aggregate_failures do
   let(:ticket_3) { instance_spy(Ticket, status: "unsold", id: 3,
                                         payment_reference: "reference") }
   let(:user) { instance_double(
-    User, id: 5, tickets_in_cart: [ticket_1, ticket_2]) }
+    User, id: 5, tickets_in_cart: [ticket_1, ticket_2], admin?: false) }
   let(:discount_code) { nil }
   let(:discount_code_string) { nil }
   let(:workflow) { StripePurchasesCartSetup.new(
@@ -70,7 +70,7 @@ describe StripePurchasesCartSetup, :vcr, :aggregate_failures do
     describe "expected price" do
       let(:workflow) { StripePurchasesCartSetup.new(
         user: user, purchase_amount_cents: 2500, stripe_token: token,
-        expected_ticket_ids: "1 2") }
+        expected_ticket_ids: "1 2", payment_reference: "reference") }
 
       it "does not payment if the expected price is incorrect" do
         allow(workflow).to receive(:save).and_return(true)
@@ -82,6 +82,30 @@ describe StripePurchasesCartSetup, :vcr, :aggregate_failures do
         expect(ticket_3).not_to have_received(:make_purchased)
         expect(workflow.payment).to be_nil
       end
+
+      describe "if the user is an admin" do
+        let(:user) { instance_double(
+          User, id: 5, tickets_in_cart: [ticket_1, ticket_2], admin?: true) }
+
+        before(:example) {
+          allow(workflow).to receive(:save).and_return(true)
+          expect(workflow).to receive(:on_success)
+        }
+
+        it "works with the new price" do
+          expect(workflow).to be_pre_purchase_valid
+          workflow.run
+          expect(ticket_1).to have_received(:make_purchased)
+          expect(ticket_2).to have_received(:make_purchased)
+          expect(ticket_3).not_to have_received(:make_purchased)
+          expect(workflow.payment).to have_attributes(
+            user_id: user.id, price_cents: 2500,
+            reference: a_truthy_value, payment_method: "stripe")
+          expect(workflow.payment.payment_line_items.size).to eq(2)
+        end
+
+      end
+
     end
 
     describe "expected tickets" do

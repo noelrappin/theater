@@ -3,7 +3,6 @@
 = form_tag payments_path, class: "credit-card-form form-horizontal",
   id: "payment-form" do
 
-  // START: discount_code
   .form-group
     .col-sm-2
       = label_tag(:discount_code, "Discount Code", class: "control-label")
@@ -13,9 +12,19 @@
     .col-sm-3
       = submit_tag("Apply Code", class: "btn btn-primary", id: "apply_code")
     = hidden_field_tag(:active_discount_code, "")
-  // END: discount_code
 
-  = hidden_field_tag(:purchase_amount_cents, @cart.total_cost.cents)
+  // # START: admin_override
+  - if current_user.admin?
+    .form-group
+      .col-sm-2
+        = label_tag(:purchase_amount,
+          "Purchase Amount Override ($X.XX)", class: "control-label")
+      .col-sm-2
+        %input.form-control{"name": :purchase_amount_cents,
+          id: "purchase_amount_cents"}
+  - else
+    = hidden_field_tag(:purchase_amount_cents, @cart.total_cost.cents)
+
   = hidden_field_tag(@cart.item_attribute, @cart.item_ids)
   = hidden_field_tag(:purchase_type, @cart.class.name)
   = hidden_field_tag(:stripe_token, "")
@@ -31,10 +40,17 @@
     Credit Card
     = radio_button_tag(:payment_type, :credit, true,
       class: "payment-type-radio", id: "credit_radio")
+  - if current_user.admin?
+    Cash
+    = radio_button_tag(:payment_type, :cash, true,
+      class: "payment-type-radio", id: "cash_radio")
+    Invoice/Purhase Order
+    = radio_button_tag(:payment_type, :credit, true,
+      class: "payment-type-radio", id: "credit_radio")
+  // # END: admin_override
 
   .bg-danger#error-text
 
-  -# START: admin_fields
   - if current_user.admin?
     #admin_credit_card_info
       %h3 Administrator info
@@ -43,7 +59,12 @@
           = label_tag(:user_email, "User Email", class: "control-label")
         .col-sm-2
           %input.form-control{"name": :user_email, id: "user_email"}
-  -# END: admin_fields
+      %h3 Special Case Note
+      .form-group
+        .col-sm-2
+          = label_tag(:admin_note, "Note", class: "control-label")
+        .col-sm-2
+          %textarea.form-control{"name": :admin_note, id: "admin_note"}
 
 
   #credit-card-info

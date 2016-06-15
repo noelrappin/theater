@@ -11,7 +11,7 @@ describe PayPalPurchasesCart, :vcr, :aggregate_failures do
               payment_reference: "reference") }
     let(:ticket_3) { instance_spy(Ticket, status: "unsold", id: 3) }
     let(:user) { instance_double(
-      User, id: 5, tickets_in_cart: [ticket_1, ticket_2]) }
+      User, id: 5, tickets_in_cart: [ticket_1, ticket_2], admin?: false) }
     let(:discount_code) { nil }
     let(:discount_code_string) { nil }
     let(:workflow) { PayPalPurchasesCart.new(
