@@ -57,7 +57,7 @@ class PaymentsController < ApplicationController
       (params[:purchase_amount].to_f * 100).to_i
   end
 
-  # END cash_workflow
+  # END: cash_workflow
 
   private def stripe_subscription_workflow
     StripeCreatesSubscription.new(
