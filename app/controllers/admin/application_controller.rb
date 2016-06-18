@@ -9,6 +9,7 @@ module Admin
   class ApplicationController < Administrate::ApplicationController
 
     before_action :authenticate_admin
+    before_filter :set_paper_trail_whodunnit
 
     def authenticate_admin
       current_user.admin?

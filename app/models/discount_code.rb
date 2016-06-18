@@ -1,5 +1,7 @@
 class DiscountCode < ActiveRecord::Base
 
+  has_paper_trail
+
   monetize :min_amount_cents
   monetize :max_discount_cents
 

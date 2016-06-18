@@ -1,5 +1,7 @@
 class PaymentLineItem < ActiveRecord::Base
 
+  has_paper_trail
+
   belongs_to :payment
   belongs_to :reference, polymorphic: true
 

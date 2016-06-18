@@ -1,5 +1,7 @@
 class Plan < ActiveRecord::Base
 
+  has_paper_trail
+
   enum status: %i(inactive active).freeze
 
   monetize :price_cents
