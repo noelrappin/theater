@@ -31,22 +31,25 @@ class TicketPaymentConsistency < SimpleDelegator
 
   def success_consistent
     return unless success?
-    if tickets.select? { |ticket| !ticket.purchased? }.each do |ticket|
+    inconsistent_tickets = tickets.select { |ticket| !ticket.purchased? }
+    inconsistent_tickets.each do |ticket|
       @errors << "Successful purchase #{id}, ticket #{ticket.id} not purchased"
     end
   end
 
   def refund_consistent
     return unless refund?
-    if tickets.select? { |ticket| !ticket.refunded? }.each do |ticket|
+    inconsistent_tickets = tickets.select { |ticket| !ticket.refunded? }
+    inconsistent_tickets.each do |ticket|
       @errors << "Refunded purchase #{id}, ticket #{ticket.id} not refunded"
     end
   end
 
   def amount_consistent
     expected = payment_line_items.map(&:price) - discount
-    if (expected != price)
-      @errors >> "Purchase #{id}, expected price #{expected} actual price #{price}"
+    if expected != price
+      @errors >>
+        "Purchase #{id}, expected price #{expected} actual price #{price}"
     end
   end
 
