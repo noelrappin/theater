@@ -43,7 +43,7 @@ class PreparesStripeRefund
   end
 
   def update_tickets
-    refundable.references.each do |ticket|
+    refundable.tickets.each do |ticket|
       ticket.status = "refund_pending"
     end
   end

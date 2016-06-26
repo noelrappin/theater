@@ -14,7 +14,7 @@ class CreatesStripeRefund
       update_tickets
       on_success
     end
-  rescue StandardError
+  rescue StandardError => e
     on_failure
   end
 
@@ -32,7 +32,7 @@ class CreatesStripeRefund
   end
 
   def update_tickets
-    payment_to_refund.references.each(&:refund_successful)
+    payment_to_refund.tickets.each(&:refund_successful)
   end
 
   def on_success
@@ -41,9 +41,13 @@ class CreatesStripeRefund
   end
 
   def on_failure
-    unpurchase_tickets
+    unrefund_tickets
     save
     RefundMailer.notify_failure(payment_to_refund).deliver_later
+  end
+
+  def unrefund_tickets
+    payment_to_refund.tickets.each(&:purchased)
   end
 
   def save

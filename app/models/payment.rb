@@ -6,8 +6,10 @@ class Payment < ActiveRecord::Base
 
   belongs_to :user
   has_many :payment_line_items
-  has_many :tickets, through: :payment_line_items, source_type: "Ticket"
-  has_many :subscriptions, through: :payment_line_items, source_type: "Ticket"
+  has_many :tickets, through: :payment_line_items,
+                     source_type: "Ticket", source: "reference"
+  has_many :subscriptions, through: :payment_line_items,
+                           source_type: "Ticket", source: "reference"
   belongs_to :administrator, class_name: "User"
 
   has_many :refunds, class_name: "Payment",

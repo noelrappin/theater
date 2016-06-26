@@ -12,7 +12,7 @@ describe ExecutesPayPalPayment, :vcr, :aggregate_failures do
       User, id: 5, tickets_in_cart: [ticket_1, ticket_2]) }
     let(:workflow) { ExecutesPayPalPayment.new(
       payment_id: "PAYMENTID", token: "TOKEN", payer_id: "PAYER_ID") }
-    let(:payment) { instance_spy(Payment, references: [ticket_1, ticket_2]) }
+    let(:payment) { instance_spy(Payment, tickets: [ticket_1, ticket_2]) }
     let(:pay_pal_payment) {
       instance_spy(PayPalPayment, execute: true, match?: true) }
 

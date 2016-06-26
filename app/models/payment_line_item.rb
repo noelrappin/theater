@@ -37,4 +37,8 @@ class PaymentLineItem < ActiveRecord::Base
     [reference]
   end
 
+  def tickets
+    reference.is_a?(Ticket) ? references : []
+  end
+
 end

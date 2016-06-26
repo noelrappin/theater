@@ -12,7 +12,7 @@ RSpec.describe PreparesStripeRefund, :vcr, :aggregate_failures do
       refund_amount_cents: 3000, refundable: payment) }
 
     before(:example) {
-      allow(payment).to receive(:references).and_return([ticket])
+      allow(payment).to receive(:tickets).and_return([ticket])
       allow(payment).to receive(:can_refund?).and_return(true)
     }
 
@@ -36,7 +36,7 @@ RSpec.describe PreparesStripeRefund, :vcr, :aggregate_failures do
 
     let(:item_to_refund) { instance_spy(
       PaymentLineItem, id: 1, reference: ticket_to_refund,
-                       payment: payment, references: [ticket_to_refund]) }
+                       payment: payment, tickets: [ticket_to_refund]) }
     let(:item_to_keep) { instance_spy(
       PaymentLineItem, id: 2, reference: ticket_to_keep, payment: payment) }
     let(:ticket_to_refund) { instance_spy(Ticket) }
