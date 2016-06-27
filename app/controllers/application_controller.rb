@@ -10,6 +10,11 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+  def current_user
+    return nil if session[:awaiting_authy_user_id].present?
+    super
+  end
+
   private def user_not_authorized
     sign_out(User)
     render plain: "Access Not Allowed", status: :forbidden

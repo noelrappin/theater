@@ -26,6 +26,7 @@ class UserDashboard < Administrate::BaseDashboard
     updated_at: Field::DateTime,
     name: Field::String,
     role: Field::String.with_options(searchable: false),
+    cellphone_number: Field::String,
     stripe_id: Field::String}.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -81,7 +82,8 @@ class UserDashboard < Administrate::BaseDashboard
     :last_sign_in_ip,
     :name,
     :role,
-    :stripe_id
+    :stripe_id,
+    :cellphone_number
   ].freeze
 
   # START: user_display_resource
