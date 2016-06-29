@@ -14,7 +14,7 @@ class CreatesStripeRefund
       update_tickets
       on_success
     end
-  rescue StandardError => e
+  rescue StandardError => _e
     on_failure
   end
 
