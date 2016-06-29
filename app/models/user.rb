@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
 
-  has_paper_trail
+  # START: has_paper_trail
+  has_paper_trail ignore: %i(sign_in_count current_sign_in_at last_sign_in_at
+  # END: has_paper_trail
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
