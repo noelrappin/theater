@@ -14,7 +14,9 @@ class User < ActiveRecord::Base
   has_many :tickets
   has_many :subscriptions
 
+  # START: cellphone_accessor
   attr_accessor :cellphone_number
+  # END: cellphone_accessor
 
   def set_default_role
     self.role ||= :user

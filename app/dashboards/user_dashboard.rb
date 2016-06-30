@@ -67,6 +67,7 @@ class UserDashboard < Administrate::BaseDashboard
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
+  # START: cellphone_form
   FORM_ATTRIBUTES = [
     :tickets,
     :subscriptions,
@@ -85,11 +86,10 @@ class UserDashboard < Administrate::BaseDashboard
     :stripe_id,
     :cellphone_number
   ].freeze
+  # END: cellphone_form
 
-  # START: user_display_resource
   def display_resource(user)
     user.name
   end
-  # END: user_display_resource
 
 end
