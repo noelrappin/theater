@@ -35,5 +35,4 @@ Rails.application.routes.draw do
   get "paypal/approved", to: "pay_pal_payments#approved"
 
   post "stripe/webhook", to: "stripe_webhook#action"
-
 end

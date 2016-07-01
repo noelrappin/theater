@@ -1,9 +1,9 @@
 class Users::SessionsController < Devise::SessionsController
 
-# START: skip_before
-skip_before_action :set_paper_trail_whodunnit
-# END: skip_before
-  
+  # START: skip_before
+  skip_before_action :set_paper_trail_whodunnit
+  # END: skip_before
+
   # START: session_create
   def create
     @user = User.find_by(email: params[:user][:email])
