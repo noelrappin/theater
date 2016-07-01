@@ -13,12 +13,14 @@ Rails.application.routes.draw do
     root to: "users#index"
   end
 
+  # START: devise_routes
   devise_for :users, controllers: {
     sessions: "users/sessions"}
 
   devise_scope :user do
     post "users/sessions/verify" => "Users::SessionsController"
   end
+  # END: devise_routes
 
   resources :events
   resource :shopping_cart
@@ -32,7 +34,6 @@ Rails.application.routes.draw do
 
   get "paypal/approved", to: "pay_pal_payments#approved"
 
-  # START: stripe
   post "stripe/webhook", to: "stripe_webhook#action"
-  # END: stripe
+
 end

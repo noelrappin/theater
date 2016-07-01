@@ -1,7 +1,10 @@
 class Users::SessionsController < Devise::SessionsController
 
-  skip_before_action :set_paper_trail_whodunnit
-
+# START: skip_before
+skip_before_action :set_paper_trail_whodunnit
+# END: skip_before
+  
+  # START: session_create
   def create
     @user = User.find_by(email: params[:user][:email])
     if @user&.authy_id.present?
@@ -16,10 +19,12 @@ class Users::SessionsController < Devise::SessionsController
       super
     end
   end
+  # END: session_create
 
   def two_factor
   end
 
+  # START: session_verify
   def verify
     @user = User.find(session[:awaiting_authy_user_id])
     token = Authy::API.verify(id: @user.authy_id, token: params[:token])
@@ -33,5 +38,6 @@ class Users::SessionsController < Devise::SessionsController
       redirect_to users_sessions_two_factor_path
     end
   end
+  # END: session_verify
 
 end
