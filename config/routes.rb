@@ -2,7 +2,14 @@ Rails.application.routes.draw do
   root to: 'visitors#index'
 
   namespace :admin do
-    resources :users
+    resources :users do
+      member do
+        get :simulate
+      end
+      collection do
+        get :unsimulate
+      end
+    end
     resources :events
     resources :payments
     resources :payment_line_items

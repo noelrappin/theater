@@ -4,3 +4,11 @@
       %button.close{"aria-hidden" => "true",
         "data-dismiss" => "alert", type: "button"} &times;
       = content_tag :div, msg, id: "flash_#{name}"
+
+- if simulating_admin_user
+  %div{class: "alert alert-danger"}
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", type: "button"}
+      &times;
+    %div
+      You are simulating #{current_user.email}
+      = link_to "End Simulation", unsimulate_admin_users_path

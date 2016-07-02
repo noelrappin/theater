@@ -11,8 +11,10 @@ module Admin
     before_action :authenticate_admin
     before_action :set_paper_trail_whodunnit
 
+    include Pundit
+
     def authenticate_admin
-      current_user.admin?
+      redirect_to root_path unless current_user.admin?
     end
 
     # Override this value to specify the number of elements to display at a time
