@@ -81,7 +81,8 @@ to display a collection of resources in an HTML table.
 <%# START: link_to_simulate %>
         <td><%= link_to(
           "Simulate",
-          [:simulate, namespace, resource],
+          user_simulation_path(id_to_simulate: resource.id),
+          method: :post,
           class: "action-edit",
           data: { confirm: "Do you want to simulate this user?" }
         ) %></td>

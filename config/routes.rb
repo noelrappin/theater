@@ -2,14 +2,7 @@ Rails.application.routes.draw do
   root to: 'visitors#index'
 
   namespace :admin do
-    resources :users do
-      member do
-        get :simulate
-      end
-      collection do
-        get :unsimulate
-      end
-    end
+    resources :users
     resources :events
     resources :payments
     resources :payment_line_items
@@ -19,6 +12,8 @@ Rails.application.routes.draw do
     resources :tickets
     root to: "users#index"
   end
+
+  resource :user_simulation, only: %i(create destroy)
 
   # START: devise_routes
   devise_for :users, controllers: {
