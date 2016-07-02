@@ -7,7 +7,8 @@
 
 - if simulating_admin_user
   %div{class: "alert alert-danger"}
-    %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", type: "button"}
+    %button.close{"aria-hidden" => "true", 
+      "data-dismiss" => "alert", type: "button"}
       &times;
     %div
       You are simulating #{current_user.email}
