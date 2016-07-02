@@ -78,12 +78,14 @@ to display a collection of resources in an HTML table.
           data: { confirm: t("administrate.actions.confirm") }
         ) %></td>
 
+<%# START: link_to_simulate %>
         <td><%= link_to(
           "Simulate",
           [:simulate, namespace, resource],
           class: "action-edit",
           data: { confirm: "Do you want to simulate this user?" }
         ) %></td>
+<%# END: link_to_simulate %>
       </tr>
     <% end %>
   </tbody>
