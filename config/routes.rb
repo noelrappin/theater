@@ -13,16 +13,16 @@ Rails.application.routes.draw do
     root to: "users#index"
   end
 
+  # START: user_simulation_routes
   resource :user_simulation, only: %i(create destroy)
+  # END: user_simulation_routes
 
-  # START: devise_routes
   devise_for :users, controllers: {
     sessions: "users/sessions"}
 
   devise_scope :user do
     post "users/sessions/verify" => "Users::SessionsController"
   end
-  # END: devise_routes
 
   resources :events
   resource :shopping_cart

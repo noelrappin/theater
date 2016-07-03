@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
     super
   end
 
+  # START: simulation_overhead
   def user_for_paper_trail
     simulating_admin_user || current_user
   end
@@ -23,6 +24,7 @@ class ApplicationController < ActionController::Base
     User.find_by(id: session[:admin_id])
   end
   helper_method :simulating_admin_user
+  # END: simulation_overhead
 
   private def user_not_authorized
     sign_out(User)
