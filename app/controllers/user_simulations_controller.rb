@@ -10,7 +10,7 @@ class UserSimulationsController < ApplicationController
 
   def destroy
     redirect_to(admin_users_path) && return if simulating_admin_user.nil?
-    sign_in(:user, simulating_admin_user), bypass: true)
+    sign_in(:user, simulating_admin_user, bypass: true)
     session[:admin_id] = nil
     redirect_to admin_users_path
   end
