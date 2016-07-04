@@ -139,6 +139,8 @@ GEM
       eventmachine (>= 1.0.0.beta.4)
     em-synchrony (1.0.5)
       eventmachine (>= 1.0.0.beta.1)
+    email_prefixer (1.2.0)
+      rails (>= 4.0)
     erubis (2.7.0)
     eventmachine (1.0.9.1)
     eventmachine_httpserver (0.2.1)
@@ -227,6 +229,8 @@ GEM
     lumberjack (1.0.10)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    mail_interceptor (0.0.7)
+      activesupport
     method_source (0.8.2)
     mime-types (2.99.2)
     mini_portile2 (2.1.0)
@@ -462,6 +466,7 @@ DEPENDENCIES
   delayed_job_active_record
   devise
   dotenv-rails
+  email_prefixer
   factory_girl_rails
   faker
   foreman
@@ -476,6 +481,7 @@ DEPENDENCIES
   jquery-payment-rails!
   jquery-rails
   launchy
+  mail_interceptor
   money-rails
   oj
   paper_trail

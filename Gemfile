@@ -74,3 +74,8 @@ group :test do
   gem "poltergeist"
   gem "webmock"
 end
+
+group :development, :staging do
+  gem "mail_interceptor"
+  gem "email_prefixer"
+end
