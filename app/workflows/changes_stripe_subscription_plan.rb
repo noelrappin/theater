@@ -22,7 +22,7 @@ class ChangesStripeSubsriptionPlan
   end
 
   def remote_subscription
-    @remote_subscription ||= customer.subcriptions.retrieve(subscription.remote_id)
+    @remote_subscription ||= customer.subscriptions.retrieve(subscription.remote_id)
   end
 
   def user_is_subscribed?
