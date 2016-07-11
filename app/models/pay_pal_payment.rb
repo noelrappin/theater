@@ -66,7 +66,7 @@ class PayPalPayment
   end
 
   def price_match?
-    pay_pal_payment == payment.price
+    pay_pal_amount == payment.price
   end
 
   def pay_pal_ticket_ids
@@ -75,12 +75,12 @@ class PayPalPayment
     line_items.flat_map(&:tickets).map(&:id).sort
   end
 
-  def item_match
+  def item_match?
     payment.sorted_ticket_ids == pay_pal_ticket_ids
   end
 
   def match?
-    price_match? && item_match
+    price_match? && item_match?
   end
   # END: payment_check
 
