@@ -25,7 +25,7 @@ module StripeHandler
     end
 
     def save
-      subscription.save && payment.save
+      subscription.save! && payment.save!
     end
 
     def invoice
