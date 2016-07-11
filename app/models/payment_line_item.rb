@@ -9,7 +9,6 @@ class PaymentLineItem < ActiveRecord::Base
   monetize :price_cents
 
   def performance
-    ap self
     reference&.performance
   end
 
