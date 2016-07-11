@@ -31,7 +31,7 @@ class StripeCreatesSubscription
 
   def save
     Subscription.transaction do
-      subscription.save && user.save
+      subscription.save! && user.save!
     end
   end
 
